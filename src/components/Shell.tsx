@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUp, ArrowUpRight, Menu, X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { footer, nav, site, type SocialKind } from "@/content";
 import { Mark } from "./Mark";
+import { HyperText } from "./ui/hyper-text";
 
 export function Reveal({
   children,
@@ -27,7 +28,13 @@ export function Reveal({
   );
 }
 
-export function Wordmark({ onNavigate }: { onNavigate?: () => void }) {
+export function Wordmark({
+  onNavigate,
+  animate = false,
+}: {
+  onNavigate?: () => void;
+  animate?: boolean;
+}) {
   return (
     <a
       href="#top"
@@ -36,7 +43,26 @@ export function Wordmark({ onNavigate }: { onNavigate?: () => void }) {
       aria-label={`${site.name} home`}
     >
       <Mark size={30} className="wordmark-mark" />
-      <span className="wordmark-text">{site.wordmark.join(" ")}</span>
+      {animate ? (
+        <span
+          className="wordmark-text wordmark-text--animated"
+          aria-hidden="true"
+        >
+          <span className="wordmark-sizing">{site.name}</span>
+          <HyperText
+            as="span"
+            className="wordmark-hyper"
+            initialText="Magic UI MCP NPM connection"
+            delay={1000}
+            duration={1400}
+            animateOnHover={false}
+          >
+            {site.name}
+          </HyperText>
+        </span>
+      ) : (
+        <span className="wordmark-text">{site.wordmark.join(" ")}</span>
+      )}
     </a>
   );
 }
@@ -63,7 +89,7 @@ export function Header() {
     <>
       <header className="site-header">
         <div className="wrap">
-          <Wordmark onNavigate={close} />
+          <Wordmark onNavigate={close} animate />
           <nav className="desktop-nav" aria-label="Primary">
             {nav.map((link) => (
               <a key={link.href} href={link.href}>

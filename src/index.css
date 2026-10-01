@@ -300,6 +300,37 @@ em,
   flex-shrink: 0;
   color: var(--text);
 }
+.wordmark-text--animated {
+  display: inline-grid;
+  align-items: center;
+  position: relative;
+}
+.wordmark-sizing,
+.wordmark-hyper {
+  grid-area: 1 / 1;
+}
+.wordmark-sizing {
+  visibility: hidden;
+  padding-right: 0.15em;
+}
+.wordmark-hyper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+.wordmark-hyper[data-hyper-phase="initial"] {
+  font-size: 0.76em;
+}
+.wordmark-hyper > span {
+  font-family: inherit;
+  width: auto;
+  flex-shrink: 0;
+}
 .desktop-nav {
   display: flex;
   gap: 34px;
