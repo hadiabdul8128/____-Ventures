@@ -1,0 +1,11 @@
+.word {
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: top;
+  white-space: pre;
+}
+
+.inner {
+  display: inline-block;
+  will-change: transform;
+}

@@ -1,0 +1,86 @@
+.artwork {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  isolation: isolate;
+  contain: layout paint;
+}
+
+.aura {
+  position: absolute;
+  inset: 0 -12% -6%;
+  background:
+    radial-gradient(
+      ellipse at 54% 51%,
+      #7952191a 0%,
+      #6242160b 38%,
+      transparent 65%
+    ),
+    radial-gradient(ellipse at 66% 39%, #bf893313, transparent 51%);
+  pointer-events: none;
+}
+
+.halo {
+  position: absolute;
+  width: 96%;
+  height: 84%;
+  left: 8%;
+  top: 4%;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.halo circle {
+  stroke: #b49556;
+  stroke-width: 0.35;
+  fill: none;
+}
+
+.canvas,
+.fallback {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+}
+
+.canvas {
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.artwork[data-ready="true"] .canvas {
+  opacity: 1;
+}
+
+.fallback {
+  opacity: 1;
+  transition: opacity 1.4s ease;
+}
+
+.artwork[data-ready="true"] .fallback {
+  opacity: 0;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 2%;
+  left: 20%;
+  width: 69%;
+  height: 10%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #020201bd, transparent 70%);
+  filter: blur(11px);
+  transform: rotate(-14deg);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas,
+  .fallback {
+    transition: none;
+  }
+}

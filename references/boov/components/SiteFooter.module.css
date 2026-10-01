@@ -1,0 +1,107 @@
+.footer {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(3, 6, 18, 0.4), rgba(3, 6, 18, 0.9));
+  color: rgba(221, 212, 247, 0.7);
+  padding: clamp(64px, 9vh, 104px) 24px 40px;
+  border-top: 1px solid rgba(221, 212, 247, 0.1);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--rule);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.mark {
+  width: 26px;
+  height: 26px;
+  overflow: visible;
+}
+
+.mark ellipse {
+  fill: none;
+  stroke: var(--boov-lavender, #b8a7e8);
+  stroke-width: 2.4;
+}
+
+.markCore {
+  fill: var(--rule);
+}
+
+.markMoon {
+  fill: var(--boov-lavender, #b8a7e8);
+}
+
+.tagline {
+  margin: 18px 0 0;
+  max-width: 22ch;
+  color: rgba(200, 194, 224, 0.66);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.link {
+  color: rgba(221, 212, 247, 0.74);
+  font-size: 0.92rem;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+.contactLabel {
+  margin: 0 0 12px;
+  color: rgba(200, 194, 224, 0.5);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contactEmail {
+  color: var(--rule);
+  font-size: 1.02rem;
+  transition: color 0.3s ease;
+}
+
+.contactEmail:hover {
+  color: #fff;
+}
+
+.legal {
+  max-width: 1160px;
+  margin: clamp(48px, 7vh, 76px) auto 0;
+  padding-top: 28px;
+  border-top: 1px solid rgba(221, 212, 247, 0.1);
+  color: rgba(200, 194, 224, 0.44);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 720px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}

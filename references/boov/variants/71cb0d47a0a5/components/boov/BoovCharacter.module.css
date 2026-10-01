@@ -1,0 +1,327 @@
+/* Boov mascot rig — ported from the design artifact. One square sprite sliced
+   by clip-paths; every layer is the same image. All geometry is %-based, so
+   the whole rig scales from --boov-size alone. */
+
+.rig {
+  --boov-size: 120px;
+  position: relative;
+  display: inline-block;
+  width: var(--boov-size);
+  height: var(--boov-size);
+  pointer-events: none;
+}
+
+/* ——— grounding shadow (sits just under the feet) ——— */
+
+.shadow {
+  position: absolute;
+  bottom: -6%;
+  left: 50%;
+  width: 88%;
+  height: 16%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(60, 40, 90, 0.4) 0%, rgba(60, 40, 90, 0) 70%);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: boov-shadow 2.6s ease-in-out infinite;
+}
+
+/* ——— posture (idle | walk | crawl) ——— */
+
+.posture {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.crawl .posture {
+  transform: rotate(16deg) scale(1, 0.82) translateY(6%);
+}
+
+/* ——— stacked idle loops (artifact timings) ——— */
+
+.bob,
+.sway,
+.squash,
+.body {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.bob {
+  animation: boov-bob 2.6s ease-in-out infinite;
+}
+
+/* Walking bob would fight the step hop — calm it down. */
+.walk .bob,
+.crawl .bob {
+  animation-duration: 1.3s;
+  animation-name: boov-bob-soft;
+}
+
+.sway {
+  transform-origin: 50% 90%;
+  animation: boov-sway 5.2s ease-in-out infinite;
+}
+
+.squash {
+  transform-origin: 50% 100%;
+  animation: boov-squash 2.6s ease-in-out infinite;
+}
+
+.body {
+  filter: drop-shadow(0 calc(var(--boov-size) * 0.03) calc(var(--boov-size) * 0.055) rgba(50, 30, 80, 0.18));
+}
+
+/* ——— sprite layers (clip-paths verbatim from the artifact) ——— */
+
+.base,
+.legL,
+.legR,
+.armL,
+.armWave,
+.head {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.part {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.base .part {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 33%, 68% 33%, 68% 59%, 100% 59%, 100% 79.5%, 0% 79.5%);
+}
+
+.legL {
+  transform-origin: 25% 79.5%;
+}
+
+.legL .part {
+  clip-path: inset(79.5% 50.75% 0% 0%);
+  transform-origin: 25% 98%;
+  animation: boov-leg 2.6s ease-in-out infinite;
+}
+
+.legR {
+  transform-origin: 75% 79.5%;
+}
+
+.legR .part {
+  clip-path: inset(79.5% 0% 0% 48.5%);
+  transform-origin: 75% 98%;
+  animation: boov-leg 2.6s ease-in-out -0.4s infinite;
+}
+
+.armL .part {
+  clip-path: polygon(0% 33%, 13.5% 33%, 12.5% 43%, 12.5% 58%, 15.5% 74%, 12% 78%, 0% 78%);
+  transform-origin: 11% 38%;
+  animation: boov-arm-l 2.6s ease-in-out infinite;
+}
+
+.armWave .part {
+  clip-path: inset(33% 0% 41% 68%);
+  transform-origin: 68% 42%;
+  animation: boov-arm-l 2.6s ease-in-out -1.3s infinite reverse;
+}
+
+.waving .armWave .part {
+  animation: boov-wave 1.6s ease-in-out infinite;
+}
+
+.head .part {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 32%, 68% 32%, 68% 33.5%, 58% 33.5%, 52% 34.8%, 38% 34.8%, 30% 33.8%, 24% 32.8%, 0% 32.8%);
+  transform-origin: 48% 31%;
+  animation: boov-head 3.4s ease-in-out infinite;
+}
+
+/* ——— step shuffle (walk / crawl) ———
+   The artifact keys its steps to a 12s master timeline; here they free-run so
+   any traverse duration loops seamlessly. */
+
+.walk .legL,
+.crawl .legL {
+  animation: boov-step-l 0.62s ease-in-out infinite;
+}
+
+.walk .legR,
+.crawl .legR {
+  animation: boov-step-r 0.62s ease-in-out infinite;
+}
+
+.walk .body {
+  animation: boov-trot 0.62s ease-in-out infinite;
+}
+
+.crawl .legL,
+.crawl .legR {
+  animation-duration: 0.48s;
+}
+
+.blushing .base .part,
+.blushing .legL .part,
+.blushing .legR .part,
+.blushing .armL .part,
+.blushing .armWave .part,
+.blushing .head .part {
+  animation-name: none;
+  filter: hue-rotate(92deg) saturate(1.7) brightness(0.88);
+  transition: filter 0.3s ease;
+}
+
+/* ——— keyframes (artifact values) ——— */
+
+@keyframes boov-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7.6%);
+  }
+}
+
+@keyframes boov-bob-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2.5%);
+  }
+}
+
+@keyframes boov-sway {
+  0%,
+  100% {
+    transform: rotate(-2.2deg);
+  }
+  50% {
+    transform: rotate(2.6deg);
+  }
+}
+
+@keyframes boov-squash {
+  0% {
+    transform: scale(1.05, 0.95);
+  }
+  18% {
+    transform: scale(0.97, 1.05);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  82% {
+    transform: scale(0.97, 1.05);
+  }
+  100% {
+    transform: scale(1.05, 0.95);
+  }
+}
+
+@keyframes boov-shadow {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1.06);
+    opacity: 0.34;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.82);
+    opacity: 0.2;
+  }
+}
+
+@keyframes boov-head {
+  0%,
+  100% {
+    transform: rotate(-2deg) translateY(0);
+  }
+  50% {
+    transform: rotate(2.4deg) translateY(-0.9%);
+  }
+}
+
+@keyframes boov-arm-l {
+  0%,
+  100% {
+    transform: rotate(1.5deg);
+  }
+  50% {
+    transform: rotate(-1.5deg);
+  }
+}
+
+@keyframes boov-leg {
+  0%,
+  100% {
+    transform: scaleY(0.992) rotate(0.3deg);
+  }
+  50% {
+    transform: scaleY(1.004) rotate(-0.3deg);
+  }
+}
+
+@keyframes boov-wave {
+  0%,
+  55%,
+  100% {
+    transform: rotate(0deg);
+  }
+  62% {
+    transform: rotate(-16deg);
+  }
+  70% {
+    transform: rotate(4deg);
+  }
+  78% {
+    transform: rotate(-16deg);
+  }
+  86% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes boov-step-l {
+  0%,
+  100% {
+    transform: skewX(6deg);
+  }
+  50% {
+    transform: skewX(-6deg);
+  }
+}
+
+@keyframes boov-step-r {
+  0%,
+  100% {
+    transform: skewX(-6deg);
+  }
+  50% {
+    transform: skewX(6deg);
+  }
+}
+
+@keyframes boov-trot {
+  0%,
+  100% {
+    transform: translateY(0) rotate(1.2deg);
+  }
+  25% {
+    transform: translateY(-3.5%) rotate(0deg);
+  }
+  50% {
+    transform: translateY(0) rotate(-1.2deg);
+  }
+  75% {
+    transform: translateY(-3.5%) rotate(0deg);
+  }
+}
+
+/* Under reduced motion the global kill-switch zeroes all of these durations —
+   the rig degrades to a static, correctly assembled character. */

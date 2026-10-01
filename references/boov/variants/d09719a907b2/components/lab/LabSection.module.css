@@ -1,0 +1,150 @@
+.exhibit {
+  position: relative;
+  max-width: 1160px;
+  margin: 0 auto clamp(80px, 11vh, 140px);
+  padding: clamp(24px, 3.4vw, 44px);
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.3));
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bone-2, #fbf7f0) 40%, transparent);
+}
+
+/* corner crosshair ticks sitting on the frame corners */
+.tick {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+}
+
+.tick::before,
+.tick::after {
+  content: "";
+  position: absolute;
+  background: var(--tech-line, rgba(91, 58, 140, 0.5));
+}
+
+.tick::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.tick::after {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.tickTL {
+  top: -4.5px;
+  left: -4.5px;
+}
+.tickTR {
+  top: -4.5px;
+  right: -4.5px;
+}
+.tickBL {
+  bottom: -4.5px;
+  left: -4.5px;
+}
+.tickBR {
+  bottom: -4.5px;
+  right: -4.5px;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 28px;
+  margin-bottom: clamp(26px, 3.4vw, 40px);
+  padding-bottom: clamp(16px, 2vw, 22px);
+  border-bottom: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.24));
+}
+
+.meta {
+  min-width: 0;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 18px;
+  margin: 0 0 14px;
+}
+
+.index {
+  color: var(--boov-purple, #5b3a8c);
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  font-variant-numeric: tabular-nums;
+}
+
+.tool {
+  color: var(--ink-warm-soft, #4a4258);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+/* live readout slot — instrumentation as decoration */
+.readout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  margin-left: auto;
+  padding: 10px 14px;
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.28));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bone-2, #fbf7f0) 55%, transparent);
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-align: right;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  white-space: pre;
+}
+
+.body {
+  position: relative;
+}
+
+@media (max-width: 720px) {
+  .exhibit {
+    border-radius: 14px;
+  }
+
+  .head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .readout {
+    margin-left: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+}

@@ -1,0 +1,132 @@
+.wrap {
+  position: relative;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 1.8vw, 22px);
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 176px;
+  padding: clamp(18px, 2.2vw, 26px);
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.3));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--bone-2, #fbf7f0) 55%, transparent);
+  color: var(--ink-warm, #221b30);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tileNum {
+  color: var(--boov-purple, #5b3a8c);
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.tileTitle {
+  margin-top: auto;
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 1.14rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.tileNote {
+  color: var(--ink-warm-soft, #4a4258);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.backdrop {
+  position: absolute;
+  inset: -8px;
+  z-index: 4;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--ink-warm, #221b30) 26%, transparent);
+  cursor: pointer;
+}
+
+.detail {
+  /* centered via inset+margin (no CSS transform — framer's layout
+     projection owns the transform during the shared-element move) */
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: min(520px, 94%);
+  height: fit-content;
+  margin: auto;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px dashed var(--boov-purple, #5b3a8c);
+  border-radius: 16px;
+  background: var(--bone-2, #fbf7f0);
+  color: var(--ink-warm, #221b30);
+  box-shadow: 0 34px 70px -40px var(--boov-navy, #0b132b);
+}
+
+.detailTitle {
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.detailBody {
+  margin: 0;
+  color: var(--ink-warm-soft, #4a4258);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.close {
+  margin-top: 6px;
+  padding: 8px 14px;
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.4));
+  border-radius: 8px;
+  background: transparent;
+  color: var(--boov-purple, #5b3a8c);
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
+
+.close:hover {
+  border-color: var(--boov-purple, #5b3a8c);
+}
+
+@media (max-width: 900px) {
+  .tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .tile {
+    min-height: 132px;
+  }
+}

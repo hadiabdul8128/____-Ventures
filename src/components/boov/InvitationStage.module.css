@@ -1,0 +1,486 @@
+.section {
+  position: relative;
+  min-height: 125svh;
+  border-top: 1px solid #30291d;
+  border-bottom: 1px solid #30291d;
+  background: #0b0a08;
+  isolation: isolate;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  min-height: min(890px, 100svh);
+  overflow: hidden;
+  padding: 42px 8vw 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.light {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  width: 82%;
+  height: 160%;
+  top: -68%;
+  left: 27%;
+  transform: rotate(-28deg);
+  background: conic-gradient(
+    from 154deg at 50% 0,
+    transparent 0deg,
+    #ad844923 23deg,
+    #c6a36513 44deg,
+    transparent 66deg
+  );
+  filter: blur(26px);
+}
+
+.topline,
+.rail {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #b9aa8e;
+  font: 500 10px/1.6 var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.topline > span:last-child {
+  color: #827c6f;
+}
+
+.composition {
+  display: grid;
+  grid-template-columns: 0.84fr 1.16fr;
+  align-items: center;
+  min-height: 590px;
+  gap: 18px;
+  padding: 40px 0;
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+}
+
+.kicker {
+  color: #ac9670;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 10px;
+  margin: 0 0 27px;
+}
+
+.copy h2 {
+  font-family: var(--serif);
+  font-size: clamp(46px, 4.75vw, 82px);
+  font-weight: 400;
+  line-height: 0.99;
+  letter-spacing: -0.045em;
+  margin: 0;
+  color: #e5e0d3;
+}
+
+.copy h2 em {
+  display: block;
+  color: #c7aa70;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.description {
+  margin: 29px 0 31px;
+  font: 400 12px/1.9 var(--sans);
+  color: #a8a293;
+  letter-spacing: 0.005em;
+}
+
+.request {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #8b765043;
+  padding: 9px 0 10px;
+  color: #d9c698;
+  font: 500 11px/1.4 var(--sans);
+  letter-spacing: 0.035em;
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  min-height: 46px;
+  cursor: pointer;
+  transition:
+    color 0.25s,
+    border-color 0.25s;
+}
+
+.request > span {
+  display: grid;
+  place-items: center;
+  transition: transform 0.3s;
+}
+.request:hover {
+  color: #f2e2bd;
+  border-color: #d9c698;
+}
+.request:hover > span {
+  transform: translate(3px, -3px);
+}
+.request:focus-visible {
+  outline: 1px solid #edcd85;
+  outline-offset: 7px;
+}
+
+.perspective {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  aspect-ratio: 1.09;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+  touch-action: pan-y;
+}
+
+.halo {
+  position: absolute;
+  width: 110%;
+  height: 84%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    #a17a3720,
+    #88632e0a 44%,
+    transparent 69%
+  );
+  pointer-events: none;
+}
+
+.cardMotion {
+  width: 96%;
+  max-width: 625px;
+  transform-style: preserve-3d;
+}
+.cardObject {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.47;
+  transform-style: preserve-3d;
+}
+
+.edge,
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+}
+
+.edge {
+  background: #2c2418;
+  border: 1px solid #6f5832;
+  box-shadow: 0 1px 0 #b6985b3b;
+}
+
+.face {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transform: translateZ(4px);
+  background:
+    repeating-linear-gradient(93deg, transparent 0 2px, #ffffff02 2px 3px),
+    linear-gradient(118deg, #55432a 0%, #292316 32%, #3a3020 52%, #171610 100%);
+  border: 1px solid #bca37269;
+  box-shadow:
+    inset 0 0 0 1px #100f0d,
+    10px 26px 60px #0009,
+    2px 10px 6px #0007;
+  padding: 31px 34px 24px;
+  color: #d8bd80;
+}
+
+.frame {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #b59a6138;
+  pointer-events: none;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font: 500 8px/1 var(--sans);
+  letter-spacing: 0.24em;
+}
+
+.wordmark {
+  display: inline-flex;
+  gap: 3px;
+}
+.wordmark i {
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  background: #d8bd80;
+}
+
+.seal {
+  position: absolute;
+  width: 39%;
+  height: auto;
+  top: 13%;
+  right: 7%;
+  opacity: 0.78;
+  filter: drop-shadow(0 1px 0 #000a);
+}
+
+.cardTitle {
+  position: relative;
+  padding-top: 16%;
+  padding-bottom: 12%;
+}
+.cardTitle > span {
+  display: block;
+  margin-bottom: 13px;
+  font: 500 8px/1.5 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+.cardTitle strong {
+  display: block;
+  font: italic 400 clamp(27px, 2.8vw, 46px)/1.03 var(--serif);
+  letter-spacing: -0.025em;
+  color: #e2ca93;
+  text-shadow: 0 1px 0 #0009;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font: 400 7px/1.5 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b49a66;
+}
+.sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.artifactCaption {
+  position: absolute;
+  bottom: 6%;
+  width: 100%;
+  text-align: center;
+  color: #857860;
+  font: 400 9px/1.5 var(--sans);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.rail {
+  gap: 36px;
+  border-top: 1px solid #84704f33;
+  padding-top: 24px;
+}
+.rail ol {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.rail li {
+  display: inline-flex;
+  gap: 11px;
+  align-items: center;
+  color: #9b917e;
+  font-size: 9px;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+.rail li > span {
+  font-size: 8px;
+  color: #a18e66;
+}
+.rail li[data-active="true"] {
+  color: #dfc58d;
+}
+.railTrack {
+  position: relative;
+  flex: 1;
+  max-width: 260px;
+  height: 1px;
+  background: #4c412b;
+}
+.railTrack i {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #d8bd80;
+  transform-origin: left;
+}
+.railNote {
+  font-size: 8px;
+  color: #827c6f;
+  white-space: nowrap;
+}
+
+@media (min-width: 1600px) {
+  .stage {
+    padding-left: max(8vw, calc((100vw - 1470px) / 2));
+    padding-right: max(8vw, calc((100vw - 1470px) / 2));
+  }
+}
+
+@media (max-width: 1000px) {
+  .stage {
+    padding-top: 34px;
+  }
+  .composition {
+    min-height: 520px;
+    gap: 0;
+  }
+  .copy h2 {
+    font-size: clamp(42px, 5.3vw, 64px);
+  }
+  .face {
+    padding: 24px 26px 22px;
+  }
+  .cardTitle > span {
+    font-size: 7px;
+  }
+  .cardFooter {
+    font-size: 6px;
+    gap: 10px;
+  }
+  .cardHeader {
+    font-size: 6px;
+  }
+  .wordmark i {
+    width: 10px;
+  }
+  .railNote {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 0;
+  }
+  .stage {
+    position: relative;
+    min-height: 0;
+    padding: 28px 24px 27px;
+  }
+  .topline {
+    font-size: 8px;
+  }
+  .topline > span:last-child {
+    display: none;
+  }
+  .composition {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 64px 0 20px;
+    gap: 20px;
+  }
+  .copy {
+    transform: none !important;
+  }
+  .copy h2 {
+    font-size: clamp(45px, 10.6vw, 69px);
+  }
+  .copy h2 em {
+    margin-top: 6px;
+  }
+  .kicker {
+    margin-bottom: 22px;
+    font-size: 9px;
+  }
+  .description {
+    font-size: 12px;
+    margin: 23px 0 19px;
+  }
+  .request {
+    font-size: 11px;
+  }
+  .perspective {
+    width: calc(100% + 14px);
+    margin-left: -7px;
+    aspect-ratio: 1.14;
+  }
+  .cardMotion {
+    width: 93%;
+    transform: rotateY(-7deg) rotateZ(-5deg) !important;
+  }
+  .face {
+    padding: 23px 24px 20px;
+  }
+  .cardTitle strong {
+    font-size: clamp(28px, 6.8vw, 46px);
+  }
+  .cardHeader {
+    font-size: 7px;
+  }
+  .cardTitle > span {
+    font-size: 7px;
+    letter-spacing: 0.15em;
+  }
+  .cardFooter {
+    font-size: 6px;
+  }
+  .artifactCaption {
+    bottom: 4%;
+    font-size: 7px;
+    letter-spacing: 0.08em;
+  }
+  .rail {
+    gap: 18px;
+    padding-top: 21px;
+  }
+  .rail ol {
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+  }
+  .rail li {
+    font-size: 8px;
+    gap: 7px;
+  }
+  .railTrack {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .request > span,
+  .request,
+  .rail li {
+    transition: none;
+  }
+}
+
+.section[data-motion="off"] {
+  min-height: 0;
+}
+.section[data-motion="off"] .stage {
+  position: relative;
+}
+.section[data-motion="off"] .request > span {
+  transition: none;
+}
+.section[data-motion="off"] .request:hover > span {
+  transform: none;
+}

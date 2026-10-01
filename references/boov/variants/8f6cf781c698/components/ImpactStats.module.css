@@ -1,0 +1,223 @@
+.section {
+  position: relative;
+  background: transparent;
+  color: var(--ink-warm, #221b30);
+  padding: clamp(110px, 16vh, 190px) 24px;
+}
+
+.inner {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.head {
+  max-width: 640px;
+  margin-bottom: clamp(48px, 7vh, 80px);
+}
+
+.kicker {
+  margin: 0 0 20px;
+  color: var(--boov-purple);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-sniglet), system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  transform-origin: center top;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(20px, 2.4vw, 30px);
+  border: 1px dashed rgba(91, 58, 140, 0.32);
+  border-radius: 16px;
+  background: rgba(251, 247, 240, 0.42);
+  backdrop-filter: blur(2px);
+}
+
+.value {
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(2.2rem, 4.4vw, 3.2rem);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.statLabel {
+  color: var(--ink-warm-soft, #4a4258);
+  font-size: 0.86rem;
+  letter-spacing: 0.01em;
+}
+
+.feed {
+  margin-top: clamp(48px, 7vh, 80px);
+  padding: clamp(24px, 3vw, 38px);
+  border: 1px dashed rgba(91, 58, 140, 0.32);
+  border-radius: 18px;
+  background: rgba(251, 247, 240, 0.42);
+  backdrop-filter: blur(2px);
+}
+
+.feedHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed rgba(91, 58, 140, 0.24);
+}
+
+.feedTitle {
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.feedCaption {
+  color: var(--ink-warm-soft, #4a4258);
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+}
+
+.feedViewport {
+  position: relative;
+  height: 264px;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+.feedTrack {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: feed-scroll 26s linear infinite;
+}
+
+.feedViewport:hover .feedTrack {
+  animation-play-state: paused;
+}
+
+.feedTrackStatic {
+  animation: none;
+}
+
+.feedRow {
+  display: grid;
+  grid-template-columns: 14px 1.1fr 1.3fr 0.9fr 0.7fr 0.8fr;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 4px;
+  border-bottom: 1px dashed rgba(91, 58, 140, 0.14);
+  font-size: 0.9rem;
+}
+
+.feedDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--boov-purple);
+}
+
+.feedCategory {
+  color: var(--ink-warm, #221b30);
+  font-weight: 500;
+}
+
+.feedMerchant {
+  color: var(--ink-warm-soft, #4a4258);
+}
+
+.feedCard {
+  color: rgba(74, 66, 88, 0.7);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+
+.feedAmount {
+  color: var(--ink-warm, #221b30);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.feedTime {
+  color: rgba(74, 66, 88, 0.7);
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+@keyframes feed-scroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 860px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  .feedRow {
+    grid-template-columns: 12px 1fr auto;
+    grid-template-areas:
+      "dot category amount"
+      "dot merchant time";
+    gap: 2px 12px;
+  }
+
+  .feedDot {
+    grid-area: dot;
+  }
+  .feedCategory {
+    grid-area: category;
+  }
+  .feedMerchant {
+    grid-area: merchant;
+  }
+  .feedAmount {
+    grid-area: amount;
+  }
+  .feedTime {
+    grid-area: time;
+  }
+  .feedCard {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feedTrack {
+    animation: none;
+  }
+}

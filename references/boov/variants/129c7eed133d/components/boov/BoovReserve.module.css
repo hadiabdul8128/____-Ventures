@@ -1,0 +1,109 @@
+/* Boov-as-submit-button: the pill caption is the visible control; the rig and
+   speech bubble ride above it (decorative, pointer-events pass through to the
+   button). */
+
+.button {
+  position: relative;
+  flex-shrink: 0;
+  padding: 12px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--boov-deep-navy, #05091a);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  will-change: transform;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.button:hover {
+  background: var(--boov-light-lavender, #ddd4f7);
+  box-shadow: 0 12px 34px rgba(221, 212, 247, 0.32);
+}
+
+.caption {
+  white-space: nowrap;
+}
+
+/* The rig stands on top of the pill. Hidden until the crawl arms so he does
+   not pop in before the section is seen. */
+.rider {
+  position: absolute;
+  bottom: calc(100% - 4px);
+  left: 50%;
+  margin-left: -52px; /* half of the 104px rig */
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.riderVisible {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.bubble {
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 58%;
+  padding: 7px 13px;
+  border: 1px solid rgba(221, 212, 247, 0.5);
+  border-radius: 14px 14px 14px 3px;
+  background: rgba(9, 14, 33, 0.85);
+  color: var(--boov-light-lavender, #ddd4f7);
+  font-family: var(--font-sniglet), system-ui, sans-serif;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transform-origin: 12% 100%;
+  animation: bubble-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.bubbleArrived {
+  animation: bubble-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bubble-pop {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.7);
+  }
+  60% {
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scaler {
+  display: block;
+  transform-origin: 50% 100%;
+}
+
+@media (max-width: 560px) {
+  .button {
+    padding: 14px 26px;
+  }
+
+  /* GSAP owns .rider's transform, so the mobile shrink lives one level in. */
+  .scaler {
+    transform: scale(0.85);
+  }
+}

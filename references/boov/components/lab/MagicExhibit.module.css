@@ -1,0 +1,106 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(24px, 3vw, 44px);
+  align-items: stretch;
+}
+
+.togglers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 1.8vw, 22px);
+  align-content: start;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 160px;
+  padding: clamp(16px, 2vw, 24px);
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.28));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bone-2, #fbf7f0) 45%, transparent);
+}
+
+.toggler {
+  color: var(--ink-warm, #221b30);
+}
+
+.cellLabel {
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.togglersNote {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+}
+
+.listCol {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(18px, 2.2vw, 26px);
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.28));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bone-2, #fbf7f0) 45%, transparent);
+}
+
+.listLabel {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.22));
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.list {
+  gap: 10px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.2));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bone-2, #fbf7f0) 65%, transparent);
+  color: var(--ink-warm-soft, #4a4258);
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.listDot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--boov-purple, #5b3a8c);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cell {
+    min-height: 128px;
+  }
+}

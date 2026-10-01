@@ -1,0 +1,743 @@
+.experience {
+  --boov-purple: #5b3a8c;
+  --boov-navy: #0b132b;
+  --boov-deep-navy: #05091a;
+  --boov-lavender: #b8a7e8;
+  --boov-light-lavender: #ddd4f7;
+  --boov-cream: #fff8f2;
+  overflow: clip;
+  background: transparent;
+  color: var(--boov-purple);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+.hero {
+  isolation: isolate;
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px 24px 76px;
+  background: var(--boov-cream);
+  text-align: center;
+}
+
+/* .experience re-declares the brand tokens locally (the card scene needs the
+   canonical values), which would otherwise pin the hero light forever — so the
+   dark flip is restated here at higher specificity. The pastel wash dims to an
+   aurora instead of painting its light gradients over the dark surface. */
+:global(html.dark) .experience {
+  --boov-purple: #c9b8f0;
+  --boov-cream: #171226;
+}
+
+:global(html.dark) .pastelWash {
+  opacity: 0.16;
+}
+
+:global(html.dark) .hero p {
+  color: rgba(201, 184, 240, 0.85);
+}
+
+:global(html.dark) .heroTagline {
+  color: rgba(201, 184, 240, 0.85);
+}
+
+:global(html.dark) .heroCue {
+  color: rgba(201, 184, 240, 0.6);
+}
+
+:global(html.dark) .heroCue i {
+  background: rgba(201, 184, 240, 0.24);
+}
+
+:global(html.dark) .heroCue i::after {
+  background: #c9b8f0;
+}
+
+.pastelWash {
+  position: absolute;
+  z-index: -2;
+  inset: -24%;
+  background:
+    linear-gradient(118deg, rgba(255, 177, 153, 0.74), transparent 36%),
+    linear-gradient(232deg, rgba(158, 211, 217, 0.78), transparent 43%),
+    linear-gradient(344deg, rgba(184, 167, 232, 0.78), transparent 49%),
+    linear-gradient(28deg, rgba(255, 222, 151, 0.78), transparent 39%),
+    #fff8f2;
+  filter: blur(64px) saturate(112%);
+  transform: scale(1.1);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(112deg, rgba(91, 58, 140, 0.018) 0 1px, transparent 1px 4px);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.heroWord {
+  display: flex;
+  margin: 0;
+  color: var(--boov-purple);
+  font-family: var(--font-sniglet), system-ui, sans-serif;
+  font-size: 20rem;
+  font-weight: 800;
+  line-height: 0.78;
+  letter-spacing: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.heroLetter {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0 0.01em;
+}
+
+.heroLetterInner {
+  display: inline-block;
+  will-change: transform;
+}
+
+.heroTagline {
+  max-width: 720px;
+  margin: 44px 0 0;
+  color: rgba(91, 58, 140, 0.88);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.23em;
+  line-height: 1.7;
+}
+
+.heroCue {
+  position: absolute;
+  bottom: 92px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(91, 58, 140, 0.66);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.heroCue i {
+  position: relative;
+  width: 1px;
+  height: 46px;
+  overflow: hidden;
+  background: rgba(91, 58, 140, 0.24);
+}
+
+.heroCue i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--boov-purple);
+  animation: cue-slide 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes cue-slide {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.heroTransition {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 58px;
+  background: linear-gradient(to bottom, transparent, rgba(11, 19, 43, 0.24) 70%, var(--boov-navy));
+}
+
+.cardScene {
+  position: relative;
+  height: 260vh;
+  min-height: 1500px;
+  background: transparent;
+}
+
+.stickyStage {
+  isolation: isolate;
+  position: sticky;
+  top: 0;
+  display: grid;
+  width: 100%;
+  height: 100svh;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 50% 40%, rgba(8, 14, 37, 0.5) 0%, rgba(5, 9, 26, 0.82) 55%, rgba(3, 6, 18, 0.95) 100%);
+}
+
+.spotlightBeam {
+  position: absolute;
+  z-index: -3;
+  top: -10%;
+  left: 50%;
+  width: min(1040px, 92vw);
+  height: 86vh;
+  background: linear-gradient(180deg, rgba(231, 224, 255, 0.78), rgba(184, 167, 232, 0.28) 55%, rgba(184, 167, 232, 0));
+  clip-path: polygon(43% 0, 57% 0, 92% 100%, 8% 100%);
+  filter: blur(38px);
+  /* --beam-reveal is driven from scroll: it is the point the beam has reached
+     on its way down, with a soft trailing edge below it, so the light travels
+     from the source to the floor instead of the whole cone appearing at once.
+     Stops stay ascending because the value never goes below 40%. */
+  --beam-reveal: 140%;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0 14%,
+    rgba(0, 0, 0, 0.28) 24%,
+    #000 40%,
+    #000 var(--beam-reveal),
+    transparent calc(var(--beam-reveal) + 18%)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0 14%,
+    rgba(0, 0, 0, 0.28) 24%,
+    #000 40%,
+    #000 var(--beam-reveal),
+    transparent calc(var(--beam-reveal) + 18%)
+  );
+  transform: translateX(-50%);
+}
+
+.spotlightBeam::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), transparent 68%);
+  clip-path: polygon(47% 0, 53% 0, 75% 100%, 25% 100%);
+  filter: blur(18px);
+}
+
+.spotlightPool {
+  position: absolute;
+  z-index: -2;
+  top: 66%;
+  left: 50%;
+  width: min(900px, 86vw);
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(205, 193, 245, 0.44), rgba(124, 102, 180, 0.13) 46%, transparent 72%);
+  filter: blur(12px);
+  transform: translate(-50%, -50%) rotateX(64deg);
+}
+
+.stageVignette {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(1, 3, 12, 0.38) 72%, rgba(1, 3, 12, 0.78) 100%);
+}
+
+.stageTitle {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  color: var(--boov-light-lavender);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.stageTitle p {
+  margin: 0 0 14px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+}
+
+.stageTitle h2 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-sniglet), system-ui, sans-serif;
+  font-size: 8rem;
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: 0;
+}
+
+.cardPerspective {
+  z-index: 1;
+  width: min(620px, 78vw);
+  aspect-ratio: 620 / 391;
+  perspective: 1500px;
+}
+
+.cardMotion,
+.cardObject {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.cardObject {
+  position: relative;
+}
+
+.cardEdge,
+.cardFace {
+  position: absolute;
+  inset: 0;
+  border-radius: 4.2%;
+}
+
+.cardEdge {
+  border: 1px solid rgba(235, 229, 255, 0.32);
+  background: linear-gradient(110deg, #6d6486, #352f4a 46%, #9e91bd 68%, #49425f);
+  box-shadow: inset 0 0 0 1px rgba(7, 11, 30, 0.24);
+}
+
+.cardFace {
+  container-type: inline-size;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  box-shadow:
+    0 44px 90px -26px rgba(0, 0, 0, 0.78),
+    0 14px 40px rgba(0, 0, 0, 0.48),
+    inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.cardFront {
+  color: var(--boov-light-lavender);
+  background: radial-gradient(135% 130% at 18% -10%, #17264f 0%, #101a36 46%, #0b1430 100%);
+  transform: translateZ(9px);
+}
+
+.cardBack {
+  color: #101a36;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  transform: translateZ(9px);
+  user-select: none;
+}
+
+.cardGrain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.52;
+  background: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.014) 0 2px, rgba(0, 0, 0, 0.016) 2px 4px);
+}
+
+.cardRibbon {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.frontBrand {
+  position: absolute;
+  top: 7.7%;
+  left: 5.2%;
+  display: flex;
+  align-items: center;
+  gap: 1.8cqw;
+  color: var(--boov-light-lavender);
+  text-shadow: 0 1px rgba(255, 255, 255, 0.14), 0 -1px 1px rgba(0, 0, 0, 0.35);
+}
+
+.frontBrand span {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 5cqw;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+
+.orbitMark {
+  width: 5.2cqw;
+  height: 5.2cqw;
+  overflow: visible;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+.orbitMark ellipse {
+  fill: none;
+  stroke: var(--boov-lavender);
+  stroke-width: 2.4;
+}
+
+.orbitCore {
+  fill: var(--boov-light-lavender);
+}
+
+.orbitMoon {
+  fill: var(--boov-lavender);
+}
+
+.contactlessMark {
+  position: absolute;
+  top: 9.2%;
+  right: 5.5%;
+  width: 5.5cqw;
+  height: 9.7cqw;
+}
+
+.contactlessMark i {
+  position: absolute;
+  top: 50%;
+  left: 0.3cqw;
+  border: 0.38cqw solid transparent;
+  border-right-color: var(--boov-light-lavender);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.contactlessMark i:nth-child(1) {
+  width: 1.45cqw;
+  height: 1.45cqw;
+}
+
+.contactlessMark i:nth-child(2) {
+  width: 3.06cqw;
+  height: 3.06cqw;
+  border-right-color: #c4c8d4;
+}
+
+.contactlessMark i:nth-child(3) {
+  width: 4.68cqw;
+  height: 4.68cqw;
+  border-right-color: #9aa1b8;
+}
+
+.chip {
+  position: absolute;
+  top: 38.4%;
+  left: 7.1%;
+  width: 10.3%;
+  aspect-ratio: 64 / 50;
+  overflow: hidden;
+  border-radius: 14%;
+  background:
+    linear-gradient(#7f8698, #7f8698) center / 100% 3% no-repeat,
+    linear-gradient(#7f8698, #7f8698) 32% 0 / 2.3% 100% no-repeat,
+    linear-gradient(#7f8698, #7f8698) 68% 0 / 2.3% 100% no-repeat,
+    linear-gradient(135deg, #eef0f5 0%, #c3c9d4 38%, #9199a8 58%, #d3d8e2 100%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7), 0 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+.chip span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 37.5%;
+  height: 40%;
+  border: 0.2cqw solid #7f8698;
+  border-radius: 18%;
+  background: linear-gradient(135deg, #e4e7ee, #a9b0bf);
+  transform: translate(-50%, -50%);
+}
+
+.tapSupport {
+  position: absolute;
+  bottom: 8.7%;
+  left: 7.1%;
+  display: flex;
+  align-items: center;
+  gap: 1.45cqw;
+  font-size: 1.53cqw;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.supportMark {
+  position: relative;
+  width: 3.55cqw;
+  height: 3.55cqw;
+}
+
+.supportMark i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 0.24cqw solid rgba(221, 212, 247, 0.38);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.supportMark i:nth-child(1) {
+  width: 0.95cqw;
+  height: 0.95cqw;
+  border: 0;
+  background: var(--boov-light-lavender);
+}
+
+.supportMark i:nth-child(2) {
+  width: 2.25cqw;
+  height: 2.25cqw;
+  border-color: rgba(221, 212, 247, 0.7);
+}
+
+.supportMark i:nth-child(3) {
+  width: 3.55cqw;
+  height: 3.55cqw;
+}
+
+.memberId {
+  position: absolute;
+  bottom: 7.7%;
+  left: 50%;
+  display: grid;
+  gap: 0.65cqw;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.memberId strong {
+  color: #c4c8d4;
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 1.77cqw;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  white-space: nowrap;
+}
+
+.memberId span {
+  color: #8b92a9;
+  font-size: 1.61cqw;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+
+.essentialsLabel {
+  position: absolute;
+  right: 5.5%;
+  bottom: 9.2%;
+  color: #7a8199;
+  font-size: 1.45cqw;
+  letter-spacing: 0.24em;
+  line-height: 1.5;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.cardSheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(118deg, transparent 40%, rgba(255, 255, 255, 0.07) 50%, transparent 60%);
+}
+
+.flowRailWrap {
+  position: absolute;
+  z-index: 5;
+  bottom: 6vh;
+  left: 50%;
+  display: flex;
+  width: min(680px, 88vw);
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.flowRail {
+  display: flex;
+  gap: clamp(20px, 5vw, 52px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flowStep {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  opacity: 0.32;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flowStepActive {
+  opacity: 1;
+}
+
+.flowIndex {
+  color: var(--boov-lavender);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.flowLabel {
+  color: var(--boov-light-lavender);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.flowStepActive .flowIndex {
+  color: #fff;
+}
+
+.flowDesc {
+  min-height: 3.2em;
+  max-width: 44ch;
+  margin: 0;
+  color: rgba(221, 212, 247, 0.74);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1050px) {
+  .heroWord {
+    font-size: 13rem;
+  }
+
+  .stageTitle h2 {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 32px 18px 70px;
+  }
+
+  .heroWord {
+    font-size: 7.5rem;
+  }
+
+  .heroTagline {
+    max-width: 330px;
+    margin-top: 32px;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+  }
+
+  .heroCue {
+    bottom: 60px;
+  }
+
+  .cardScene {
+    height: 230vh;
+    min-height: 1300px;
+  }
+
+  .stageTitle {
+    top: 24%;
+  }
+
+  .stageTitle p {
+    font-size: 0.64rem;
+  }
+
+  .stageTitle h2 {
+    font-size: 4.25rem;
+  }
+
+  .cardPerspective {
+    width: min(86vw, 540px);
+  }
+
+  .spotlightBeam {
+    width: 130vw;
+    height: 80vh;
+    filter: blur(28px);
+  }
+
+  .spotlightPool {
+    top: 61%;
+    width: 106vw;
+  }
+
+  .cardFront {
+    transform: translateZ(6px);
+  }
+
+  .cardBack {
+    transform: translateZ(6px);
+  }
+
+  .cardEdge:nth-of-type(-n + 3),
+  .cardEdge:nth-of-type(n + 15) {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .flowRailWrap {
+    bottom: 4vh;
+    gap: 12px;
+  }
+
+  .flowRail {
+    gap: 16px;
+  }
+
+  .flowIndex {
+    display: none;
+  }
+
+  .flowLabel {
+    font-size: 0.8rem;
+  }
+
+  .flowDesc {
+    min-height: 4.5em;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .heroWord {
+    font-size: 5.8rem;
+  }
+
+  .stageTitle h2 {
+    font-size: 3.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardScene {
+    height: 100svh;
+    min-height: 640px;
+  }
+
+  .cardMotion {
+    will-change: auto;
+  }
+}

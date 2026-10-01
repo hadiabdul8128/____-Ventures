@@ -1,0 +1,152 @@
+/* Gooey button. The pill fill and the blobs share one filtered layer so the
+   goo merges them; the button element itself stays unfiltered so the label
+   (and anything a caller nests, like the Boov rig) renders crisp.
+
+   Palette is the card interior's, not the theme tokens: this button sits on
+   the navy member card, which is deliberately theme-invariant, so lavender on
+   deep navy holds in both light and dark. */
+
+.button {
+  position: relative;
+  isolation: isolate;
+  flex-shrink: 0;
+  padding: 13px 30px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #09132d;
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.28s ease;
+}
+
+.filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* The filtered layer. Sits behind the label and is allowed to overflow the
+   button box so blobs can rise clear of the pill. */
+.bubbles {
+  position: absolute;
+  z-index: 0;
+  inset: -26px 0;
+  filter: url(#boov-gooey);
+  pointer-events: none;
+}
+
+.fill {
+  position: absolute;
+  inset: 26px 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ddd4f7, #b8a7e8 62%, #a493dd);
+}
+
+.bubble {
+  position: absolute;
+  bottom: 26px;
+  border-radius: 50%;
+  background: #c4b4ec;
+  opacity: 0;
+  animation: gooey-rise var(--bubble-duration) ease-in-out var(--bubble-delay) infinite;
+}
+
+.bubble:nth-child(2) {
+  --bubble-duration: 3.4s;
+  --bubble-delay: 0s;
+  left: 13%;
+  width: 17px;
+  height: 17px;
+}
+
+.bubble:nth-child(3) {
+  --bubble-duration: 4.1s;
+  --bubble-delay: 0.7s;
+  left: 32%;
+  width: 12px;
+  height: 12px;
+}
+
+.bubble:nth-child(4) {
+  --bubble-duration: 3.1s;
+  --bubble-delay: 1.4s;
+  left: 52%;
+  width: 19px;
+  height: 19px;
+}
+
+.bubble:nth-child(5) {
+  --bubble-duration: 4.6s;
+  --bubble-delay: 0.35s;
+  left: 71%;
+  width: 11px;
+  height: 11px;
+}
+
+.bubble:nth-child(6) {
+  --bubble-duration: 3.7s;
+  --bubble-delay: 2s;
+  left: 86%;
+  width: 15px;
+  height: 15px;
+}
+
+/* Travel stays short so the blobs pinch off the pill and fall back rather
+   than flying away — that pinch is where the goo reads. */
+@keyframes gooey-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.4);
+  }
+  22% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(1.05);
+  }
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.button:disabled {
+  cursor: default;
+  transform: none;
+  filter: saturate(0.55) brightness(0.86);
+}
+
+/* Nothing to fizz about until the button is live. */
+.button:disabled .bubble {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble {
+    display: none;
+  }
+}

@@ -1,0 +1,462 @@
+.section {
+  position: relative;
+  height: 155svh;
+  min-height: 980px;
+  color: var(--ink-warm, #efeaf7);
+}
+
+.stickyStage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: clip;
+  background: #05091a;
+}
+
+.track {
+  display: flex;
+  width: 200vw;
+  height: 100%;
+  will-change: transform;
+}
+
+.panel {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  flex: 0 0 100vw;
+  overflow: hidden;
+}
+
+.cardPanel {
+  background:
+    radial-gradient(circle at 72% 48%, rgba(184, 167, 232, 0.22), transparent 34%),
+    linear-gradient(110deg, #030612 0%, #0b132b 58%, #17122a 100%);
+}
+
+.kineticPanel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.reportPanel {
+  background:
+    radial-gradient(circle at 78% 44%, color-mix(in srgb, var(--boov-purple) 24%, transparent), transparent 32%),
+    linear-gradient(112deg, color-mix(in srgb, var(--bone) 90%, #0b132b), var(--bone-2));
+}
+
+.reportPanel::before {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: var(--boov-lavender);
+  box-shadow:
+    0 0 34px 10px rgba(184, 167, 232, 0.38),
+    0 0 110px 28px rgba(184, 167, 232, 0.16);
+  content: "";
+}
+
+.panelGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(1240px, calc(100% - 48px));
+  height: 100%;
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1.18fr);
+  align-items: center;
+  gap: clamp(48px, 8vw, 132px);
+  padding: 96px 0 74px;
+}
+
+.copy {
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  color: var(--boov-lavender);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+}
+
+.display {
+  margin: 0;
+  color: var(--ink-warm, #efeaf7);
+  font-family: var(--font-sniglet), system-ui, sans-serif;
+  font-size: clamp(3.6rem, 7vw, 7.4rem);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: 0;
+}
+
+.cardPanel .display {
+  color: var(--boov-light-lavender);
+}
+
+.signalLine {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 34px;
+}
+
+.signalLine > span {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: #8be7a5;
+  box-shadow: 0 0 0 6px rgba(139, 231, 165, 0.08), 0 0 18px rgba(139, 231, 165, 0.42);
+}
+
+.signalLine p {
+  margin: 0;
+  color: var(--ink-warm-soft, #b3a9c9);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cardPanel .signalLine p {
+  color: rgba(221, 212, 247, 0.62);
+}
+
+.cardArtifact {
+  position: relative;
+  width: min(580px, 48vw);
+  aspect-ratio: 620 / 391;
+  justify-self: center;
+  border-radius: 4.2%;
+  box-shadow:
+    0 48px 90px -30px rgba(0, 0, 0, 0.82),
+    0 12px 0 rgba(2, 4, 12, 0.5);
+  transform-origin: 50% 100%;
+  will-change: transform;
+  perspective: 1000px;
+}
+
+.cardSurface {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.cardSurface img {
+  object-fit: fill;
+}
+
+.phonePreview {
+  position: relative;
+  width: min(360px, 34vw);
+  aspect-ratio: 9 / 17.7;
+  justify-self: center;
+  perspective: 1100px;
+  will-change: transform;
+}
+
+.phoneSurface {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  padding: 30px 18px 18px;
+  border: 1px solid rgba(221, 212, 247, 0.26);
+  border-radius: 44px;
+  background:
+    linear-gradient(180deg, rgba(94, 76, 132, 0.2), transparent 28%),
+    #0b0c15;
+  box-shadow:
+    0 50px 100px rgba(0, 0, 0, 0.44),
+    inset 0 0 0 5px #05060c,
+    inset 0 0 0 6px rgba(255, 255, 255, 0.08);
+  color: #f6f2ff;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.phoneSurface::before {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 86px;
+  height: 24px;
+  border-radius: 999px;
+  background: #020306;
+  content: "";
+  transform: translateX(-50%);
+}
+
+.phoneTopline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.phoneTopline i {
+  width: 18px;
+  height: 8px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #f6f2ff 70%, transparent 70%);
+  outline: 1px solid rgba(246, 242, 255, 0.5);
+}
+
+.phoneHeading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-top: 34px;
+  padding: 0 6px 18px;
+}
+
+.phoneHeading small {
+  grid-column: 1;
+  color: #9e95af;
+  font-size: 0.63rem;
+}
+
+.phoneHeading strong {
+  grid-column: 1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.phoneHeading > span {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(139, 231, 165, 0.09);
+  color: #b9f2c8;
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.phoneHeading > span i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.previewAlert {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(225, 217, 248, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+}
+
+.previewAlert img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.previewAlert p {
+  margin: 0;
+  color: #f6f2ff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.previewAlert small {
+  display: block;
+  margin-top: 4px;
+  color: #aaa1bb;
+  font-size: 0.58rem;
+  line-height: 1.35;
+}
+
+.previewAlert div > span {
+  display: inline-flex;
+  margin-top: 7px;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: rgba(139, 231, 165, 0.1);
+  color: #b9f2c8;
+  font-size: 0.53rem;
+}
+
+.previewAlert b {
+  align-self: end;
+  color: #f6f2ff;
+  font-size: 0.66rem;
+}
+
+.previewPulse {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  width: 170px;
+  height: 170px;
+  border: 1px solid rgba(184, 167, 232, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 44px rgba(184, 167, 232, 0.025),
+    0 0 0 88px rgba(184, 167, 232, 0.018);
+  transform: translate(-50%, -50%);
+}
+
+.seamGlow {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: rgba(221, 212, 247, 0.64);
+  box-shadow:
+    0 0 50px 16px rgba(184, 167, 232, 0.2),
+    0 0 160px 54px rgba(184, 167, 232, 0.1);
+  pointer-events: none;
+}
+
+.progress {
+  position: absolute;
+  z-index: 7;
+  right: 28px;
+  bottom: 24px;
+  left: 28px;
+  display: grid;
+  grid-template-columns: auto minmax(70px, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  color: var(--ink-warm-soft, #b3a9c9);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.57rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.progress div {
+  height: 1px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--tech-line) 60%, transparent);
+}
+
+.progress i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--boov-lavender);
+  transform-origin: left;
+}
+
+@media (max-width: 760px) {
+  .section {
+    height: 145svh;
+    min-height: 900px;
+  }
+
+  .panelGrid {
+    width: calc(100% - 36px);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 24px;
+    padding: 104px 0 58px;
+  }
+
+  .copy {
+    align-self: start;
+  }
+
+  .eyebrow {
+    margin-bottom: 12px;
+  }
+
+  .display {
+    font-size: clamp(3rem, 14vw, 4.6rem);
+  }
+
+  .signalLine {
+    margin-top: 18px;
+  }
+
+  .cardArtifact {
+    width: min(84vw, 520px);
+    align-self: center;
+  }
+
+  .phonePreview {
+    width: min(66vw, 310px);
+    align-self: center;
+  }
+
+  .progress {
+    right: 18px;
+    bottom: 16px;
+    left: 18px;
+  }
+}
+
+@media (max-width: 430px) {
+  .panelGrid {
+    padding-top: 92px;
+  }
+
+  .display {
+    font-size: clamp(2.8rem, 13vw, 3.65rem);
+  }
+
+  .signalLine p {
+    font-size: 0.58rem;
+  }
+
+  .phonePreview {
+    width: min(72vw, 280px);
+    border-radius: 34px;
+  }
+
+  .previewAlert {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .previewAlert img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .previewAlert b {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    height: 100svh;
+    min-height: 680px;
+  }
+
+  .track,
+  .cardArtifact,
+  .phonePreview {
+    will-change: auto;
+  }
+}

@@ -1,0 +1,3770 @@
+{
+  "repository": "https://github.com/boovwallet/BoovSite",
+  "mainCommit": "15ec129f5322234821a24f04f07305856fac973a",
+  "branches": [
+    "agent/boov-arrival",
+    "agent/boov-character",
+    "agent/boov-character-overlay",
+    "agent/boov-companion",
+    "agent/boov-companion-on-morph",
+    "agent/boov-handoff-cta",
+    "agent/boov-interactive-redesign",
+    "agent/boov-scroll-card",
+    "agent/combined-hero-gradient",
+    "agent/fix-decision-label-position",
+    "agent/fix-page02-layout-refresh",
+    "agent/fix-vapour-heading-overflow",
+    "agent/four-page-interactive",
+    "agent/hero-morphing-text",
+    "agent/match-controls-typography",
+    "agent/mobile-animation-smoothing",
+    "agent/mobile-hero-morph",
+    "agent/mobile-page04-earlier-flip",
+    "agent/mobile-page04-flip-spacing",
+    "agent/mobile-page04-scroll-entry",
+    "agent/mobile-svg-morph",
+    "agent/optimize-mobile-morph",
+    "agent/polish-morph-page04-alerts",
+    "agent/restore-desktop-particles-and-reports",
+    "agent/spotlight-scroll-reveal",
+    "codex/boov-latest-base",
+    "codex/latest-boov-arrival",
+    "codex/reapply-boov-morph",
+    "main"
+  ],
+  "components": [
+    {
+      "source": "components/Abstract.tsx",
+      "blob": "9be76fa79e5d40843d07020794512b011b60c638",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Abstract.tsx"
+    },
+    {
+      "source": "components/Achievements.tsx",
+      "blob": "16df57240ed0db4198e52263d95bd7bbedd2dad9",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Achievements.tsx"
+    },
+    {
+      "source": "components/AlertsFeed.module.css",
+      "blob": "5bb4daff77978c64b49b02e81c5f8fb60a70fc4d",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/AlertsFeed.module.css"
+    },
+    {
+      "source": "components/AlertsFeed.tsx",
+      "blob": "5c8825293eb64e6ef28ded81f2421c4deb13d168",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/AlertsFeed.tsx"
+    },
+    {
+      "source": "components/AnimatedText.module.css",
+      "blob": "a8520dcca481b4b9956f0cbbd5a80f23730b4725",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/AnimatedText.module.css"
+    },
+    {
+      "source": "components/AnimatedText.tsx",
+      "blob": "8e19be574810db3f7f6043dd5810d5bccc15857c",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/AnimatedText.tsx"
+    },
+    {
+      "source": "components/AppShell.tsx",
+      "blob": "23227d9ded163681c177a455658558a28a9f3429",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/AppShell.tsx"
+    },
+    {
+      "source": "components/BoovCompanion.module.css",
+      "blob": "3fa7184883321bcd6de8d89fc09d3a1fe11d4a30",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/3fa718488332/components/BoovCompanion.module.css"
+    },
+    {
+      "source": "components/BoovCompanion.tsx",
+      "blob": "b52d0cb115d9a61679edcff31a02ad71dde84dfe",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/BoovCompanion.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "0172e464716d8e58a0a78190cedfe33ffd94ba9f",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/0172e464716d/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "db21cee1b153a158307a984b8b0387a66963998e",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/fix-vapour-heading-overflow",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/db21cee1b153/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "387e8245ece76d537a25ea476a994f29d7b4aadf",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/387e8245ece7/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "c101174e7271fb4c0440a33a5d9b9589b12484d1",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/fix-vapour-heading-overflow",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/c101174e7271/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/Cursor.module.css",
+      "blob": "16bb86a5efd55b618e44ab6b0f5be73f46190ae4",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Cursor.module.css"
+    },
+    {
+      "source": "components/Cursor.tsx",
+      "blob": "b9cd1e9c2a1463f4e8dc9fc4c76e6d643b7435b7",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Cursor.tsx"
+    },
+    {
+      "source": "components/DisplacementFilter.tsx",
+      "blob": "de094d46c9fc4625926e407ed5cbf7b463970f25",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/DisplacementFilter.tsx"
+    },
+    {
+      "source": "components/FluidBackground.tsx",
+      "blob": "74e5790fd18d92fe837894699c8eeffbd2c1f1f0",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/four-page-interactive",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/74e5790fd18d/components/FluidBackground.tsx"
+    },
+    {
+      "source": "components/Footer.tsx",
+      "blob": "bdb03a4fb7df3bc245e4966960b81496b96cec6c",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Footer.tsx"
+    },
+    {
+      "source": "components/Hero.tsx",
+      "blob": "83043608b16bf0f03040e89228ad418cdcc059c8",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Hero.tsx"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.module.css",
+      "blob": "c31b24eaa9c76ac790e9b96352b60907cdbde99b",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/c31b24eaa9c7/components/HorizontalChapterTransition.module.css"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.tsx",
+      "blob": "491f52cc297fb44f5fcc345f3ce038f93ed79d97",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/fix-vapour-heading-overflow",
+        "agent/mobile-hero-morph",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/491f52cc297f/components/HorizontalChapterTransition.tsx"
+    },
+    {
+      "source": "components/ImpactStats.module.css",
+      "blob": "d606c316739fbee104499e7170871501774576fe",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ImpactStats.module.css"
+    },
+    {
+      "source": "components/ImpactStats.tsx",
+      "blob": "1eb60d01ac1b4699bf6c721275cd9979b02d0b65",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ImpactStats.tsx"
+    },
+    {
+      "source": "components/Manifesto.module.css",
+      "blob": "21d9c3208f2c103d373e2a9f4121dadb852951bd",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Manifesto.module.css"
+    },
+    {
+      "source": "components/Manifesto.tsx",
+      "blob": "e1fdbc3c2a915539010e6f6c07a2eca336d1cfba",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Manifesto.tsx"
+    },
+    {
+      "source": "components/Marquee.module.css",
+      "blob": "b2021aebf86bc24d173bf0594894ff8f73b30c8a",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Marquee.module.css"
+    },
+    {
+      "source": "components/Marquee.tsx",
+      "blob": "7b7b9f37620c482a0a0a6382649957b8674b8105",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Marquee.tsx"
+    },
+    {
+      "source": "components/MotionEnhancer.tsx",
+      "blob": "b4da2e68cac820a17c1cdc039ebbb4730d3737c7",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/MotionEnhancer.tsx"
+    },
+    {
+      "source": "components/Nav.tsx",
+      "blob": "8be18a33c7614973af9eab56eac129bf8947c32a",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Nav.tsx"
+    },
+    {
+      "source": "components/OrbitField.tsx",
+      "blob": "ab382d232a8cbe92a54f75fa153b59ca08c8325e",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/OrbitField.tsx"
+    },
+    {
+      "source": "components/PopularArticle.tsx",
+      "blob": "039e5054637c955d7f080dd16dafc87996f5a36c",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/PopularArticle.tsx"
+    },
+    {
+      "source": "components/Preloader.module.css",
+      "blob": "15b8bb53fdbd540712194f2b92bbe9f43a4f158b",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/15b8bb53fdbd/components/Preloader.module.css"
+    },
+    {
+      "source": "components/Preloader.tsx",
+      "blob": "0ddb70daa7b793e516eb164520c22e021ad97701",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/0ddb70daa7b7/components/Preloader.tsx"
+    },
+    {
+      "source": "components/Presentation.tsx",
+      "blob": "aeab0caf471080ed9839ae01924accb63be36e3f",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Presentation.tsx"
+    },
+    {
+      "source": "components/PulseWaveform.tsx",
+      "blob": "4ea6114cf24e9e00778298ea5d5816776e4014f2",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/PulseWaveform.tsx"
+    },
+    {
+      "source": "components/Reflection.tsx",
+      "blob": "b614a74b3d47fd22b4cf82e69f0fde5cfc09e7a9",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Reflection.tsx"
+    },
+    {
+      "source": "components/ResearchOverview.tsx",
+      "blob": "5ef1186e3c1771481585244dba4615cf0b7ca020",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ResearchOverview.tsx"
+    },
+    {
+      "source": "components/Resume.tsx",
+      "blob": "6b403b927bb9396e9d2c1e9ada109b9e10c0e683",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Resume.tsx"
+    },
+    {
+      "source": "components/ScrollReset.tsx",
+      "blob": "4ef6059c1f128d325d85b1cd9d6b1e169a6d6550",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ScrollReset.tsx"
+    },
+    {
+      "source": "components/Section.tsx",
+      "blob": "9152a685ab97992c543bb40b54c10c8385a234da",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/Section.tsx"
+    },
+    {
+      "source": "components/SiteFooter.module.css",
+      "blob": "d857c220fc1ee7cafde5f9cfb24466d846d9810b",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/SiteFooter.module.css"
+    },
+    {
+      "source": "components/SiteFooter.tsx",
+      "blob": "a13a159ffd2114eaee3f53692833ef7ca62783f1",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/SiteFooter.tsx"
+    },
+    {
+      "source": "components/SiteNav.module.css",
+      "blob": "ea6eb74dfdef8cfc996fe0e55704e5e24cbc964f",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/ea6eb74dfdef/components/SiteNav.module.css"
+    },
+    {
+      "source": "components/SiteNav.tsx",
+      "blob": "bf42eba315f013c061d66518c063dd9257126a7d",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/fix-vapour-heading-overflow",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/bf42eba315f0/components/SiteNav.tsx"
+    },
+    {
+      "source": "components/SpendingControls.module.css",
+      "blob": "45004c504da2d69017ec7fc6c5bc2273cba5c72b",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/45004c504da2/components/SpendingControls.module.css"
+    },
+    {
+      "source": "components/SpendingControls.tsx",
+      "blob": "dc5247e7abc07640e631140266682c2a57be0bc6",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/dc5247e7abc0/components/SpendingControls.tsx"
+    },
+    {
+      "source": "components/TechnicalOverlay.module.css",
+      "blob": "5033ee1fcfc801344964911ec92672acc4ae7dcb",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/TechnicalOverlay.module.css"
+    },
+    {
+      "source": "components/TechnicalOverlay.tsx",
+      "blob": "7ed1ba4ec9e42ca5f3a6475d3a17b18d3e1a4ded",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/TechnicalOverlay.tsx"
+    },
+    {
+      "source": "components/boov/BoovCharacter.module.css",
+      "blob": "f759ff295ae4d7fc86290b168864b1ba7b1d194e",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/boov/BoovCharacter.module.css"
+    },
+    {
+      "source": "components/boov/BoovCharacter.tsx",
+      "blob": "4eaf567996d9d702aad70409703ef5b52052bb3b",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/boov/BoovCharacter.tsx"
+    },
+    {
+      "source": "components/boov/BoovReserve.module.css",
+      "blob": "9c34964816806b817da6498a06587255889fa9f1",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/boov/BoovReserve.module.css"
+    },
+    {
+      "source": "components/boov/BoovReserve.tsx",
+      "blob": "6df21c62610c5ed54317cecda44e822659d698de",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/fix-vapour-heading-overflow",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/6df21c62610c/components/boov/BoovReserve.tsx"
+    },
+    {
+      "source": "components/lab/GsapExhibit.module.css",
+      "blob": "9af0dd310ec215c8f4acdd9cf8577545bf11baf2",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/GsapExhibit.module.css"
+    },
+    {
+      "source": "components/lab/GsapExhibit.tsx",
+      "blob": "fdabfefd025f55798988f1cc16bd5bfaa718f76c",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/GsapExhibit.tsx"
+    },
+    {
+      "source": "components/lab/LabSection.module.css",
+      "blob": "9e27d724647ce944c7bf7dec4319b5f7d2980afa",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/LabSection.module.css"
+    },
+    {
+      "source": "components/lab/LabSection.tsx",
+      "blob": "021f49c62daf0f7276173a5083137c8626d63dad",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/LabSection.tsx"
+    },
+    {
+      "source": "components/lab/MagicExhibit.module.css",
+      "blob": "0069bc6a1af915b7fcd74f811b734b5a177ddd9f",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/MagicExhibit.module.css"
+    },
+    {
+      "source": "components/lab/MagicExhibit.tsx",
+      "blob": "25811e7158fc8fabe1def7001c747d9008aa8429",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/MagicExhibit.tsx"
+    },
+    {
+      "source": "components/lab/MotionExhibit.module.css",
+      "blob": "f96033068eab312baa0931fc86b59da61fdbafb3",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/MotionExhibit.module.css"
+    },
+    {
+      "source": "components/lab/MotionExhibit.tsx",
+      "blob": "c7f012fbd0ee31ee67a6cee0b11e27bc7942b294",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/MotionExhibit.tsx"
+    },
+    {
+      "source": "components/lab/SpringExhibit.module.css",
+      "blob": "29347331f10cc27d1ae1dd4e8412a7ce84d1c5e3",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/SpringExhibit.module.css"
+    },
+    {
+      "source": "components/lab/SpringExhibit.tsx",
+      "blob": "9d51346d81ba6ebb52e620304d3291e249d72295",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/lab/SpringExhibit.tsx"
+    },
+    {
+      "source": "components/motion-primitives/transition-panel.tsx",
+      "blob": "e91f0c0a77014bdb64c35b288cb1fcfd3efc2f97",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/e91f0c0a7701/components/motion-primitives/transition-panel.tsx"
+    },
+    {
+      "source": "components/ui/Pill.tsx",
+      "blob": "196d2df539f2f1f0c40496272b39f59d3890e4ec",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/Pill.tsx"
+    },
+    {
+      "source": "components/ui/PullQuote.tsx",
+      "blob": "182f7b97b54c66ef8e6fc90d742c959e4a6576ac",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/PullQuote.tsx"
+    },
+    {
+      "source": "components/ui/SensorCard.tsx",
+      "blob": "926dbc6eb33422b4bda759b3cbacf80c639dee8a",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/SensorCard.tsx"
+    },
+    {
+      "source": "components/ui/StatCard.tsx",
+      "blob": "13f7027f9dfcf9913639acfa6e0eb7664577ba57",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/boov-scroll-card",
+        "agent/combined-hero-gradient",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "agent/spotlight-scroll-reveal",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/StatCard.tsx"
+    },
+    {
+      "source": "components/ui/animated-circular-progress-bar.tsx",
+      "blob": "03a3aa93a12ee2b7fcfcebe2913351f117b2197c",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/animated-circular-progress-bar.tsx"
+    },
+    {
+      "source": "components/ui/animated-list.tsx",
+      "blob": "9ee8a8c069ca28c6ebad504525a76c26916a1507",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/four-page-interactive",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/animated-list.tsx"
+    },
+    {
+      "source": "components/ui/animated-theme-toggler.tsx",
+      "blob": "36d348ad75756bd339beb96d8c5490c2724bdfc0",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/animated-theme-toggler.tsx"
+    },
+    {
+      "source": "components/ui/flow-field-background.tsx",
+      "blob": "6b6662fafa1f354131d53f0d138675223f1ba787",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/flow-field-background.tsx"
+    },
+    {
+      "source": "components/ui/gooey-button.module.css",
+      "blob": "a0761393f573537844425704f2972a5ade075faa",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/gooey-button.module.css"
+    },
+    {
+      "source": "components/ui/gooey-button.tsx",
+      "blob": "1164eee567820c11670974f5a7cf07ede5994906",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/gooey-button.tsx"
+    },
+    {
+      "source": "components/ui/interactive-hover-button.tsx",
+      "blob": "1a9fba67be572467d705011358198f9c8bfdaac2",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/interactive-hover-button.tsx"
+    },
+    {
+      "source": "components/ui/kinetic-grid.tsx",
+      "blob": "b7275288350054ff2b009b4446b8d58c4caab3b6",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/b72752883500/components/ui/kinetic-grid.tsx"
+    },
+    {
+      "source": "components/ui/morphing-text.tsx",
+      "blob": "fcf6da6cdfe2be844b94389edc62dbf61aceda76",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/fix-vapour-heading-overflow",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/fcf6da6cdfe2/components/ui/morphing-text.tsx"
+    },
+    {
+      "source": "components/ui/rainbow-button.tsx",
+      "blob": "d6144c672f452b03a3eeedcc0a631de3e3823a1b",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/rainbow-button.tsx"
+    },
+    {
+      "source": "components/ui/shimmer-button.tsx",
+      "blob": "5471feb9a7f34fcfe070cd1f6f04a12f83078a3f",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/shimmer-button.tsx"
+    },
+    {
+      "source": "components/ui/sky-toggle.module.css",
+      "blob": "2f6985598febf9c263655ce5a04ae9c0997e97d3",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/sky-toggle.module.css"
+    },
+    {
+      "source": "components/ui/sky-toggle.tsx",
+      "blob": "c45995d7a5242715b0ea152b044ace2c80b17062",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/sky-toggle.tsx"
+    },
+    {
+      "source": "components/ui/tabs.tsx",
+      "blob": "26eb109120e2ee43feddb68900f353a119976c41",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph",
+        "main"
+      ],
+      "local": "references/boov/components/ui/tabs.tsx"
+    },
+    {
+      "source": "components/ui/vapour-scroll-text.module.css",
+      "blob": "b7957e3c9c598ac8db3ccdd17da08209b9b38330",
+      "branches": [
+        "agent/boov-arrival",
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/b7957e3c9c59/components/ui/vapour-scroll-text.module.css"
+    },
+    {
+      "source": "components/ui/vapour-scroll-text.tsx",
+      "blob": "421c7ffdc89a73b30fc8746c9dde34654e0e9527",
+      "branches": [
+        "agent/boov-arrival",
+        "codex/latest-boov-arrival",
+        "codex/reapply-boov-morph"
+      ],
+      "local": "references/boov/variants/421c7ffdc89a/components/ui/vapour-scroll-text.tsx"
+    },
+    {
+      "source": "components/AlertsFeed.module.css",
+      "blob": "ab2bc9c8c9c0430b8a86a968361ed83338e28a16",
+      "branches": [
+        "agent/boov-character",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/ab2bc9c8c9c0/components/AlertsFeed.module.css"
+    },
+    {
+      "source": "components/AlertsFeed.tsx",
+      "blob": "5a68a6a2ace0a07cf939bd8521d6a8ca85e0c8c5",
+      "branches": [
+        "agent/boov-character",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/5a68a6a2ace0/components/AlertsFeed.tsx"
+    },
+    {
+      "source": "components/AppShell.tsx",
+      "blob": "7709009c1487ecc2a0cbf664b33a5bb8f453e884",
+      "branches": [
+        "agent/boov-character",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/7709009c1487/components/AppShell.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "dc3fc2dc6d0abc7ba9bc01988db696a4928cd7d6",
+      "branches": [
+        "agent/boov-character",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/dc3fc2dc6d0a/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "235e989f9929f1a3cf9cd0bb2e1c55e92e11442d",
+      "branches": [
+        "agent/boov-character",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/235e989f9929/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "1cd60b91718e10fcfda095d42551215d08c4b5b2",
+      "branches": [
+        "agent/boov-character"
+      ],
+      "local": "references/boov/variants/1cd60b91718e/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "aec5ea9248c36e809f4dd4976ee26ed12126416c",
+      "branches": [
+        "agent/boov-character"
+      ],
+      "local": "references/boov/variants/aec5ea9248c3/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/Cursor.module.css",
+      "blob": "22ce0805f12e664598a395ae9267fd2e685aa20d",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/22ce0805f12e/components/Cursor.module.css"
+    },
+    {
+      "source": "components/Cursor.tsx",
+      "blob": "0537727e1153692bc9580c3e8eda68afbb9a3d71",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/0537727e1153/components/Cursor.tsx"
+    },
+    {
+      "source": "components/DisplacementFilter.tsx",
+      "blob": "aad30fe28c44d94530e946d69dee66e104d4089a",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/aad30fe28c44/components/DisplacementFilter.tsx"
+    },
+    {
+      "source": "components/ImpactStats.tsx",
+      "blob": "93a841796f27ae737188f2aeaea98fc4c732b467",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/93a841796f27/components/ImpactStats.tsx"
+    },
+    {
+      "source": "components/Manifesto.tsx",
+      "blob": "8a32ff95ef47d1baba09f2388f203ea04919cbfc",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/8a32ff95ef47/components/Manifesto.tsx"
+    },
+    {
+      "source": "components/Marquee.tsx",
+      "blob": "7edfb1c898b5a9f1d591442d3c681cfbfc606776",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/7edfb1c898b5/components/Marquee.tsx"
+    },
+    {
+      "source": "components/OrbitField.tsx",
+      "blob": "b94dd0c2c75415674b49d82f8d11e393d370ffec",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/b94dd0c2c754/components/OrbitField.tsx"
+    },
+    {
+      "source": "components/Preloader.module.css",
+      "blob": "afdbfc915c7b7dcb44c58dd11d300ede3de71ec9",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay"
+      ],
+      "local": "references/boov/variants/afdbfc915c7b/components/Preloader.module.css"
+    },
+    {
+      "source": "components/Preloader.tsx",
+      "blob": "77d2babd01b7a839a92c2706547a587a2691ea3a",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay"
+      ],
+      "local": "references/boov/variants/77d2babd01b7/components/Preloader.tsx"
+    },
+    {
+      "source": "components/Presentation.tsx",
+      "blob": "d004365646aa309a7511f5947be55c5461801900",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/combined-hero-gradient",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/spotlight-scroll-reveal"
+      ],
+      "local": "references/boov/variants/d004365646aa/components/Presentation.tsx"
+    },
+    {
+      "source": "components/Reflection.tsx",
+      "blob": "639e1b0a74526da202c88f2455fd816c2050c69e",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/combined-hero-gradient",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/spotlight-scroll-reveal"
+      ],
+      "local": "references/boov/variants/639e1b0a7452/components/Reflection.tsx"
+    },
+    {
+      "source": "components/Resume.tsx",
+      "blob": "dff69dd477df360ed62bb717fd9900e54d50dee1",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/combined-hero-gradient",
+        "agent/four-page-interactive",
+        "agent/hero-morphing-text",
+        "agent/spotlight-scroll-reveal"
+      ],
+      "local": "references/boov/variants/dff69dd477df/components/Resume.tsx"
+    },
+    {
+      "source": "components/ScrollReset.tsx",
+      "blob": "5ae3fe12e00ab89ebe3d505b2d36d5baa1e1280d",
+      "branches": [
+        "agent/boov-character",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/5ae3fe12e00a/components/ScrollReset.tsx"
+    },
+    {
+      "source": "components/SiteNav.module.css",
+      "blob": "4efb16f06045e9f71519c4690396282b8ab7c09e",
+      "branches": [
+        "agent/boov-character"
+      ],
+      "local": "references/boov/variants/4efb16f06045/components/SiteNav.module.css"
+    },
+    {
+      "source": "components/SiteNav.tsx",
+      "blob": "292ec3bbb71d12aa1342684feec99192e55adf08",
+      "branches": [
+        "agent/boov-character"
+      ],
+      "local": "references/boov/variants/292ec3bbb71d/components/SiteNav.tsx"
+    },
+    {
+      "source": "components/SpendingControls.module.css",
+      "blob": "f4c901d97bf3913e575b9659c7de39d5be0dd977",
+      "branches": [
+        "agent/boov-character",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/f4c901d97bf3/components/SpendingControls.module.css"
+    },
+    {
+      "source": "components/SpendingControls.tsx",
+      "blob": "b7575b76e4f0bd324fc1158d761cc705e86b56ca",
+      "branches": [
+        "agent/boov-character",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/b7575b76e4f0/components/SpendingControls.tsx"
+    },
+    {
+      "source": "components/TechnicalOverlay.module.css",
+      "blob": "5308ce006b5c16bf16a3c8dcd11fdcdb914634e0",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/5308ce006b5c/components/TechnicalOverlay.module.css"
+    },
+    {
+      "source": "components/TechnicalOverlay.tsx",
+      "blob": "93bbb15a15016cc2135605f7524f1cd0127b0f9f",
+      "branches": [
+        "agent/boov-character",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/93bbb15a1501/components/TechnicalOverlay.tsx"
+    },
+    {
+      "source": "components/boov/BoovCharacter.module.css",
+      "blob": "71cb0d47a0a5b476937ff2189d5aabbf65a1f47e",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay"
+      ],
+      "local": "references/boov/variants/71cb0d47a0a5/components/boov/BoovCharacter.module.css"
+    },
+    {
+      "source": "components/boov/BoovCharacter.tsx",
+      "blob": "0beb34c67837d9892b714ca490b8ac56ff58dc7e",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay"
+      ],
+      "local": "references/boov/variants/0beb34c67837/components/boov/BoovCharacter.tsx"
+    },
+    {
+      "source": "components/boov/BoovReserve.module.css",
+      "blob": "129c7eed133df016f30bc97de07f88a5c250b6d6",
+      "branches": [
+        "agent/boov-character"
+      ],
+      "local": "references/boov/variants/129c7eed133d/components/boov/BoovReserve.module.css"
+    },
+    {
+      "source": "components/boov/BoovReserve.tsx",
+      "blob": "76c588e62c9155aea2350db74eb754ebbb153334",
+      "branches": [
+        "agent/boov-character"
+      ],
+      "local": "references/boov/variants/76c588e62c91/components/boov/BoovReserve.tsx"
+    },
+    {
+      "source": "components/lab/GsapExhibit.tsx",
+      "blob": "7bc860fa33b58130d5b7332e633a95684f0d5987",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay"
+      ],
+      "local": "references/boov/variants/7bc860fa33b5/components/lab/GsapExhibit.tsx"
+    },
+    {
+      "source": "components/lab/LabSection.module.css",
+      "blob": "d09719a907b2e89c4dd59c52b06a44b6d0716dcb",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/d09719a907b2/components/lab/LabSection.module.css"
+    },
+    {
+      "source": "components/lab/LabSection.tsx",
+      "blob": "60b40e7d034a3f2e3ff09ceed49d87c97e75110f",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/60b40e7d034a/components/lab/LabSection.tsx"
+    },
+    {
+      "source": "components/lab/MagicExhibit.tsx",
+      "blob": "9307c3711790607ef96a43dbb4ec7865cd909865",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/9307c3711790/components/lab/MagicExhibit.tsx"
+    },
+    {
+      "source": "components/lab/MotionExhibit.module.css",
+      "blob": "adfcae394ea7a8194163021b1f247cabc55f32d1",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/adfcae394ea7/components/lab/MotionExhibit.module.css"
+    },
+    {
+      "source": "components/lab/MotionExhibit.tsx",
+      "blob": "0196861565db6e324d6897b98fe97ad09b4e54d1",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/0196861565db/components/lab/MotionExhibit.tsx"
+    },
+    {
+      "source": "components/lab/SpringExhibit.module.css",
+      "blob": "4b9c536a90b809af3d203768089731a97c099682",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/4b9c536a90b8/components/lab/SpringExhibit.module.css"
+    },
+    {
+      "source": "components/lab/SpringExhibit.tsx",
+      "blob": "e156b20ed2d6d23b4863fd0329e60a5f5df50e1c",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/e156b20ed2d6/components/lab/SpringExhibit.tsx"
+    },
+    {
+      "source": "components/ui/animated-theme-toggler.tsx",
+      "blob": "058a72d387da972b443166b77ad9281397c6dadc",
+      "branches": [
+        "agent/boov-character",
+        "agent/boov-companion-on-morph",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/058a72d387da/components/ui/animated-theme-toggler.tsx"
+    },
+    {
+      "source": "components/AlertsFeed.tsx",
+      "blob": "c5f0ae2e51f5fc42c85bc0a132d98d2a3ffb0d5e",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/c5f0ae2e51f5/components/AlertsFeed.tsx"
+    },
+    {
+      "source": "components/BoovCompanion.module.css",
+      "blob": "b80b38b2f963f7fe7321b1c492f16af4d9acec4b",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/b80b38b2f963/components/BoovCompanion.module.css"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "151ed1a141d64bc1473e8f5bda79172c433894e4",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/151ed1a141d6/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "ac2fa0521c34b044434ef1b09154ad123807ca63",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/ac2fa0521c34/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "c614918bce2198c88fc03ba9bc7d81a773ea9570",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/c614918bce21/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "67023be5ce8e76772a8704479ac3c4b18a332a5d",
+      "branches": [
+        "agent/boov-character-overlay"
+      ],
+      "local": "references/boov/variants/67023be5ce8e/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/Cursor.module.css",
+      "blob": "2490f7b5116fd6f0de5391cf83dbc57f96a18a9a",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/2490f7b5116f/components/Cursor.module.css"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.module.css",
+      "blob": "2a7827ca6f2d21ed0b34ebd192a8fd73864062e4",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/2a7827ca6f2d/components/HorizontalChapterTransition.module.css"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.tsx",
+      "blob": "56ed8a652249f8df10b6c4263f616b611677529d",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/56ed8a652249/components/HorizontalChapterTransition.tsx"
+    },
+    {
+      "source": "components/SiteNav.module.css",
+      "blob": "b2977f34a2746a9f9eea6153ecd5d169f5cf4f37",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta",
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/b2977f34a274/components/SiteNav.module.css"
+    },
+    {
+      "source": "components/SiteNav.tsx",
+      "blob": "735c20bae80377854dbbc040d808ec20c8031486",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta",
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/735c20bae803/components/SiteNav.tsx"
+    },
+    {
+      "source": "components/SpendingControls.module.css",
+      "blob": "aea492addcf005fbe85fde9c5190698392a70562",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/aea492addcf0/components/SpendingControls.module.css"
+    },
+    {
+      "source": "components/SpendingControls.tsx",
+      "blob": "b98e70bfff404b4621c8ea2074d440f206223a01",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/b98e70bfff40/components/SpendingControls.tsx"
+    },
+    {
+      "source": "components/TechnicalOverlay.module.css",
+      "blob": "36d362281f716232e10b5c7a53ac94640f387832",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/36d362281f71/components/TechnicalOverlay.module.css"
+    },
+    {
+      "source": "components/TechnicalOverlay.tsx",
+      "blob": "31058efe812d66242302f74d7cb31021292a5728",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/31058efe812d/components/TechnicalOverlay.tsx"
+    },
+    {
+      "source": "components/boov/BoovReserve.module.css",
+      "blob": "de78d7ada082af25f158531c7ad1555284ff7226",
+      "branches": [
+        "agent/boov-character-overlay",
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/de78d7ada082/components/boov/BoovReserve.module.css"
+    },
+    {
+      "source": "components/boov/BoovReserve.tsx",
+      "blob": "94f8b0a432c77219330b37f8e8dd0289b255442a",
+      "branches": [
+        "agent/boov-character-overlay"
+      ],
+      "local": "references/boov/variants/94f8b0a432c7/components/boov/BoovReserve.tsx"
+    },
+    {
+      "source": "components/ui/kinetic-grid.tsx",
+      "blob": "2d866760da9887f5e4ee23c4ad8efdfd747a3a4b",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/2d866760da98/components/ui/kinetic-grid.tsx"
+    },
+    {
+      "source": "components/ui/morphing-text.tsx",
+      "blob": "67cd2ce998b0a8535708fbda19d6cafa57cf613b",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/67cd2ce998b0/components/ui/morphing-text.tsx"
+    },
+    {
+      "source": "components/ui/vapour-scroll-text.tsx",
+      "blob": "e8eeafb908fba0652780d402a99b3a327ef77da0",
+      "branches": [
+        "agent/boov-character-overlay",
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/e8eeafb908fb/components/ui/vapour-scroll-text.tsx"
+    },
+    {
+      "source": "components/AppShell.tsx",
+      "blob": "0b9cd3bccc1879b3ac154cc1ddd547fd914f943b",
+      "branches": [
+        "agent/boov-companion"
+      ],
+      "local": "references/boov/variants/0b9cd3bccc18/components/AppShell.tsx"
+    },
+    {
+      "source": "components/BoovCompanion.module.css",
+      "blob": "84141673922579eb55a8953e02ba0dd5cf176a3f",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/841416739225/components/BoovCompanion.module.css"
+    },
+    {
+      "source": "components/BoovCompanion.tsx",
+      "blob": "c83a8caa418a94a1f221dd6571b1e9e2d8feacd8",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/c83a8caa418a/components/BoovCompanion.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "ef17e46c9ca1a1ab780b408c8385de020f0ff139",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/ef17e46c9ca1/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "c25141487eb20b31e6dfd1ab7d61783bae2d856e",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/c25141487eb2/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "e1380310473952d079309e5a96c661834dc3ded7",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/e13803104739/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "7d48c9e11cdc25055c5dc5436d5baca9d4e7c701",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/7d48c9e11cdc/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/FluidBackground.tsx",
+      "blob": "e3a4bda7c25841ff691829a006d377d48b91c82c",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/e3a4bda7c258/components/FluidBackground.tsx"
+    },
+    {
+      "source": "components/ImpactStats.module.css",
+      "blob": "8f6cf781c698d2ff0baac07f885610af50f19665",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/8f6cf781c698/components/ImpactStats.module.css"
+    },
+    {
+      "source": "components/Preloader.module.css",
+      "blob": "30feb10888df118f75e10e9b3b4bca56d0650cc5",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/30feb10888df/components/Preloader.module.css"
+    },
+    {
+      "source": "components/Preloader.tsx",
+      "blob": "867e6fccc1027f53dea50934939f89c2f77c6bf1",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/boov-interactive-redesign",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/867e6fccc102/components/Preloader.tsx"
+    },
+    {
+      "source": "components/SiteNav.module.css",
+      "blob": "1ab65c627079b0bcf15a56406fe23f53b877dbd7",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/1ab65c627079/components/SiteNav.module.css"
+    },
+    {
+      "source": "components/SiteNav.tsx",
+      "blob": "665a7e649dc2d2d375b6874eebf40e0688948d26",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/665a7e649dc2/components/SiteNav.tsx"
+    },
+    {
+      "source": "components/SpendingControls.module.css",
+      "blob": "b6de35946b88e2adb092c14f1a7234ab915bee9c",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/b6de35946b88/components/SpendingControls.module.css"
+    },
+    {
+      "source": "components/SpendingControls.tsx",
+      "blob": "fc99a8474d1dffb76e2692a0c15c80b2ddd25b81",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/fc99a8474d1d/components/SpendingControls.tsx"
+    },
+    {
+      "source": "components/TechnicalOverlay.tsx",
+      "blob": "84b2e2f1e8a651c52361ba4f5148d79f2b449216",
+      "branches": [
+        "agent/boov-companion",
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/84b2e2f1e8a6/components/TechnicalOverlay.tsx"
+    },
+    {
+      "source": "components/AlertsFeed.tsx",
+      "blob": "a3c9a54163207866600fb442da5c781ca812ac31",
+      "branches": [
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/a3c9a5416320/components/AlertsFeed.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "fa2297801cc6bdc4f470ce3a61f58d41c92ea9a7",
+      "branches": [
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/fa2297801cc6/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "5a999b03033ee49d594db682c98535a2caf6a4ab",
+      "branches": [
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/5a999b03033e/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "6258faad5069601b8f815fb68d4ca39f421a2a2d",
+      "branches": [
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/6258faad5069/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "c5bcb9352d047c8c5544375b758e7af4f3f0c33e",
+      "branches": [
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/c5bcb9352d04/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/SiteNav.module.css",
+      "blob": "293d9bdc84b22d9b0c3f060abd3d0e81bb1bded0",
+      "branches": [
+        "agent/boov-companion-on-morph",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/293d9bdc84b2/components/SiteNav.module.css"
+    },
+    {
+      "source": "components/SiteNav.tsx",
+      "blob": "82be8a5f14e3183b188c9494d34e64be26cb67b4",
+      "branches": [
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/82be8a5f14e3/components/SiteNav.tsx"
+    },
+    {
+      "source": "components/SpendingControls.module.css",
+      "blob": "58950f04eececab1a189582fa34da2c6b87593b1",
+      "branches": [
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/58950f04eece/components/SpendingControls.module.css"
+    },
+    {
+      "source": "components/SpendingControls.tsx",
+      "blob": "eacc9bb40d5fd76bd9c0e8ff52a61f71b52eca1d",
+      "branches": [
+        "agent/boov-companion-on-morph"
+      ],
+      "local": "references/boov/variants/eacc9bb40d5f/components/SpendingControls.tsx"
+    },
+    {
+      "source": "components/lab/GsapExhibit.tsx",
+      "blob": "e59a714222e4d4abec2afbb61fe8f4dfadb5f06f",
+      "branches": [
+        "agent/boov-companion-on-morph",
+        "agent/boov-handoff-cta",
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/e59a714222e4/components/lab/GsapExhibit.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "1ef86ecc8923f526ed6fd6340ed37bd91d2032b2",
+      "branches": [
+        "agent/boov-handoff-cta"
+      ],
+      "local": "references/boov/variants/1ef86ecc8923/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/AppShell.tsx",
+      "blob": "8bffd914a688221c1bdc1764b7b769f9adc82e86",
+      "branches": [
+        "agent/boov-interactive-redesign"
+      ],
+      "local": "references/boov/variants/8bffd914a688/components/AppShell.tsx"
+    },
+    {
+      "source": "components/BoovCompanion.module.css",
+      "blob": "37f17eb0fb764bc8514842291a45601590923256",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/BoovCompanion.module.css"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "f7320b194120cf17386e32b4e3b69d939268aff7",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/match-controls-typography",
+        "agent/restore-desktop-particles-and-reports",
+        "main"
+      ],
+      "local": "references/boov/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "3cf15965355ab2ee1a0f02aebbb7e6f328103a5c",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/match-controls-typography",
+        "agent/restore-desktop-particles-and-reports",
+        "main"
+      ],
+      "local": "references/boov/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "2634e5e577be0f5921a6b24d0eda12b8700d13e7",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/restore-desktop-particles-and-reports",
+        "main"
+      ],
+      "local": "references/boov/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "25b69fbbdec0ee57901a1b6b88a16c8a9208fc6d",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/restore-desktop-particles-and-reports",
+        "main"
+      ],
+      "local": "references/boov/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/FluidBackground.tsx",
+      "blob": "f6bba0441c2a4dd11aac66da90ea039b5789bdc9",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/FluidBackground.tsx"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.module.css",
+      "blob": "b2ed869a440890730d37646115fa1d7124f20933",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/match-controls-typography",
+        "agent/restore-desktop-particles-and-reports",
+        "main"
+      ],
+      "local": "references/boov/components/HorizontalChapterTransition.module.css"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.tsx",
+      "blob": "eb203d5388ed2a90565420e3202e176f054dd605",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "main"
+      ],
+      "local": "references/boov/components/HorizontalChapterTransition.tsx"
+    },
+    {
+      "source": "components/SiteNav.module.css",
+      "blob": "21447998925022ce86a0c2acf146ff727997b10d",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/SiteNav.module.css"
+    },
+    {
+      "source": "components/SiteNav.tsx",
+      "blob": "f715d876a429ce4f70802ec568985324ea033e83",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/SiteNav.tsx"
+    },
+    {
+      "source": "components/SpendingControls.module.css",
+      "blob": "ee0650848d6d6a0e5383d7e1af9dc66add658b06",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/match-controls-typography"
+      ],
+      "local": "references/boov/variants/ee0650848d6d/components/SpendingControls.module.css"
+    },
+    {
+      "source": "components/SpendingControls.tsx",
+      "blob": "5d568269e0619462253384f7964cc03beff931e5",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-page02-layout-refresh",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base"
+      ],
+      "local": "references/boov/variants/5d568269e061/components/SpendingControls.tsx"
+    },
+    {
+      "source": "components/boov/BoovReserve.tsx",
+      "blob": "6cc3b17ae69b7b3959d71ded16afba3c64bd0d14",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/boov/BoovReserve.tsx"
+    },
+    {
+      "source": "components/motion-primitives/transition-panel.tsx",
+      "blob": "93b905e1151d02f9420aebc9e09a8e312822bef2",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/motion-primitives/transition-panel.tsx"
+    },
+    {
+      "source": "components/ui/interactive-grid.tsx",
+      "blob": "b07de243b8ec506b3c5e95b27b591509fd4711bb",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/match-controls-typography",
+        "agent/restore-desktop-particles-and-reports"
+      ],
+      "local": "references/boov/variants/b07de243b8ec/components/ui/interactive-grid.tsx"
+    },
+    {
+      "source": "components/ui/kinetic-grid.tsx",
+      "blob": "08f28192792c2100229c6f808f8fe651df5d69c2",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/ui/kinetic-grid.tsx"
+    },
+    {
+      "source": "components/ui/morphing-text.tsx",
+      "blob": "fec7159781719fbd01429b8e5ffc68802b6efbe0",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/match-controls-typography",
+        "agent/restore-desktop-particles-and-reports",
+        "main"
+      ],
+      "local": "references/boov/components/ui/morphing-text.tsx"
+    },
+    {
+      "source": "components/ui/vapour-scroll-text.module.css",
+      "blob": "2e59979c7ec5924818f90f97c6733565bd80f2a5",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/ui/vapour-scroll-text.module.css"
+    },
+    {
+      "source": "components/ui/vapour-scroll-text.tsx",
+      "blob": "7e67da2d1ed25f66d08209d477a637130c36651c",
+      "branches": [
+        "agent/boov-scroll-card",
+        "agent/fix-decision-label-position",
+        "agent/fix-page02-layout-refresh",
+        "agent/fix-vapour-heading-overflow",
+        "agent/match-controls-typography",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/ui/vapour-scroll-text.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "ddf51eb586add587f01bdc479b6a668da5528d62",
+      "branches": [
+        "agent/combined-hero-gradient"
+      ],
+      "local": "references/boov/variants/ddf51eb586ad/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "ab8f55fdd04a52b19bd91da900bb9f8faa610ee6",
+      "branches": [
+        "agent/combined-hero-gradient",
+        "agent/hero-morphing-text"
+      ],
+      "local": "references/boov/variants/ab8f55fdd04a/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/ui/morphing-text.tsx",
+      "blob": "a6eee5e47c600350b01afa63a4cdaaa6149a6bd2",
+      "branches": [
+        "agent/combined-hero-gradient",
+        "agent/hero-morphing-text",
+        "agent/spotlight-scroll-reveal"
+      ],
+      "local": "references/boov/variants/a6eee5e47c60/components/ui/morphing-text.tsx"
+    },
+    {
+      "source": "components/Preloader.module.css",
+      "blob": "4162b34de3bb35744014f299b8ead104590a6910",
+      "branches": [
+        "agent/fix-decision-label-position",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/Preloader.module.css"
+    },
+    {
+      "source": "components/Preloader.tsx",
+      "blob": "293e7f2b6e5241f38a91653d40b2bf591cbf3cd3",
+      "branches": [
+        "agent/fix-decision-label-position",
+        "codex/boov-latest-base",
+        "main"
+      ],
+      "local": "references/boov/components/Preloader.tsx"
+    },
+    {
+      "source": "components/SpendingControls.module.css",
+      "blob": "23faeca8d153038b92fcc430756977c7fe25bf88",
+      "branches": [
+        "agent/fix-decision-label-position",
+        "main"
+      ],
+      "local": "references/boov/components/SpendingControls.module.css"
+    },
+    {
+      "source": "components/SpendingControls.tsx",
+      "blob": "80978139fef16b0694c74970a95366178ec6dbca",
+      "branches": [
+        "agent/fix-decision-label-position",
+        "main"
+      ],
+      "local": "references/boov/components/SpendingControls.tsx"
+    },
+    {
+      "source": "components/ui/interactive-grid.tsx",
+      "blob": "dc0aa310190b405e1127b18710df99888c80a45a",
+      "branches": [
+        "agent/fix-decision-label-position",
+        "main"
+      ],
+      "local": "references/boov/components/ui/interactive-grid.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "34912b67b094f1c6b93fb00f8a766f9ac4ba7015",
+      "branches": [
+        "agent/fix-page02-layout-refresh",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/polish-morph-page04-alerts"
+      ],
+      "local": "references/boov/variants/34912b67b094/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "f04b4bd0a92009c39a362600d63b671f5a70a601",
+      "branches": [
+        "agent/fix-page02-layout-refresh",
+        "agent/mobile-hero-morph",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph"
+      ],
+      "local": "references/boov/variants/f04b4bd0a920/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "d05208e79226f59261a51d8226e9a0c1e400ead7",
+      "branches": [
+        "agent/fix-page02-layout-refresh",
+        "agent/mobile-hero-morph",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "codex/boov-latest-base"
+      ],
+      "local": "references/boov/variants/d05208e79226/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "dddbadd5894495f5a23a2dc800845001d27d6348",
+      "branches": [
+        "agent/fix-page02-layout-refresh",
+        "agent/mobile-hero-morph",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "codex/boov-latest-base"
+      ],
+      "local": "references/boov/variants/dddbadd58944/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.module.css",
+      "blob": "509ca6591e49416a676c79bc3943c62bf34bbc98",
+      "branches": [
+        "agent/fix-page02-layout-refresh"
+      ],
+      "local": "references/boov/variants/509ca6591e49/components/HorizontalChapterTransition.module.css"
+    },
+    {
+      "source": "components/SpendingControls.module.css",
+      "blob": "56e85bb5d435d79d8d617abe8b9b3a06014b689c",
+      "branches": [
+        "agent/fix-page02-layout-refresh",
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-hero-morph",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "agent/polish-morph-page04-alerts",
+        "agent/restore-desktop-particles-and-reports",
+        "codex/boov-latest-base"
+      ],
+      "local": "references/boov/variants/56e85bb5d435/components/SpendingControls.module.css"
+    },
+    {
+      "source": "components/ui/morphing-text.tsx",
+      "blob": "bda38fdba437011b019316b9c5245a69c45f1483",
+      "branches": [
+        "agent/fix-page02-layout-refresh",
+        "agent/optimize-mobile-morph"
+      ],
+      "local": "references/boov/variants/bda38fdba437/components/ui/morphing-text.tsx"
+    },
+    {
+      "source": "components/BoovCompanion.module.css",
+      "blob": "02bcddf8eff7c3cfcd915dfed13cad9e5ea9a7f3",
+      "branches": [
+        "agent/fix-vapour-heading-overflow",
+        "agent/mobile-hero-morph",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph"
+      ],
+      "local": "references/boov/variants/02bcddf8eff7/components/BoovCompanion.module.css"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "3c19d12810fb7564d764089a3041b9f462746f26",
+      "branches": [
+        "agent/fix-vapour-heading-overflow"
+      ],
+      "local": "references/boov/variants/3c19d12810fb/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "458b011399577c2baf588c916a731b00c06c49bd",
+      "branches": [
+        "agent/fix-vapour-heading-overflow"
+      ],
+      "local": "references/boov/variants/458b01139957/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.module.css",
+      "blob": "6c0601ea744e533138b6b09e792b0bf360bf1911",
+      "branches": [
+        "agent/fix-vapour-heading-overflow"
+      ],
+      "local": "references/boov/variants/6c0601ea744e/components/HorizontalChapterTransition.module.css"
+    },
+    {
+      "source": "components/SpendingControls.module.css",
+      "blob": "34cfa5dae3acf1c9241357afa0704a0f5d7984c0",
+      "branches": [
+        "agent/fix-vapour-heading-overflow"
+      ],
+      "local": "references/boov/variants/34cfa5dae3ac/components/SpendingControls.module.css"
+    },
+    {
+      "source": "components/SpendingControls.tsx",
+      "blob": "b269c7f150d43b13ea4aac591c1cdc602859e1e4",
+      "branches": [
+        "agent/fix-vapour-heading-overflow"
+      ],
+      "local": "references/boov/variants/b269c7f150d4/components/SpendingControls.tsx"
+    },
+    {
+      "source": "components/SiteNav.tsx",
+      "blob": "a89b7a9101953b7250cc46f1fe990b9b41ee1ec0",
+      "branches": [
+        "agent/four-page-interactive"
+      ],
+      "local": "references/boov/variants/a89b7a910195/components/SiteNav.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "b2e4dcc3e897a0c898c241b5b57884d34084a7be",
+      "branches": [
+        "agent/hero-morphing-text"
+      ],
+      "local": "references/boov/variants/b2e4dcc3e897/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "bdc9cba88da065547911201d4effad1ce5c91156",
+      "branches": [
+        "agent/mobile-animation-smoothing"
+      ],
+      "local": "references/boov/variants/bdc9cba88da0/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "10a3ee34ba95bd33d4619c83a8602848e6068d31",
+      "branches": [
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/polish-morph-page04-alerts"
+      ],
+      "local": "references/boov/variants/10a3ee34ba95/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.module.css",
+      "blob": "bdbb68a299479849ccce09db47f74cf7d7ae1560",
+      "branches": [
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/polish-morph-page04-alerts"
+      ],
+      "local": "references/boov/variants/bdbb68a29947/components/HorizontalChapterTransition.module.css"
+    },
+    {
+      "source": "components/ui/morphing-text.tsx",
+      "blob": "21e29d1b2db32d4dafb8b2996a9d38f513fe5892",
+      "branches": [
+        "agent/mobile-animation-smoothing",
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/polish-morph-page04-alerts"
+      ],
+      "local": "references/boov/variants/21e29d1b2db3/components/ui/morphing-text.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "660d6375896fc81c19ed86d403ee87ee022c658a",
+      "branches": [
+        "agent/mobile-hero-morph"
+      ],
+      "local": "references/boov/variants/660d6375896f/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/HorizontalChapterTransition.module.css",
+      "blob": "b49c14d3afd74224713fb211435f9d1ad7c50931",
+      "branches": [
+        "agent/mobile-hero-morph",
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph",
+        "codex/boov-latest-base"
+      ],
+      "local": "references/boov/variants/b49c14d3afd7/components/HorizontalChapterTransition.module.css"
+    },
+    {
+      "source": "components/ui/morphing-text.tsx",
+      "blob": "3e813772a51b7b42f25c89457a09d6591ffd0c01",
+      "branches": [
+        "agent/mobile-hero-morph"
+      ],
+      "local": "references/boov/variants/3e813772a51b/components/ui/morphing-text.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "9441192206b0a7881cbced4acc2dbc05d0d44065",
+      "branches": [
+        "agent/mobile-page04-earlier-flip",
+        "agent/mobile-page04-flip-spacing",
+        "agent/mobile-page04-scroll-entry",
+        "agent/polish-morph-page04-alerts"
+      ],
+      "local": "references/boov/variants/9441192206b0/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "79feab4e73e0481bc5f907170c352fd2dfc3d17c",
+      "branches": [
+        "agent/mobile-page04-earlier-flip"
+      ],
+      "local": "references/boov/variants/79feab4e73e0/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "9c27b66c370801694a0e03014c0453ec0c5c095f",
+      "branches": [
+        "agent/mobile-page04-flip-spacing"
+      ],
+      "local": "references/boov/variants/9c27b66c3708/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "fb24661a47f1d8fb35895b148b9addeb9f219b63",
+      "branches": [
+        "agent/mobile-page04-scroll-entry"
+      ],
+      "local": "references/boov/variants/fb24661a47f1/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "dda1e7e4cc32939d804fedd68f9a9c947b41dd4b",
+      "branches": [
+        "agent/mobile-svg-morph",
+        "agent/optimize-mobile-morph"
+      ],
+      "local": "references/boov/variants/dda1e7e4cc32/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/ui/morphing-text.tsx",
+      "blob": "74e6dbea5a055f5f7d9ac72049c44f19adcf55f7",
+      "branches": [
+        "agent/mobile-svg-morph"
+      ],
+      "local": "references/boov/variants/74e6dbea5a05/components/ui/morphing-text.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "36c858a32fc8ebb52a333a27d56795131538ba57",
+      "branches": [
+        "agent/spotlight-scroll-reveal"
+      ],
+      "local": "references/boov/variants/36c858a32fc8/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "4d18a267282ff5f91c141f09465bb43016272b67",
+      "branches": [
+        "agent/spotlight-scroll-reveal"
+      ],
+      "local": "references/boov/variants/4d18a267282f/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "ba88cfe21c2fb22a6ee7ee16536daaa0ce4c8258",
+      "branches": [
+        "codex/boov-latest-base"
+      ],
+      "local": "references/boov/variants/ba88cfe21c2f/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "59c5f7a2235fdc4ab05cd88ae7fb310b53a82b3e",
+      "branches": [
+        "codex/boov-latest-base"
+      ],
+      "local": "references/boov/variants/59c5f7a2235f/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/ui/interactive-grid.tsx",
+      "blob": "0a0b57c52899feddcb663c58fc5272ee4a383a42",
+      "branches": [
+        "codex/boov-latest-base"
+      ],
+      "local": "references/boov/variants/0a0b57c52899/components/ui/interactive-grid.tsx"
+    },
+    {
+      "source": "components/ui/morphing-text.tsx",
+      "blob": "6e7f1958d0a25d1ceb3354d09836af4ecb9765a3",
+      "branches": [
+        "codex/boov-latest-base"
+      ],
+      "local": "references/boov/variants/6e7f1958d0a2/components/ui/morphing-text.tsx"
+    },
+    {
+      "source": "components/BoovExperience.module.css",
+      "blob": "d594ee4d7965b9283333e5a3dfb761319b5afc47",
+      "branches": [
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/d594ee4d7965/components/BoovExperience.module.css"
+    },
+    {
+      "source": "components/BoovExperience.tsx",
+      "blob": "a2c4925d56d446d1ab190ba675de7c4ad118d652",
+      "branches": [
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/a2c4925d56d4/components/BoovExperience.tsx"
+    },
+    {
+      "source": "components/CtaWaitlist.module.css",
+      "blob": "7cfb0cd276da6e41ab264d9b797d6025a12f6824",
+      "branches": [
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/7cfb0cd276da/components/CtaWaitlist.module.css"
+    },
+    {
+      "source": "components/CtaWaitlist.tsx",
+      "blob": "510bc7eaa6dca32409d2f42f6930543be7f3c9e1",
+      "branches": [
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/510bc7eaa6dc/components/CtaWaitlist.tsx"
+    },
+    {
+      "source": "components/SpendingControls.tsx",
+      "blob": "1c4b4bc84ebeb25e0edf50ab32f37a1e8d8c3163",
+      "branches": [
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/1c4b4bc84ebe/components/SpendingControls.tsx"
+    },
+    {
+      "source": "components/TechnicalOverlay.module.css",
+      "blob": "730d595fa64a87fa3e2e1dd604ba1e165d016971",
+      "branches": [
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/730d595fa64a/components/TechnicalOverlay.module.css"
+    },
+    {
+      "source": "components/TechnicalOverlay.tsx",
+      "blob": "8f4508d715b49d2148e183d104410024c59824e6",
+      "branches": [
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/8f4508d715b4/components/TechnicalOverlay.tsx"
+    },
+    {
+      "source": "components/boov/BoovReserve.tsx",
+      "blob": "d14de12b2f3074e8e9f57638710f6a9ecac9a4d2",
+      "branches": [
+        "codex/latest-boov-arrival"
+      ],
+      "local": "references/boov/variants/d14de12b2f30/components/boov/BoovReserve.tsx"
+    }
+  ]
+}

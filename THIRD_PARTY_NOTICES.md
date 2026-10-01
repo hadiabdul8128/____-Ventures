@@ -55,3 +55,13 @@ SOFTWARE.
 ## Fonts
 
 Manrope and Cormorant Garamond are distributed under the SIL Open Font License 1.1. Their license files are included in their respective Fontsource packages.
+
+## BoovSite component sources and adaptations
+
+Source: https://github.com/boovwallet/BoovSite
+
+Baseline: `15ec129f5322234821a24f04f07305856fac973a` (`main`). The complete branch-tip component snapshot and source hashes are recorded in `references/boov/manifest.json` and `references/boov/branches.json`.
+
+The source `package.json` declares author **Boov** and license **MIT**. No separate license file was present in the inspected repository. Source comments and embedded upstream attribution are preserved in the reference snapshot. Component reuse was expressly requested by the user.
+
+Adaptations in `src/components/boov/primitives/` include React 19/Vite compatibility, imports from `motion/react`, reduced-motion and pause controls, gold colors, scoped styles, and accessible control behavior. Magic UI-derived and shadcn-derived portions are also covered by the notices above. The source `components/motion-primitives/transition-panel.tsx` is retained with its provenance; its small transition-panel pattern was adapted to the installed Motion package.

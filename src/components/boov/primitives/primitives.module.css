@@ -1,0 +1,95 @@
+.shimmer,
+.rainbow {
+  --metal-light: #f5e4b6;
+  --metal: #cfb679;
+  --metal-deep: #766035;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 13px 25px;
+  overflow: hidden;
+  border: 1px solid #8a744644;
+  border-radius: var(--radius, 1px);
+  background: var(--bg, #11120e);
+  color: #eee6d5;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    border-color 0.25s,
+    background 0.25s;
+}
+.shimmer::before,
+.rainbow::before {
+  position: absolute;
+  z-index: -1;
+  inset: -100%;
+  content: "";
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 245deg,
+    var(--shimmer-color, #cfb679) 275deg,
+    transparent 310deg
+  );
+  animation: orbit var(--speed, 6s) linear infinite;
+}
+.shimmer::after,
+.rainbow::after {
+  position: absolute;
+  z-index: -1;
+  inset: 1px;
+  background: var(--bg, #11120e);
+  content: "";
+  border-radius: inherit;
+}
+.rainbow::before {
+  background: conic-gradient(from 0deg, #cfb67933, #f8e9c4, #66512d, #cfb67933);
+}
+.shimmer:hover,
+.rainbow:hover {
+  border-color: #cfb679;
+  background: #1d1b14;
+}
+.shimmer:focus-visible,
+.rainbow:focus-visible {
+  outline: 2px solid #cfb679;
+  outline-offset: 5px;
+}
+.shimmer:disabled,
+.rainbow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.shimmer[data-motion="off"]::before,
+.rainbow[data-motion="off"]::before {
+  animation-play-state: paused;
+}
+.small {
+  padding: 10px 16px;
+}
+.large {
+  min-height: 54px;
+  padding: 16px 32px;
+}
+.icon {
+  width: 44px;
+  padding: 0;
+}
+.outline {
+  --bg: #080908;
+}
+@keyframes orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shimmer::before,
+  .rainbow::before {
+    animation: none;
+  }
+}

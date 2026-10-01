@@ -48,3 +48,17 @@ Check layouts at 375, 768, 1024, and 1440 pixels. Preserve natural mobile scroll
 - [Obys](https://obys.agency/): strong typographic composition.
 
 These are references for composition and mood. The sculpture, diagrams, video texture, and layout are original to this project.
+
+## Second edition — editorial brochure
+
+The active composition is a black-and-gold venture brochure. Use the phrase “The art of what’s next.” as the opening, an original solid gold ribbon as its centerpiece, and oversized serif statements with sparse supporting text. The visual hierarchy comes from scale, materials, and space.
+
+The UI/UX Pro design search was rerun with variance 8, motion 8, and density 2. Its editorial typography and spacious composition guidance apply. Keep the existing dark palette and avoid the generic bento recommendation because this project calls for a bespoke brochure.
+
+- Desktop content gutter: 8vw; header 6vw. Phone gutter: 24px.
+- Hero: two lines of large serif typography, one primary CTA, metallic artwork on the right. Mobile places artwork below the main actions.
+- Chapters: philosophy → physical invitation → global network → interactive network study → founder/investor perspectives → closing invitation.
+- Gold: #d6ba80; text: #eee9df; base: #080908; warm surfaces: #10110e.
+- Numbered dividers, fine warm borders, foil finishes, measured depth; keep text selectable and make every button functional.
+- Motion: GSAP typography reveals, Lenis on desktop only, Motion springs for invitation lighting/rotation. All effects follow pause and reduced-motion settings. Native touch scrolling and dialogs remain usable.
+- Components: keep Boov originals and variants under references, and keep production adapters under src/components/boov. Record which are rendered and which are available in docs/BOOV_COMPONENTS.md.

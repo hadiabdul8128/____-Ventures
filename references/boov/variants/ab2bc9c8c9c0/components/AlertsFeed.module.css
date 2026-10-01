@@ -1,0 +1,425 @@
+.section {
+  position: relative;
+  color: var(--ink-warm, #221b30);
+  padding: clamp(110px, 16vh, 190px) 24px;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(48px, 7vw, 110px);
+  align-items: center;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* GSAP reveal target (visible by default; useScrollReveal only enhances). */
+.reveal {
+  opacity: 1;
+}
+
+/* ————————————————————————————— left column ————————————————————————————— */
+
+.copy {
+  max-width: 32rem;
+}
+
+.kicker {
+  margin: 0 0 24px;
+  color: var(--boov-purple, #5b3a8c);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.headline {
+  margin: 0 0 30px;
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(2.9rem, 6vw, 5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+.headlineLine {
+  display: block;
+}
+
+.headlineLine + .headlineLine {
+  padding-left: clamp(20px, 3.5vw, 56px);
+}
+
+.lead {
+  margin: 0;
+  max-width: 27rem;
+  color: var(--ink-warm-soft, #4a4258);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.readout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 0;
+  padding-top: 18px;
+  border-top: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.3));
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--boov-purple, #5b3a8c);
+  animation: alerts-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes alerts-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.liveDotHeld {
+  animation: none;
+  opacity: 0.4;
+}
+
+/* WCAG 2.2.2 stop control for the auto-updating feed. */
+.pauseBtn {
+  align-self: flex-start;
+  margin-top: 14px;
+  padding: 8px 14px;
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.3));
+  border-radius: 3px;
+  background: transparent;
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.pauseBtn:hover {
+  border-color: var(--accent-deep);
+  color: var(--accent-deep);
+}
+
+/* ——————————————————————— right column: schematic ——————————————————————— */
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.phoneWrap {
+  position: relative;
+  width: min(340px, 100%);
+}
+
+/* corner crosshair ticks (cf. TechnicalOverlay) */
+.tick {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+}
+
+.tick::before,
+.tick::after {
+  content: "";
+  position: absolute;
+  background: var(--tech-line, rgba(91, 58, 140, 0.3));
+}
+
+.tick::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.tick::after {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.tickTL {
+  top: -14px;
+  left: -14px;
+}
+.tickTR {
+  top: -14px;
+  right: -14px;
+}
+.tickBL {
+  bottom: -14px;
+  left: -14px;
+}
+.tickBR {
+  bottom: -14px;
+  right: -14px;
+}
+
+/* the phone: hairline outline silhouette, not photo-real */
+.phone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 9 / 19;
+  padding: 12px 12px 16px;
+  border: 1px solid var(--tech-line, rgba(91, 58, 140, 0.3));
+  border-radius: 32px;
+  background: color-mix(in srgb, var(--bone-2, #fbf7f0) 60%, transparent);
+}
+
+.speaker {
+  width: 46px;
+  height: 1px;
+  margin: 4px auto 10px;
+  background: var(--tech-line, rgba(91, 58, 140, 0.3));
+}
+
+.screen {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--tech-line, rgba(91, 58, 140, 0.3));
+  border-radius: 20px;
+  background: var(--bone-2, #fbf7f0);
+}
+
+.screenHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border-bottom: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.3));
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.listViewport {
+  flex: 1;
+  min-height: 0;
+  padding: 12px;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, #000 76%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, #000 76%, transparent);
+}
+
+.list {
+  width: 100%;
+}
+
+.staticList {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* ————————————————————————— ledger-entry cards ————————————————————————— */
+
+.card {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  gap: 11px;
+  align-items: start;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.3));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--sand, #e9e3d6) 40%, transparent);
+  text-align: left;
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid color-mix(in srgb, var(--boov-purple, #5b3a8c) 42%, transparent);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--boov-lavender, #b8a7e8) 24%, transparent);
+  color: var(--boov-purple, #5b3a8c);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.cardBody {
+  min-width: 0;
+}
+
+.cardTitle {
+  margin: 0;
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.cardDesc {
+  margin: 3px 0 0;
+  color: var(--ink-warm-soft, #4a4258);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 7px 0 0;
+  color: var(--boov-purple, #5b3a8c);
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.verifiedTick {
+  width: 9px;
+  height: 5px;
+  margin-top: -3px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+}
+
+.cardMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.amount {
+  color: var(--ink-warm, #221b30);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.time {
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ——————————————————————— schematic callout labels ——————————————————————— */
+
+.callout {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.calloutLine {
+  display: block;
+  width: clamp(26px, 4vw, 58px);
+  height: 0;
+  border-top: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.3));
+}
+
+.calloutAntenna {
+  top: 7%;
+  left: calc(100% - 6px);
+}
+
+.calloutEink {
+  top: 40%;
+  right: calc(100% - 6px);
+}
+
+.calloutFeed {
+  top: 72%;
+  left: calc(100% - 6px);
+}
+
+.stageCaption {
+  margin: 0;
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ————————————————————————————— responsive ————————————————————————————— */
+
+@media (max-width: 1023px) {
+  .callout {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+
+  .phoneWrap {
+    width: min(320px, 100%);
+  }
+
+  .headlineLine + .headlineLine {
+    padding-left: clamp(16px, 8vw, 40px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liveDot {
+    animation: none;
+  }
+}

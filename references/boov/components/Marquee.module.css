@@ -1,0 +1,47 @@
+.root {
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.track {
+  display: inline-flex;
+  will-change: transform;
+  animation-name: marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.root:hover .track {
+  animation-play-state: paused;
+}
+
+.group {
+  display: inline-flex;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.sep {
+  display: inline-block;
+  margin: 0 0.4em;
+  opacity: 0.4;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

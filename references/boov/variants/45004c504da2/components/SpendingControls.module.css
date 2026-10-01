@@ -1,0 +1,830 @@
+.section {
+  position: relative;
+  z-index: 2;
+  height: 340svh;
+  margin-top: -20svh;
+  overflow: clip;
+  background: transparent;
+  color: #f2edf9;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  isolation: isolate;
+}
+
+.stickyStage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background: transparent;
+  perspective: 1200px;
+}
+
+.fieldLayer,
+.flowField,
+.vignette {
+  position: absolute;
+  inset: 0;
+}
+
+.fieldLayer {
+  z-index: 0;
+  will-change: opacity;
+}
+
+.flowField {
+  background: #05091a;
+}
+
+.vignette {
+  z-index: 1;
+  background:
+    radial-gradient(circle at 61% 49%, transparent 0 22%, rgba(5, 9, 26, 0.16) 52%, rgba(5, 9, 26, 0.62) 100%),
+    linear-gradient(90deg, rgba(5, 9, 26, 0.55), transparent 36% 72%, rgba(5, 9, 26, 0.22));
+  pointer-events: none;
+}
+
+.sceneContent {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(1240px, 100%);
+  height: 100%;
+  min-height: 0;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  margin: 0 auto;
+  padding: clamp(112px, 14vh, 144px) 24px clamp(28px, 4vh, 42px);
+}
+
+.copy {
+  position: relative;
+  z-index: 5;
+  width: min(520px, 46vw);
+}
+
+.copy h2 {
+  max-width: 9ch;
+  margin: 0;
+  color: #f4effb;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(3.6rem, 6.4vw, 5.6rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.statusTransition {
+  min-height: 50px;
+  margin-top: 24px;
+}
+
+.statusTransition p {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 11px;
+  margin: 0;
+  color: #b8afc8;
+  font-size: clamp(0.88rem, 1.2vw, 1rem);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.statusTransition p > span,
+.statusTransition p > svg {
+  display: inline-grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(184, 167, 232, 0.3);
+  border-radius: 50%;
+  color: #b8a7e8;
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+}
+
+.statusTransition p > svg {
+  padding: 6px;
+}
+
+.statusTransition p[data-status="approved"] {
+  color: #afe9bf;
+}
+
+.statusTransition p[data-status="approved"] > svg {
+  border-color: rgba(115, 216, 148, 0.42);
+  color: #7fdda0;
+}
+
+.statusTransition p[data-status="declined"] {
+  color: #ff9aae;
+}
+
+.statusTransition p[data-status="declined"] > svg {
+  border-color: rgba(255, 126, 151, 0.46);
+  color: #ff8fa6;
+}
+
+.visual {
+  position: relative;
+  min-height: 0;
+}
+
+.decisionFlash {
+  position: absolute;
+  z-index: 6;
+  top: 1%;
+  left: 62%;
+  width: min(340px, 32%);
+  color: #8ce2a8;
+  font-size: clamp(1.65rem, 3vw, 2.7rem);
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-align: center;
+  text-shadow: 0 0 24px rgba(95, 224, 141, 0.2);
+  translate: -50% 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.decisionFlash[data-status="declined"] {
+  color: #ff8fa6;
+  text-shadow: 0 0 24px rgba(255, 90, 124, 0.2);
+}
+
+.cardInteraction {
+  position: absolute;
+  z-index: 4;
+  top: 58%;
+  left: 62%;
+  width: min(450px, 40vw);
+  aspect-ratio: 85.6 / 53.98;
+  translate: -50% -50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(221, 212, 247, 0.21);
+  border-radius: 4.4%;
+  background: #09132d;
+  box-shadow:
+    0 46px 70px -28px rgba(0, 0, 0, 0.86),
+    0 18px 38px rgba(0, 0, 0, 0.4),
+    inset 0 1px rgba(255, 255, 255, 0.07);
+  color: #d9cff2;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.cardRibbon {
+  position: absolute;
+  top: -24%;
+  right: 23%;
+  width: 1px;
+  height: 148%;
+  background: rgba(184, 167, 232, 0.38);
+  box-shadow: 0 0 44px 17px rgba(184, 167, 232, 0.065);
+  transform: rotate(52deg);
+}
+
+.cardBrand {
+  position: absolute;
+  top: 11%;
+  left: 8%;
+  display: inline-flex;
+  align-items: center;
+  gap: 2.2cqw;
+  font-size: 5.1cqw;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.orbitMark {
+  position: relative;
+  display: block;
+  width: 7cqw;
+  height: 4.8cqw;
+  border: 0.7cqw solid currentColor;
+  border-radius: 50%;
+  transform: rotate(-25deg);
+}
+
+.orbitMark i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.4cqw;
+  height: 1.4cqw;
+  border-radius: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.cardChip {
+  position: absolute;
+  top: 44%;
+  left: 8%;
+  width: 11.5cqw;
+  height: 8.7cqw;
+  overflow: hidden;
+  border-radius: 1.4cqw;
+  background: linear-gradient(135deg, #9a8cc3, #70648f);
+}
+
+.cardChip::before,
+.cardChip::after,
+.cardChip i {
+  position: absolute;
+  background: rgba(7, 15, 37, 0.18);
+  content: "";
+}
+
+.cardChip::before {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+}
+
+.cardChip::after {
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+}
+
+.cardChip i {
+  inset: 20% 32%;
+  border-radius: 1px;
+}
+
+.cardDigits {
+  position: absolute;
+  bottom: 19%;
+  left: 8%;
+  font-size: 4cqw;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.cardContactless {
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  width: 6cqw;
+  height: 6cqw;
+}
+
+.cardType {
+  position: absolute;
+  right: 8%;
+  bottom: 10%;
+  font-size: 3cqw;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.terminal {
+  position: absolute;
+  z-index: 3;
+  top: 58%;
+  left: 27%;
+  display: grid;
+  width: clamp(74px, 7.2vw, 96px);
+  aspect-ratio: 0.78;
+  place-items: center;
+  border: 1px solid rgba(221, 212, 247, 0.24);
+  border-radius: 14px;
+  background: rgba(18, 21, 45, 0.9);
+  box-shadow: 0 20px 36px rgba(0, 0, 0, 0.38), inset 0 1px rgba(255, 255, 255, 0.05);
+  color: #d9cff2;
+  translate: -50% -50%;
+  backdrop-filter: blur(10px);
+}
+
+.terminal::before {
+  position: absolute;
+  top: 13%;
+  width: 70%;
+  height: 22%;
+  border-radius: 4px;
+  background: rgba(184, 167, 232, 0.1);
+  content: "";
+}
+
+.terminal svg {
+  width: 28%;
+  height: auto;
+}
+
+.terminal span {
+  position: absolute;
+  bottom: 12%;
+  color: #a79db9;
+  font-size: 0.61rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.connection {
+  position: absolute;
+  z-index: 2;
+  top: 58%;
+  left: calc(27% + clamp(37px, 3.6vw, 48px));
+  width: clamp(58px, 9vw, 126px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(184, 167, 232, 0.25), #ddd4f7);
+  box-shadow: 0 0 18px rgba(184, 167, 232, 0.58);
+  transform-origin: left;
+}
+
+.connection i {
+  position: absolute;
+  top: 50%;
+  right: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ddd4f7;
+  box-shadow: 0 0 14px rgba(221, 212, 247, 0.78);
+  transform: translateY(-50%);
+}
+
+.ruleLabel,
+.resultLabel {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e8e1f6;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.ruleLabel {
+  bottom: 9%;
+  left: 7%;
+}
+
+.ruleLabel::before,
+.resultLabel::before {
+  position: absolute;
+  left: calc(100% + 12px);
+  width: clamp(30px, 4vw, 56px);
+  height: 1px;
+  background: rgba(184, 167, 232, 0.28);
+  content: "";
+}
+
+.ruleLabel svg,
+.resultLabel > svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  color: #b8a7e8;
+}
+
+.ruleLabel span,
+.ruleLabel small,
+.resultLabel span,
+.resultLabel small {
+  display: block;
+}
+
+.ruleLabel small,
+.resultLabel small {
+  margin-bottom: 3px;
+  color: #958ba8;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.resultLabel {
+  bottom: 9%;
+  left: 7%;
+  min-width: 260px;
+}
+
+.resultLabel strong {
+  margin-left: auto;
+  color: #f2edf9;
+  font-size: 1.08rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.resultLabel[data-status="approved"] > svg,
+.resultLabel[data-status="approved"] small {
+  color: #7fdda0;
+}
+
+.resultLabel[data-status="declined"] > svg,
+.resultLabel[data-status="declined"] small {
+  color: #ff8fa6;
+}
+
+.guideDock {
+  position: relative;
+  width: min(820px, 100%);
+  justify-self: center;
+  padding-top: 116px;
+}
+
+.guideMascot {
+  position: absolute;
+  z-index: 8;
+  bottom: 45px;
+  display: grid;
+  width: 108px;
+  height: 104px;
+  margin-left: -54px;
+  place-items: end center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #f2edf9;
+  cursor: pointer;
+  transform-origin: 50% 100%;
+  will-change: left, transform;
+}
+
+.guideMascot:focus-visible {
+  border-radius: 7px;
+  outline: 2px solid #d9cff2;
+  outline-offset: 4px;
+}
+
+.guideMascot:disabled {
+  color: #f2edf9;
+  cursor: default;
+}
+
+.guideBubble {
+  position: absolute;
+  z-index: 2;
+  bottom: calc(100% - 4px);
+  left: 50%;
+  width: max-content;
+  max-width: 220px;
+  padding: 8px 11px;
+  border: 1px solid rgba(9, 19, 45, 0.2);
+  border-radius: 5px;
+  background: #d9cff2;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  color: #09132d;
+  font-size: 0.69rem;
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-align: center;
+  text-wrap: balance;
+  transform: translateX(-50%);
+}
+
+.guideBubble::after {
+  position: absolute;
+  top: calc(100% - 4px);
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 1px solid rgba(9, 19, 45, 0.2);
+  border-bottom: 1px solid rgba(9, 19, 45, 0.2);
+  background: #d9cff2;
+  content: "";
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.guideMascot[data-position="start"] .guideBubble {
+  left: 8px;
+  transform: none;
+}
+
+.guideMascot[data-position="start"] .guideBubble::after {
+  left: 39px;
+}
+
+.guideMascot[data-position="end"] .guideBubble {
+  right: 8px;
+  left: auto;
+  transform: none;
+}
+
+.guideMascot[data-position="end"] .guideBubble::after {
+  right: 35px;
+  left: auto;
+}
+
+/* Carries the scroll-driven arrival (down the left wall, round the corner onto
+   the first tab). Origin at the feet so the wall-grip rotation pivots where he
+   touches. Identity once he has landed. */
+.guideArrival {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: end center;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+
+.guideCharacter {
+  position: relative;
+  z-index: 1;
+  transform-origin: 50% 100%;
+}
+
+/* The bubble only speaks once he is standing on the tab row. Opacity only —
+   the position variants above own the transform. */
+.guideMascot .guideBubble {
+  opacity: 0;
+  transition: opacity 0.34s ease 0.12s;
+}
+
+.guideMascot[data-arrived] .guideBubble {
+  opacity: 1;
+}
+
+.tabsList {
+  display: grid;
+  width: 100%;
+  height: auto;
+  min-height: 50px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  justify-self: center;
+  padding: 3px;
+  border: 1px solid rgba(184, 167, 232, 0.15);
+  border-radius: 5px;
+  background: rgba(8, 11, 29, 0.72);
+  color: #9188a4;
+  backdrop-filter: blur(14px);
+}
+
+.tabTrigger {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+.tabTrigger svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.tabTrigger:hover {
+  background: rgba(184, 167, 232, 0.08);
+  color: #d9cff2;
+}
+
+.tabTrigger[data-state="active"] {
+  background: #d9cff2;
+  box-shadow: none;
+  color: #0a1028;
+}
+
+.tabTrigger:focus-visible {
+  outline: 2px solid #b8a7e8;
+  outline-offset: 2px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .section {
+    height: 330svh;
+  }
+
+  .vignette {
+    background: radial-gradient(circle at 50% 49%, transparent 0 20%, rgba(5, 9, 26, 0.2) 50%, rgba(5, 9, 26, 0.68) 100%);
+  }
+
+  .sceneContent {
+    padding: 86px 12px max(16px, env(safe-area-inset-bottom));
+  }
+
+  .copy {
+    width: 100%;
+    padding: 0 6px;
+  }
+
+  .copy h2 {
+    max-width: 7ch;
+    font-size: clamp(2.75rem, 13vw, 4rem);
+  }
+
+  .statusTransition {
+    min-height: 40px;
+    margin-top: 11px;
+  }
+
+  .statusTransition p {
+    font-size: 0.79rem;
+  }
+
+  .statusTransition p > span,
+  .statusTransition p > svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .visual {
+    min-height: 0;
+  }
+
+  .decisionFlash {
+    top: 0;
+    left: 50%;
+    width: 90%;
+    font-size: clamp(1.65rem, 8vw, 2.25rem);
+  }
+
+  .cardInteraction {
+    top: 54%;
+    left: 50%;
+    width: min(310px, 78vw);
+  }
+
+  .terminal {
+    top: 57%;
+    left: 9%;
+    width: clamp(58px, 16vw, 72px);
+  }
+
+  .connection {
+    top: 57%;
+    left: calc(9% + clamp(29px, 8vw, 36px));
+    width: clamp(34px, 11vw, 54px);
+  }
+
+  .ruleLabel {
+    bottom: 1%;
+    left: 2%;
+    font-size: 0.7rem;
+  }
+
+  .ruleLabel::before {
+    width: 22px;
+  }
+
+  .resultLabel {
+    right: auto;
+    bottom: 1%;
+    left: 2%;
+    min-width: min(272px, 86vw);
+    font-size: 0.7rem;
+  }
+
+  .resultLabel::before {
+    display: none;
+  }
+
+  .resultLabel strong {
+    font-size: 0.9rem;
+  }
+
+  .tabsList {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .guideDock {
+    padding-top: 88px;
+  }
+
+  .guideMascot {
+    bottom: 45px;
+    width: 84px;
+    height: 82px;
+    margin-left: -42px;
+  }
+
+  .guideCharacter {
+    transform: scale(0.78);
+  }
+
+  .guideBubble {
+    bottom: calc(100% + 1px);
+    max-width: 150px;
+    padding: 7px 9px;
+    font-size: 0.62rem;
+  }
+
+  .tabTrigger {
+    min-height: 44px;
+    padding: 0;
+  }
+
+  .tabTrigger span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .tabTrigger svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+@media (max-width: 900px) and (max-height: 720px) {
+  .sceneContent {
+    gap: 6px;
+    padding-top: 82px;
+    padding-bottom: 10px;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.35rem, 11vw, 3.2rem);
+  }
+
+  .statusTransition {
+    margin-top: 7px;
+  }
+
+  .cardInteraction {
+    top: 52%;
+    width: min(270px, 72vw);
+  }
+
+  .terminal,
+  .connection {
+    top: 55%;
+  }
+
+  .ruleLabel,
+  .resultLabel {
+    bottom: 2%;
+  }
+
+  .guideDock {
+    padding-top: 72px;
+  }
+
+  .guideMascot {
+    height: 66px;
+  }
+
+  .guideCharacter {
+    transform: scale(0.64);
+  }
+
+  .guideBubble {
+    bottom: calc(100% + 4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    height: 115svh;
+    margin-top: 0;
+  }
+
+  .stickyStage {
+    position: relative;
+  }
+
+  .tabTrigger {
+    transition: none;
+  }
+}

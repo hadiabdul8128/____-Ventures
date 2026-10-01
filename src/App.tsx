@@ -25,6 +25,19 @@ import {
   useReducedMotion,
 } from "motion/react";
 import { GoldSculpture } from "./components/GoldSculpture";
+import { GoldMonolith } from "./components/GoldMonolith";
+import { InvitationStage } from "./components/boov/InvitationStage";
+import {
+  SmoothExperience,
+  ScrollTypography,
+  PointerHalo,
+  ReadingProgress,
+} from "./components/EditorialMotion";
+const NetworkAtelier = lazy(() =>
+  import("./components/boov/NetworkAtelier").then((module) => ({
+    default: module.NetworkAtelier,
+  })),
+);
 import { SceneBoundary } from "./components/SceneBoundary";
 import {
   IntroductionDialog,
@@ -141,7 +154,7 @@ function Network({ onConnect }: { onConnect: (audience: Audience) => void }) {
   return (
     <section id="network" className="network-section section-shell">
       <div className="section-topline">
-        <span className="eyebrow">02 / THE NETWORK</span>
+        <span className="eyebrow">03 / THE NETWORK</span>
         <span className="micro">PROXIMITY CREATES POSSIBILITY</span>
       </div>
       <div className="network-grid">
@@ -273,21 +286,27 @@ function App() {
   return (
     <MotionConfig reducedMotion={animated ? "user" : "always"}>
       <MotionContext.Provider value={!!animated}>
+        <SmoothExperience
+          enabled={!!animated}
+          paused={!!audience || menuOpen || privacyOpen}
+        />
+        <PointerHalo enabled={!!animated} />
+        <ReadingProgress />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
         <header className="site-header" id="top">
           <Wordmark />
           <nav className="desktop-nav" aria-label="Main navigation">
-            <a href="#thesis">Our thesis</a>
+            <a href="#thesis">The philosophy</a>
             <a href="#network">The network</a>
-            <a href="#approach">Our approach</a>
+            <a href="#approach">Your next chapter</a>
           </nav>
           <button
             className="header-cta"
             onClick={() => openIntroduction("founder")}
           >
-            Let’s connect <ArrowUpRight size={16} />
+            An introduction <ArrowUpRight size={16} />
           </button>
           <button
             className="mobile-menu-button icon-button"
@@ -312,14 +331,14 @@ function App() {
             </Ambient>
             <div className="hero-copy">
               <p className="eyebrow hero-eyebrow">
-                <span className="tiny-diamond" /> AN INDEPENDENT VENTURE NETWORK
+                <span className="tiny-diamond" /> THE INDEPENDENT VENTURE
+                NETWORK
               </p>
               <h1 id="hero-title">
-                <span>Great ideas.</span>
-                <span>Extraordinary</span>
+                <span>The art of</span>
                 <em>
-                  <AuroraText colors={golds} speed={0.22}>
-                    connections.
+                  <AuroraText colors={golds} speed={0.16}>
+                    what’s next.
                   </AuroraText>
                 </em>
               </h1>
@@ -330,35 +349,26 @@ function App() {
                 once
                 duration={0.55}
               >
-                We connect exceptional founders with the capital, conviction,
-                and people to go further.
+                Exceptional founders. Extraordinary connections. From Cambridge
+                to whatever comes next.
               </TextAnimate>
               <div className="hero-actions">
                 <button
                   className="gold-button"
                   onClick={() => openIntroduction("founder")}
                 >
-                  Build what’s next <ArrowUpRight size={17} />
+                  Begin a conversation <ArrowUpRight size={17} />
                 </button>
-                <a className="text-link" href="#network">
-                  Explore the network <ArrowRight size={16} />
+                <a className="text-link" href="#thesis">
+                  Discover our world <ArrowDown size={15} />
                 </a>
               </div>
             </div>
-            <div className="hero-art">
-              <div className="art-orbit" />
-              <GoldSculpture />
-              <div className="art-note">
-                <span className="tiny-diamond" />
-                <span>
-                  THE RIGHT CONNECTION
-                  <br />
-                  CHANGES EVERYTHING.
-                </span>
-              </div>
-              <span className="art-index">
-                FIG. 01 &nbsp; / &nbsp; POSSIBILITY, IN MOTION
-              </span>
+            <div className="hero-art" data-cursor="Explore">
+              <GoldMonolith enabled={!!animated} />
+            </div>
+            <div className="hero-edition" aria-hidden="true">
+              VOL. 01 <span>THE BEGINNING OF SOMETHING</span>
             </div>
             <div className="hero-bottom">
               <a href="#thesis" className="scroll-link">
@@ -405,53 +415,71 @@ function App() {
           </div>
           <section id="thesis" className="thesis-section section-shell">
             <div className="section-topline">
-              <span className="eyebrow">01 / OUR THESIS</span>
-              <Plus size={17} strokeWidth={1} />
+              <span className="eyebrow">01 / THE PHILOSOPHY</span>
+              <span className="micro">AMBITION, WITH INTENTION</span>
             </div>
-            <Reveal>
-              <h2>
-                Brilliance is everywhere.
-                <br />
-                The right connection
-                <br />
-                <em>makes the difference.</em>
-              </h2>
-            </Reveal>
-            <Reveal className="thesis-bottom">
-              <span className="thesis-symbol" aria-hidden="true">
-                <svg viewBox="0 0 80 80" fill="none">
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <path
-                      key={i}
-                      d="M40 10V30"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      transform={`rotate(${i * 30} 40 40)`}
-                    />
-                  ))}
-                </svg>
-              </span>
-              <p>
-                We exist in the space between bold ideas and the people who
-                believe in them. A considered introduction. A shared conviction.
-                A new possibility.
-              </p>
-              <a href="#approach" className="text-link">
-                A different kind of network <ArrowDown size={16} />
-              </a>
-            </Reveal>
+            <div className="thesis-composition">
+              <div className="thesis-aside">
+                <span className="thesis-number" aria-hidden="true">
+                  01
+                </span>
+                <span className="micro">
+                  A SHARED
+                  <br />
+                  WAY OF SEEING.
+                </span>
+              </div>
+              <div>
+                <ScrollTypography enabled={!!animated} />
+                <Reveal className="thesis-bottom">
+                  <p>
+                    We bring remarkable founders into the right rooms. With the
+                    people, capital, and conviction to turn a bold beginning
+                    into something enduring.
+                  </p>
+                  <a href="#invitation" className="text-link">
+                    The value of an introduction <ArrowDown size={16} />
+                  </a>
+                </Reveal>
+              </div>
+            </div>
+            <div className="thesis-signature">
+              <span>FOUNDER LED.</span>
+              <span>RELATIONSHIP DRIVEN.</span>
+              <span>OPEN TO THE EXTRAORDINARY.</span>
+            </div>
           </section>
+          <InvitationStage
+            enabled={!!animated}
+            onRequest={() => openIntroduction("founder")}
+          />
           <Network onConnect={openIntroduction} />
+          <section
+            className="atelier-section section-shell"
+            aria-label="Explore where we find possibility"
+          >
+            <div className="section-topline">
+              <span className="eyebrow">AN OPEN FIELD OF POSSIBILITY</span>
+              <span className="micro">FOLLOW YOUR CURIOSITY</span>
+            </div>
+            <Suspense
+              fallback={
+                <div className="atelier-loading">A wider perspective.</div>
+              }
+            >
+              <NetworkAtelier enabled={!!animated} />
+            </Suspense>
+          </section>
           <section id="approach" className="approach-section section-shell">
             <div className="section-topline">
-              <span className="eyebrow">03 / THE APPROACH</span>
+              <span className="eyebrow">04 / YOUR NEXT CHAPTER</span>
               <span className="micro">FEWER DEGREES OF SEPARATION</span>
             </div>
             <Reveal className="approach-heading">
               <h2>
-                Good company.
+                A meeting of minds.
                 <br />
-                <em>Extraordinary potential.</em>
+                <em>A world of possibility.</em>
               </h2>
               <p className="body-copy">
                 For the people building the future.
@@ -668,9 +696,9 @@ function App() {
           </div>
           <nav aria-label="Mobile navigation">
             {[
-              ["Our thesis", "thesis"],
+              ["The philosophy", "thesis"],
               ["The network", "network"],
-              ["Our approach", "approach"],
+              ["Your next chapter", "approach"],
             ].map(([label, anchor], i) => (
               <a
                 key={anchor}

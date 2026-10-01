@@ -1,0 +1,200 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(24px, 3vw, 44px);
+  align-items: stretch;
+}
+
+/* ----- drag stage ----- */
+
+.stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+  overflow: hidden;
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.26));
+  border-radius: 14px;
+}
+
+.boundsGuide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Tracks the drag bounds, which derive from the measured stage on narrow
+     viewports — mirror that clamp here so guide and physics agree. */
+  width: min(320px, 76%);
+  height: min(220px, 72%);
+  border: 1px dashed color-mix(in srgb, var(--tech-line, rgba(91, 58, 140, 0.3)) 66%, transparent);
+  border-radius: 12px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.crosshairX,
+.crosshairY {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: color-mix(in srgb, var(--tech-line, rgba(91, 58, 140, 0.3)) 55%, transparent);
+  pointer-events: none;
+}
+
+.crosshairX {
+  width: 26px;
+  height: 1px;
+  transform: translate(-50%, -50%);
+}
+
+.crosshairY {
+  width: 1px;
+  height: 26px;
+  transform: translate(-50%, -50%);
+}
+
+.stageNote {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  margin: 0;
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  pointer-events: none;
+}
+
+/* ----- the member card (lightweight visual, not BoovExperience) ----- */
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(300px, 74%);
+  aspect-ratio: 1.586;
+  border: 1px solid color-mix(in srgb, var(--boov-light-lavender, #ddd4f7) 24%, transparent);
+  border-radius: 16px;
+  background: radial-gradient(
+    135% 130% at 18% -10%,
+    var(--boov-purple, #5b3a8c) 0%,
+    #2a2350 46%,
+    var(--boov-navy, #0b132b) 100%
+  );
+  color: var(--boov-light-lavender, #ddd4f7);
+  box-shadow: 0 30px 60px -34px var(--boov-deep-navy, #05091a);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: transform;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.cardStatic {
+  cursor: default;
+}
+
+.cardWordmark {
+  position: absolute;
+  top: 9%;
+  left: 7%;
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+
+.cardChip {
+  position: absolute;
+  top: 40%;
+  left: 7%;
+  width: 12%;
+  aspect-ratio: 64 / 50;
+  border-radius: 14%;
+  background:
+    linear-gradient(#7f8698, #7f8698) center / 100% 4% no-repeat,
+    linear-gradient(#7f8698, #7f8698) 32% 0 / 3% 100% no-repeat,
+    linear-gradient(#7f8698, #7f8698) 68% 0 / 3% 100% no-repeat,
+    linear-gradient(135deg, #eef0f5 0%, #c3c9d4 38%, #9199a8 58%, #d3d8e2 100%);
+}
+
+.cardRow {
+  position: absolute;
+  right: 7%;
+  bottom: 9%;
+  left: 7%;
+  display: flex;
+  justify-content: space-between;
+  color: color-mix(in srgb, var(--boov-light-lavender, #ddd4f7) 78%, transparent);
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+}
+
+/* ----- side column ----- */
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.6vw, 30px);
+  justify-content: space-between;
+}
+
+.sideCopy {
+  margin: 0;
+  color: var(--ink-warm-soft, #4a4258);
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.counter {
+  padding: clamp(20px, 2.4vw, 30px);
+  border: 1px dashed var(--tech-line, rgba(91, 58, 140, 0.28));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--bone-2, #fbf7f0) 45%, transparent);
+}
+
+.counterLabel {
+  margin: 0 0 12px;
+  color: var(--boov-purple, #5b3a8c);
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.counterValue {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin: 0 0 8px;
+  color: var(--ink-warm, #221b30);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(2.4rem, 4.6vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.counterNote {
+  margin: 0;
+  color: var(--tech-ink, rgba(34, 27, 48, 0.6));
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stage {
+    min-height: 320px;
+  }
+}
