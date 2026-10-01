@@ -54,4 +54,8 @@ SOFTWARE.
 
 ## Fonts
 
-Manrope and Cormorant Garamond are distributed under the SIL Open Font License 1.1. Their license files are included in their respective Fontsource packages.
+Google Sans Flex (Google) and Figtree (Erik Kennedy) are distributed under the SIL Open Font License 1.1. Their license files are included in their respective Fontsource packages (`@fontsource-variable/google-sans-flex`, `@fontsource-variable/figtree`). Static Google Sans Flex instances in `scripts/fonts/` are used only to outline the logo glyphs for the brand kit.
+
+## Logos
+
+Third-party logos in `public/logos/` (Harvard, MIT, Y Combinator, Mercor, Forbes, Coca-Cola Scholars, Duke, Amazon) are trademarks of their respective owners and are used only to identify where the founders studied, worked, or were recognized. No affiliation or endorsement is implied.

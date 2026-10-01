@@ -1,50 +1,49 @@
-# ____ Ventures — design system
+# Boston Square Ventures — design system
 
 ## Direction
 
-An independent venture network with the restraint of a luxury editorial website. Lead with one sculptural visual, three lines of type, and one primary invitation. Keep the page spacious and the copy brief.
+Pareto Fellowship × Zerobase. From Pareto: a centered hero with a heavy headline and a lighter slanted turn, a facts strip, an oversized light-weight perks list, FAQ, and a blunt closing line. From Zerobase: pure black, lowercase conversational copy, "weekly lectures and homework", "costs? nothing.", and "founders, are you ready to build?" as the application heading.
 
-The UI/UX Pro Max design-system search recommended exaggerated minimalism, oversized editorial typography, generous space, and restrained motion. The user's explicit black-and-gold palette overrides the search's default light/pink palette.
+One track — the founder track. No tiers, no junior varsity.
+
+## The mark
+
+A square with **B** top-left and **V** bottom-right, white on black. The square is the brand motif: it recurs as the interactive hero lattice, the marquee separators, and the square corners everywhere. Full kit and usage rules in `brand/README.md`.
 
 ## Tokens
 
-| Role           | Value                                |
-| -------------- | ------------------------------------ |
-| Background     | `#080908`                            |
-| Raised surface | `#0d0f0c`                            |
-| Main text      | `#eae6dc`                            |
-| Secondary text | `#a09f93`                            |
-| Champagne gold | `#cfb679`                            |
-| Hairline       | `#292a23`                            |
-| Editorial type | Cormorant Garamond, regular / italic |
-| Interface type | Manrope Variable                     |
-| Desktop gutter | 6.1vw                                |
-| Phone gutter   | 24px                                 |
+| Role           | Value                                       |
+| -------------- | ------------------------------------------- |
+| Background     | `#000000`                                   |
+| Raised surface | `#0a0a0a`                                   |
+| Main text      | `#f4f4f2`                                   |
+| Secondary text | `#8b8b86`                                   |
+| Dim text       | `#5a5a56`                                   |
+| Hairline       | `#1c1c1c` (strong: `#2a2a2a`)               |
+| Type           | Google Sans Flex Variable; Figtree fallback |
+| Headline       | weight 500, tracking −0.03 to −0.04 em      |
+| Accent         | weight 300, oblique 10° (slant axis)        |
+| Body           | weight 300–400                              |
+| Gutter         | `clamp(24px, 6vw, 96px)`                    |
+| Max width      | 1180px                                      |
 
-Use serif type at large sizes, gold italics sparingly, and small tracked labels as editorial structure. Keep corners square apart from diagrams and circular arrow controls. Avoid decorative dashboard statistics and partner claims.
+No accent color. Hierarchy comes from size, weight, slant, and white vs. gray. Corners are square everywhere except headshots. Buttons are 1px outlines or solid white.
+
+## Voice
+
+Lowercase sentences, short, a little irreverent, never cute. Section headings are questions or flat statements ("what's included?", "costs? nothing."). Claims stay honest: no invented stats, fund sizes, partners, or testimonials. The facts strip only shows program parameters (4 weeks, 30 min, 1 homework, $0). Tagline: "start at square one."
 
 ## Structure
 
-1. Hero: original gold torus, clear premise, founder invitation.
-2. Origins: Harvard, MIT, and beyond as sourcing context.
-3. Thesis: a short statement of the purpose of the network.
-4. Network: reach, circles, and frontiers in a keyboard-accessible tab set.
-5. Approach: founder and investor invitations, followed by three steps.
-6. Sector interlude and closing invitation.
-7. Large typographic signature and minimal footer.
+1. Hero over the interactive square field: eyebrow, headline + slanted turn, lede, solid CTA + text link, a hint to move the cursor.
+2. Receipts: marquee of real logos — institutions and companies the founders have actually been through.
+3. The track: copy left (sticky), a card with the mark and eight bullet points right.
+4. Facts: four number tickers on hairlines.
+5. Perks: oversized list, title left and body right.
+6. Program: sticky copy left, four weeks right (lecture + homework).
+7. Founders: two cards — headshot, chip, name, school with crest, bio, socials, credential pills with real logos.
+8. Cost, FAQ (native `details`), Apply (native form, local save), Closing, Footer.
 
 ## Motion and accessibility
 
-Ambient motion should feel slow and quiet. Every decorative animation follows the global pause control and the system reduced-motion preference. Do not make any content depend on animation. Use native buttons, visible keyboard focus, labeled forms, and native dialogs. Load heavy canvas scenes near the viewport; preserve a static fallback.
-
-Check layouts at 375, 768, 1024, and 1440 pixels. Preserve natural mobile scrolling and generous touch targets. Keep all meaningful copy selectable; do not turn headings into canvas artwork.
-
-## Art direction references
-
-- [Morabito](https://morabitoparis.com/): editorial pacing and ample space.
-- [Lorenzo Galli](https://www.lorenzogalli.com/): black-and-gold restraint.
-- [The Macallan](https://www.themacallan.com/): warm dark storytelling.
-- [Lusion](https://lusion.co/): one memorable interactive centerpiece.
-- [Obys](https://obys.agency/): strong typographic composition.
-
-These are references for composition and mood. The sculpture, diagrams, video texture, and layout are original to this project.
+The hero canvas: a 30px lattice of 1.6px squares that brighten and lean away within 190px of the pointer, ripple outward on click/tap, and breathe on a slow sine wave when idle. It is `aria-hidden`, capped at 2× DPR, and replaced by a static CSS dot grid under `prefers-reduced-motion`. Reveal-on-scroll is a 0.7s fade/rise, once. Native buttons, labeled inputs, visible focus rings, skip link, `details`/`summary` for FAQ. Check at 390, 820, 1000, and 1440 pixels.

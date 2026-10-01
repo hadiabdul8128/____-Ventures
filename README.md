@@ -1,6 +1,6 @@
-# ____ Ventures
+# Boston Square Ventures
 
-A black-and-gold venture network website connecting founders from Harvard, MIT, and beyond with aligned investors. This is the first visual foundation, with short editable placeholder copy.
+A free, online, 4-week founder sprint for student founders from Harvard, MIT, and beyond — plus the network that backs them after. Monochrome, lowercase, one track. The site borrows Pareto Fellowship's structure and Zerobase's casual startup-school voice.
 
 ## Run locally
 
@@ -13,68 +13,53 @@ npm run dev
 
 The development server opens at `http://127.0.0.1:5173`. `npm run build` type-checks the project and produces the static website in `dist`. `npm run preview` serves that production build.
 
-## Design and implementation
+## Where things live
 
-- React, TypeScript, Vite, Tailwind CSS 4, Motion, and Lucide.
-- Original gold sculpture rendered as parametric SVG; no stock imagery.
-- Local Manrope and Cormorant Garamond fonts.
-- Responsive navigation, keyboard-operated network tabs, native accessible dialogs, and global motion controls.
-- Optional canvas scenes load near the viewport and have a static fallback.
-- All media is local, including the small gold video texture.
+| Path                             | Purpose                                                                                |
+| -------------------------------- | -------------------------------------------------------------------------------------- |
+| `src/content.ts`                 | Every line of copy, link, logo, founder detail, FAQ, and form label                    |
+| `src/App.tsx`                    | Section order                                                                          |
+| `src/sections/*.tsx`             | Hero + logo marquee, track/facts/perks/program, founders/cost/FAQ, apply/closing       |
+| `src/components/Shell.tsx`       | Header, mobile nav, footer, reveal wrapper, social glyphs                              |
+| `src/components/Mark.tsx`        | The BV square mark (outlined paths from `markPaths.ts`)                                |
+| `src/components/SquareField.tsx` | Interactive hero background: a lattice that reacts to the pointer and ripples on click |
+| `src/index.css`                  | Tokens, typography, layout, responsive rules                                           |
+| `public/founders/`               | Founder headshots                                                                      |
+| `public/logos/`                  | Institution / company logos used in the marquee and credential pills                   |
+| `brand/`                         | Full brand kit (see `brand/README.md`)                                                 |
+| `scripts/brand-kit.mjs`          | Generates `brand/` and `src/components/markPaths.ts`                                   |
+| `design-system/MASTER.md`        | Design direction and tokens                                                            |
 
-Main copy and layout are in `src/App.tsx`. Visual tokens and responsive rules are in `src/index.css`. The design system is documented in `design-system/MASTER.md`.
+Edit copy in `src/content.ts` first; components only read from it. Anything still unverified is marked `[PLACEHOLDER]` there.
 
-## Magic UI
+## Stack
 
-All 16 distinct components requested are installed and used. Text Animate was listed twice in the request and is installed once.
+React 19, TypeScript, Vite, Tailwind CSS 4, Motion, Lucide. Type is **Google Sans Flex** (SIL OFL, self-hosted via Fontsource) with **Figtree** as fallback. Magic UI components live in `src/components/ui`; the site currently uses `Marquee` and `NumberTicker`.
 
-| Component                | Placement                                                       |
-| ------------------------ | --------------------------------------------------------------- |
-| Marquee                  | Scrolling focus areas                                           |
-| Globe                    | Network → Our reach                                             |
-| Orbiting Circles         | Network → Our circles                                           |
-| Avatar Circles           | Founder / builder / investor initials in the closing invitation |
-| Icon Cloud               | Network → Our frontiers                                         |
-| Lens                     | Founder sculpture hover detail                                  |
-| Border Beam              | Founder card                                                    |
-| Meteors                  | Closing invitation                                              |
-| Particles                | Hero atmosphere                                                 |
-| Text Animate             | Hero description                                                |
-| Aurora Text              | Gold hero headline                                              |
-| Video Text               | Oversized footer wordmark                                       |
-| Number Ticker            | Three numbered approach steps                                   |
-| Hexagon Pattern          | Investor artwork                                                |
-| Floating 3D Particles    | Investor artwork                                                |
-| Interactive Hover Button | Closing invitation button                                       |
+## Brand kit
 
-Source lives in `src/components/ui`. Small adaptations improve accessibility, global pause behavior, globe dragging, local utility imports, and video text that supports locally hosted fonts. Do not overwrite these customizations without review.
+```sh
+npm run brand:build
+```
+
+Regenerates every logo, lockup, LinkedIn/social banner, and favicon in `brand/`, plus the outlined letter paths the site's `<Mark/>` uses. Letterforms come from the static Google Sans Flex TTFs in `scripts/fonts/` (downloaded from Google Fonts; OFL) so the output never depends on an installed font. Rasters are rendered with Playwright's Chromium — run `npx playwright install chromium` once if it's missing.
+
+## Application form
+
+The apply section is a native form with required-field validation. Submitting stores one record under `ventures-application` in local storage and shows a confirmation; "start over" clears it. Nothing leaves the browser yet — before launch, connect an approved destination (email, Airtable, Supabase, etc.) and update the note in `apply.note`.
+
+## Logos
+
+`public/logos/` contains third-party marks (Harvard, MIT, Y Combinator, Mercor, Forbes, Coca-Cola Scholars Foundation, Duke, Amazon) used to identify the founders' affiliations. They belong to their owners and are shown nominatively; replace or remove any on request.
 
 ## MCP servers
 
-`.mcp.json` provides project configuration for the official Magic UI MCP server and shadcn MCP server. Both are installed locally as development dependencies. The verification script connects through the MCP SDK and can call their tools without relying on an editor restart:
-
-```sh
-npm run mcp:verify
-node scripts/verify-mcp.mjs getRegistryItem '{"name":"globe","includeExamples":true}'
-node scripts/verify-mcp.mjs --shadcn get_project_registries
-```
-
-Both servers were connected and queried during implementation. The shadcn server detects `@magicui` from `components.json`. Editors that support `.mcp.json` can load this configuration; other clients may need these entries copied into their own MCP configuration. No global editor settings are changed.
-
-References: [Magic UI MCP](https://magicui.design/docs/mcp), [shadcn MCP](https://ui.shadcn.com/docs/mcp).
-
-## Introduction preview
-
-Founder and investor buttons open a working form with validation. Saving stores a single draft under `ventures-introduction` in local storage. Reopening restores the draft; the Privacy dialog can delete it. Details stay on the device. There is no email delivery, CRM, backend, or application submission service yet.
-
-Before a public launch, add the final brand name and copy, connect an approved submission destination, and update the privacy text to match that integration. There are no invented fund sizes, investment results, partner logos, or testimonials. Harvard and MIT are sourcing context, and the footer identifies this as an independent network.
+`.mcp.json` configures the Magic UI and shadcn MCP servers (installed as dev dependencies). `npm run mcp:verify` connects and lists tools; see `scripts/verify-mcp.mjs`.
 
 ## Verification
 
-- Production TypeScript and Vite build.
-- Desktop, tablet, and phone layout checks in the browser.
-- Network tabs with mouse and keyboard, founder/investor entry points, required-field validation, save/restore/delete draft flow, and Escape dismissal.
-- Motion pause stops ambient canvases and CSS motion; system reduced-motion is also respected.
-- Runtime browser console checked after the final changes.
+- `npm run typecheck` and `npm run build` pass.
+- Desktop (1440) and phone (390) layouts checked in a headless browser with no console errors.
+- Reduced-motion preference swaps the interactive canvas for a static dot grid and disables reveal animations.
 
 Third-party notices are in `THIRD_PARTY_NOTICES.md`.
