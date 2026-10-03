@@ -1,3 +1,4 @@
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Shell";
 import { offer, site } from "@/content";
@@ -24,9 +25,11 @@ export function Offer() {
             </Reveal>
           ))}
         </div>
-        <a className="btn btn--solid offer-cta" href={site.applyHref}>
-          {offer.cta} <ArrowRight size={14} />
-        </a>
+        <LiquidButton asChild className="btn offer-cta">
+          <a href={site.applyHref}>
+            {offer.cta} <ArrowRight size={14} />
+          </a>
+        </LiquidButton>
       </div>
     </section>
   );

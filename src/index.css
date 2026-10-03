@@ -1307,7 +1307,11 @@ a.press-link:hover {
   text-wrap: balance;
 }
 .closing h2 em {
-  display: block;
+  display: table;
+  margin: 0.08em auto 0;
+  padding: 0.02em 0.08em 0.1em;
+  background: #fff;
+  color: #000;
   font-weight: 400;
 }
 .site-footer {
@@ -1922,5 +1926,56 @@ a.press-link:hover {
 @media (prefers-reduced-motion: reduce) {
   .neural-motion-toggle {
     display: none;
+  }
+}
+
+/* Shared silver glass controls, scaled to their role. */
+.liquid-button {
+  white-space: nowrap;
+  flex-shrink: 0;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.liquid-button[data-size="sm"] {
+  min-height: 44px;
+  padding: 10px 16px;
+  gap: 8px;
+  font-size: 11px;
+}
+.liquid-button[data-size="icon"] {
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  gap: 0;
+}
+.liquid-button.social-button {
+  color: #fff;
+}
+.liquid-button.menu-button {
+  display: none;
+}
+.liquid-button.file-trigger,
+.liquid-button.file-remove {
+  margin: 4px;
+  border: 1px solid #ffffff52;
+  color: #fff;
+}
+.liquid-button.file-trigger:hover {
+  background: #ffffff24;
+  color: #fff;
+}
+.liquid-button.neural-motion-toggle {
+  color: #fff;
+}
+@media (max-width: 820px) {
+  .liquid-button.menu-button {
+    display: inline-flex;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .liquid-button,
+  .liquid-button svg {
+    transition: none;
   }
 }

@@ -1,3 +1,4 @@
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 
@@ -255,7 +256,8 @@ export default function InteractiveNeuralVortex() {
         </div>
       </div>
       {available && (
-        <button
+        <LiquidButton
+          size="sm"
           type="button"
           className="neural-motion-toggle"
           onClick={() => setPaused(!paused)}
@@ -270,7 +272,7 @@ export default function InteractiveNeuralVortex() {
             <Pause size={12} aria-hidden="true" />
           )}
           <span>{paused ? "play motion" : "pause motion"}</span>
-        </button>
+        </LiquidButton>
       )}
     </>
   );

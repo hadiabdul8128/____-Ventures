@@ -1,3 +1,4 @@
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal, SocialGlyph } from "@/components/Shell";
 import { founders, type Credential } from "@/content";
@@ -71,9 +72,7 @@ export function Founders() {
                         <span key={part}>{part}</span>
                       ))}
                     </h3>
-                    <p className="founder-school">
-                      {founder.school}
-                    </p>
+                    <p className="founder-school">{founder.school}</p>
                   </div>
                 </div>
                 {founder.bio ? (
@@ -81,17 +80,18 @@ export function Founders() {
                 ) : null}
                 <div className="founder-socials">
                   {founder.socials.map((social) => (
-                    <a
-                      key={social.kind}
-                      className="social-button"
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${founder.name} on ${social.label}`}
-                      title={social.label}
-                    >
-                      <SocialGlyph kind={social.kind} />
-                    </a>
+                    <LiquidButton asChild size="icon" key={social.kind}>
+                      <a
+                        className="social-button"
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${founder.name} on ${social.label}`}
+                        title={social.label}
+                      >
+                        <SocialGlyph kind={social.kind} />
+                      </a>
+                    </LiquidButton>
                   ))}
                 </div>
                 <div className="founder-credentials">

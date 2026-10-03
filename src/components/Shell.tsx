@@ -1,3 +1,4 @@
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, ArrowUp, ArrowUpRight, Menu, X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
@@ -101,10 +102,13 @@ export function Header() {
             ))}
           </nav>
           <div className="header-actions">
-            <a className="btn btn--ghost btn--sm" href={site.applyHref}>
-              apply to cohort 01 <ArrowRight size={14} />
-            </a>
-            <button
+            <LiquidButton asChild size="sm" className="btn">
+              <a href={site.applyHref}>
+                apply to cohort 01 <ArrowRight size={14} />
+              </a>
+            </LiquidButton>
+            <LiquidButton
+              size="icon"
               type="button"
               className="menu-button"
               aria-expanded={open}
@@ -113,7 +117,7 @@ export function Header() {
               onClick={() => setOpen((v) => !v)}
             >
               {open ? <X size={22} /> : <Menu size={22} />}
-            </button>
+            </LiquidButton>
           </div>
         </div>
       </header>
@@ -129,9 +133,11 @@ export function Header() {
             <ArrowUpRight size={22} />
           </a>
         ))}
-        <a className="btn btn--solid" href={site.applyHref} onClick={close}>
-          apply to cohort 01 <ArrowRight size={14} />
-        </a>
+        <LiquidButton asChild className="btn">
+          <a href={site.applyHref} onClick={close}>
+            apply to cohort 01 <ArrowRight size={14} />
+          </a>
+        </LiquidButton>
       </nav>
     </>
   );

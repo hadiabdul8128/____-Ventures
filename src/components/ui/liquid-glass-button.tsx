@@ -7,12 +7,20 @@ export function LiquidButton({
   asChild = false,
   children,
   className,
+  size = "default",
   ...props
-}: ComponentProps<"button"> & { asChild?: boolean }) {
+}: ComponentProps<"button"> & {
+  asChild?: boolean;
+  size?: "default" | "sm" | "icon";
+}) {
   const id = `glass-${useId().replace(/:/g, "")}`;
   const Comp = asChild ? Slot.Root : "button";
   return (
-    <Comp className={cn("liquid-button", className)} {...props}>
+    <Comp
+      className={cn("liquid-button", className)}
+      data-size={size}
+      {...props}
+    >
       <span
         className="liquid-button-refraction"
         aria-hidden="true"

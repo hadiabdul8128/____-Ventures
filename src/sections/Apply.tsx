@@ -1,3 +1,4 @@
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { useReducedMotion } from "motion/react";
 import { SquareField } from "@/components/SquareField";
@@ -83,7 +84,8 @@ export function Apply() {
     achievement: countWords(draft.achievement ?? ""),
   });
 
-  const overLimit = (key: "building" | "achievement") => counts[key] > WORD_LIMIT;
+  const overLimit = (key: "building" | "achievement") =>
+    counts[key] > WORD_LIMIT;
 
   const onFormChange = (event: FormEvent<HTMLFormElement>) => {
     const text = readText(event.currentTarget);
@@ -187,9 +189,9 @@ export function Apply() {
               <Check size={28} />
               <h3>{apply.success}</h3>
               <p className="form-note">{apply.note}</p>
-              <button type="button" className="text-link" onClick={reset}>
+              <LiquidButton size="sm" type="button" onClick={reset}>
                 start over <ArrowRight size={14} />
-              </button>
+              </LiquidButton>
             </div>
           ) : (
             <form
@@ -300,16 +302,16 @@ export function Apply() {
                   {errorMessage}
                 </p>
               )}
-              <button
+              <LiquidButton
                 type="submit"
-                className="btn btn--solid"
+                className="btn"
                 style={{ justifySelf: "start" }}
                 disabled={sending}
                 aria-busy={sending}
               >
                 {sending ? apply.sending : apply.submit}
                 {!sending && <ArrowRight size={14} />}
-              </button>
+              </LiquidButton>
               <p className="form-note">{apply.note}</p>
             </form>
           )}
@@ -339,9 +341,11 @@ export function Closing() {
             {closing.lines[0]}
             {closing.lines[1] && <em>{closing.lines[1]}</em>}
           </h2>
-          <a className="btn btn--solid" href={site.applyHref}>
-            {closing.cta} <ArrowRight size={14} />
-          </a>
+          <LiquidButton asChild className="btn">
+            <a href={site.applyHref}>
+              {closing.cta} <ArrowRight size={14} />
+            </a>
+          </LiquidButton>
         </Reveal>
       </div>
     </section>

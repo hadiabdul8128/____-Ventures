@@ -1,3 +1,4 @@
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import type { ChangeEvent, RefObject } from "react";
 import { Paperclip, X } from "lucide-react";
 import { apply } from "@/content";
@@ -33,7 +34,8 @@ export function ResumeField({
         aria-invalid={error ? true : undefined}
       />
       <div className="file-row">
-        <button
+        <LiquidButton
+          size="sm"
           type="button"
           className="file-trigger"
           tabIndex={-1}
@@ -42,7 +44,7 @@ export function ResumeField({
         >
           <Paperclip size={14} />
           {file ? "replace" : "choose file"}
-        </button>
+        </LiquidButton>
         <div className={file ? "file-name" : "file-name is-empty"}>
           {file ? (
             <>
@@ -54,14 +56,15 @@ export function ResumeField({
           )}
         </div>
         {file && (
-          <button
+          <LiquidButton
+            size="sm"
             type="button"
             className="file-remove"
             onClick={onRemove}
             aria-label={`remove ${file.name}`}
           >
             <X size={12} /> remove
-          </button>
+          </LiquidButton>
         )}
       </div>
       {error ? (
