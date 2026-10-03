@@ -12,10 +12,15 @@ import { useEffect, useState } from "react";
 
 const ROUTE_EVENT = "bsv:routechange";
 
-export type Route = "/" | "/apply";
+export type Route = "/" | "/apply" | "/dashboard";
 
 export function toRoute(pathname: string): Route {
-  return pathname.replace(/\/+$/, "") === "/apply" ? "/apply" : "/";
+  const path = pathname.replace(/\/+$/, "");
+  if (path === "/apply") return "/apply";
+  // Dev only for now: the production build drops the dashboard entirely, so
+  // /dashboard cannot be reached on the live site until we add real auth.
+  if (path === "/dashboard" && import.meta.env.DEV) return "/dashboard";
+  return "/";
 }
 
 export function navigate(path: string) {

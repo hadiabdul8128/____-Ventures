@@ -71,7 +71,7 @@ export function sanitizeFileName(name: string): string {
   return cleaned || "resume";
 }
 
-function isNetworkError(error: unknown): boolean {
+export function isNetworkError(error: unknown): boolean {
   if (error instanceof TypeError) return true; // fetch() failure
   const message =
     typeof error === "object" && error && "message" in error

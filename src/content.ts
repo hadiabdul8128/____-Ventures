@@ -186,18 +186,12 @@ export const receipts = {
   ],
 };
 
-export type KeyDate = {
-  /** Machine-readable, for the <time> element. */
-  iso: string;
-  date: string;
-  label: string;
-  note?: string;
-};
-
 export type OfferItem = {
   value: string;
   label: string;
   note?: string;
+  /** Set on date tiles so they render as <time datetime>. */
+  iso?: string;
   /** Word values render smaller than numeric ones so they fit the column. */
   kind?: "word";
 };
@@ -205,26 +199,25 @@ export type OfferItem = {
 export const offer: {
   heading: string;
   cta: string;
-  dates: KeyDate[];
   items: OfferItem[];
 } = {
   heading: "what we offer.",
   cta: "apply to cohort 01",
-  dates: [
+  items: [
     {
+      value: "October 15",
       iso: "2026-10-15",
-      date: "October 15, 2026",
       label: "cohort 01 starts",
       note: "applications are open now",
+      kind: "word",
     },
     {
+      value: "November 20",
       iso: "2026-11-20",
-      date: "November 20, 2026",
       label: "demo day 01",
       note: "the Friday night before Thanksgiving break, then every six weeks",
+      kind: "word",
     },
-  ],
-  items: [
     {
       value: "$100k",
       label: "compute credits",

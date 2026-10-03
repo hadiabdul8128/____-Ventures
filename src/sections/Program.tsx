@@ -19,22 +19,17 @@ export function Offer() {
         <div className="offer-facts">
           {offer.items.map((item, i) => (
             <Reveal className="fact" key={item.value} delay={i * 0.04}>
-              <span className="fact-value" data-kind={item.kind}>
-                {item.value}
-              </span>
+              {item.iso ? (
+                <time className="fact-value" data-kind={item.kind} dateTime={item.iso}>
+                  {item.value}
+                </time>
+              ) : (
+                <span className="fact-value" data-kind={item.kind}>
+                  {item.value}
+                </span>
+              )}
               <h3 className="fact-label">{item.label}</h3>
               {item.note && <p className="fact-note">{item.note}</p>}
-            </Reveal>
-          ))}
-        </div>
-        <div className="offer-dates">
-          {offer.dates.map((entry, i) => (
-            <Reveal className="key-date" key={entry.iso} delay={i * 0.06}>
-              <p className="key-date-label">{entry.label}</p>
-              <time className="key-date-value" dateTime={entry.iso}>
-                {entry.date}
-              </time>
-              {entry.note && <p className="key-date-note">{entry.note}</p>}
             </Reveal>
           ))}
         </div>
