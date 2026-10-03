@@ -46,7 +46,11 @@ Regenerates every logo, lockup, LinkedIn/social banner, and favicon in `brand/`,
 
 ## Application form
 
-The apply section is a native form with required-field validation. Submitting stores one record under `ventures-application` in local storage and shows a confirmation; "start over" clears it. Nothing leaves the browser yet — before launch, connect an approved destination (email, Airtable, Supabase, etc.) and update the note in `apply.note`.
+The apply section is a native form with required-field validation and an optional resume upload (PDF/Word, 5 MB). Text fields are drafted to local storage under `ventures-application` while typing so nothing is lost on reload; a successful submit clears the draft and shows a confirmation.
+
+## Applications (Supabase)
+
+Submissions go to a Supabase project through `src/lib/applications.ts`: a row in `public.applications` plus the resume in the private `resumes` bucket. The site reads `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`; when they are unset the form shows a "not wired up yet" message instead of sending. Setup (SQL migration, keys, local and Vercel env vars) is in [`supabase/README.md`](supabase/README.md).
 
 ## Logos
 

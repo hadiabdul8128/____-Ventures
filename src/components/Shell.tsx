@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, ArrowUp, ArrowUpRight, Menu, X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { footer, nav, site, type SocialKind } from "@/content";
+import { useRoute } from "@/lib/router";
 import { Mark } from "./Mark";
 import { HyperText } from "./ui/hyper-text";
 
@@ -37,7 +38,7 @@ export function Wordmark({
 }) {
   return (
     <a
-      href="#top"
+      href="/"
       className="wordmark"
       onClick={onNavigate}
       aria-label={`${site.name} home`}
@@ -52,7 +53,6 @@ export function Wordmark({
           <HyperText
             as="span"
             className="wordmark-hyper"
-            initialText="Magic UI MCP NPM connection"
             delay={1000}
             duration={1400}
             animateOnHover={false}
@@ -70,6 +70,9 @@ export function Wordmark({
 export function Header() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  // Off the landing page the in-page anchors need a path in front of them.
+  const onLanding = useRoute() === "/";
+  const sectionHref = (href: string) => (onLanding ? href : `/${href}`);
 
   useEffect(() => {
     if (!open) return;
@@ -92,7 +95,7 @@ export function Header() {
           <Wordmark onNavigate={close} animate />
           <nav className="desktop-nav" aria-label="Primary">
             {nav.map((link) => (
-              <a key={link.href} href={link.href}>
+              <a key={link.href} href={sectionHref(link.href)}>
                 {link.label}
               </a>
             ))}
@@ -121,7 +124,7 @@ export function Header() {
         aria-label="Mobile"
       >
         {nav.map((link) => (
-          <a key={link.href} href={link.href} onClick={close}>
+          <a key={link.href} href={sectionHref(link.href)} onClick={close}>
             {link.label}
             <ArrowUpRight size={22} />
           </a>

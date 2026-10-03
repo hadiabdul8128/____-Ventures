@@ -71,17 +71,12 @@ export function MetalCard({ name, className }: Props) {
               {site.wordmark.join(" ").toUpperCase()}
             </span>
           </div>
-          <div className="metal-card-chip" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-          </div>
           <div className="metal-card-bottom" data-fit={fit}>
             <div>
               <span className="metal-card-name" data-fit={fit}>
                 {engraved}
               </span>
-              <span className="metal-card-line">FOUNDER TRACK · COHORT 01</span>
+              <span className="metal-card-line">FOUNDER · COHORT 01</span>
             </div>
             <span className="metal-card-tag">BOSTON · EST. {site.year}</span>
           </div>
