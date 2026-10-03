@@ -12,7 +12,9 @@ export function Offer() {
     >
       <div className="wrap">
         <Reveal className="section-head">
-          <h2 id="offer-heading">{offer.heading}</h2>
+          <h2 id="offer-heading">
+            <span className="heading-highlight">{offer.heading}</span>
+          </h2>
         </Reveal>
         <div className="offer-facts">
           {offer.items.map((item, i) => (

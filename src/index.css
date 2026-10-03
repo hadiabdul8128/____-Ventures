@@ -1892,23 +1892,6 @@ a.press-link:hover {
     linear-gradient(110deg, #000000b0, transparent 70%),
     radial-gradient(ellipse 42% 22% at 50% 75%, #000000b8, transparent 100%);
 }
-.neural-motion-toggle {
-  position: absolute;
-  z-index: 2;
-  right: var(--gutter);
-  top: 28px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0 12px;
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-}
-.neural-motion-toggle:hover {
-  color: var(--text);
-}
 .venture-flow .closing-field::after {
   background: radial-gradient(ellipse at center, #000000b0, transparent 75%);
 }
@@ -1922,11 +1905,6 @@ a.press-link:hover {
 }
 .venture-flow .fact-label {
   color: #d7d7d3;
-}
-@media (prefers-reduced-motion: reduce) {
-  .neural-motion-toggle {
-    display: none;
-  }
 }
 
 /* Shared silver glass controls, scaled to their role. */
@@ -1963,9 +1941,6 @@ a.press-link:hover {
 }
 .liquid-button.file-trigger:hover {
   background: #ffffff24;
-  color: #fff;
-}
-.liquid-button.neural-motion-toggle {
   color: #fff;
 }
 @media (max-width: 820px) {
@@ -2020,4 +1995,17 @@ a.press-link:hover {
     grid-template-columns: 1fr;
     gap: 28px;
   }
+}
+
+/* A consistent white editorial highlight for the main chapter headings. */
+.heading-highlight {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.02em 0.1em 0.09em;
+  background: #fff;
+  color: #000;
+}
+.hero h1 .heading-highlight {
+  display: table;
+  margin: 0 auto 0.08em;
 }

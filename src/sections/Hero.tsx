@@ -22,7 +22,7 @@ export function Hero() {
       <LiquidGlass />
       <div className="wrap hero-inner">
         <motion.h1 id="hero-heading" {...fade(0.1)}>
-          <span>{hero.line}</span>
+          <span className="heading-highlight">{hero.line}</span>
           <em>{hero.italic}</em>
         </motion.h1>
         <motion.p className="lede" {...fade(0.25)}>

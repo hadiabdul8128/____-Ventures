@@ -1,6 +1,4 @@
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play } from "lucide-react";
 
 const vertexSource = `
   attribute vec2 a_position;
@@ -58,16 +56,7 @@ const fragmentSource = `
 
 export default function InteractiveNeuralVortex() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [paused, setPaused] = useState(false);
   const [available, setAvailable] = useState(false);
-  const pausedRef = useRef(paused);
-  const refreshRef = useRef<() => void>(() => {});
-
-  useEffect(() => {
-    pausedRef.current = paused;
-    refreshRef.current();
-  }, [paused]);
-
   useEffect(() => {
     const canvas = canvasRef.current;
     const section = canvas?.closest<HTMLElement>(".venture-flow");
@@ -145,11 +134,7 @@ export default function InteractiveNeuralVortex() {
     let lastDraw = 0;
 
     const canAnimate = () =>
-      visible &&
-      !document.hidden &&
-      !motionQuery.matches &&
-      !pausedRef.current &&
-      !lost;
+      visible && !document.hidden && !motionQuery.matches && !lost;
     const draw = () => {
       if (lost) return;
       gl.uniform1f(time, elapsed);
@@ -182,7 +167,6 @@ export default function InteractiveNeuralVortex() {
       if (canAnimate()) frame = requestAnimationFrame(tick);
       else if (visible && !document.hidden) draw();
     };
-    refreshRef.current = refresh;
     const resize = () => {
       const { width, height } = stage.getBoundingClientRect();
       // Bound shader work on Retina/mobile screens as well as very wide displays.
@@ -234,7 +218,6 @@ export default function InteractiveNeuralVortex() {
     setAvailable(true);
 
     return () => {
-      refreshRef.current = () => {};
       cancelAnimationFrame(frame);
       observer.disconnect();
       resizeObserver.disconnect();
@@ -248,32 +231,11 @@ export default function InteractiveNeuralVortex() {
   }, []);
 
   return (
-    <>
-      <div className="neural-vortex" aria-hidden="true" data-ready={available}>
-        <div className="neural-vortex-stage">
-          <div className="neural-vortex-fallback" />
-          <canvas ref={canvasRef} className="neural-vortex-canvas" />
-        </div>
+    <div className="neural-vortex" aria-hidden="true" data-ready={available}>
+      <div className="neural-vortex-stage">
+        <div className="neural-vortex-fallback" />
+        <canvas ref={canvasRef} className="neural-vortex-canvas" />
       </div>
-      {available && (
-        <LiquidButton
-          size="sm"
-          type="button"
-          className="neural-motion-toggle"
-          onClick={() => setPaused(!paused)}
-          aria-label={
-            paused ? "Play background animation" : "Pause background animation"
-          }
-          aria-pressed={paused}
-        >
-          {paused ? (
-            <Play size={12} aria-hidden="true" />
-          ) : (
-            <Pause size={12} aria-hidden="true" />
-          )}
-          <span>{paused ? "play motion" : "pause motion"}</span>
-        </LiquidButton>
-      )}
-    </>
+    </div>
   );
 }

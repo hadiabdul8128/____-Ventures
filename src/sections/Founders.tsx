@@ -48,7 +48,9 @@ export function Founders() {
       <div className="wrap">
         <Reveal className="section-head">
           <p className="eyebrow">{founders.eyebrow}</p>
-          <h2 id="founders-heading">{founders.heading}</h2>
+          <h2 id="founders-heading">
+            <span className="heading-highlight">{founders.heading}</span>
+          </h2>
           <p className="lede">{founders.body}</p>
         </Reveal>
         <div className="founders-grid">
