@@ -25,6 +25,17 @@ export function Offer() {
             </Reveal>
           ))}
         </div>
+        <div className="offer-dates">
+          {offer.dates.map((entry, i) => (
+            <Reveal className="key-date" key={entry.iso} delay={i * 0.06}>
+              <p className="key-date-label">{entry.label}</p>
+              <time className="key-date-value" dateTime={entry.iso}>
+                {entry.date}
+              </time>
+              {entry.note && <p className="key-date-note">{entry.note}</p>}
+            </Reveal>
+          ))}
+        </div>
         <LiquidButton asChild className="btn offer-cta">
           <a href={site.applyHref}>
             {offer.cta} <ArrowRight size={14} />

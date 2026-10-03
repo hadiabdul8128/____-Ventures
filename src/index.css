@@ -1979,3 +1979,45 @@ a.press-link:hover {
     transition: none;
   }
 }
+
+/* ---- key dates: cohort kickoff and demo day --------------------------- */
+
+.offer-dates {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.key-date {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.key-date-label {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.key-date-value {
+  font-weight: 500;
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.key-date-note {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 34ch;
+}
+@media (max-width: 600px) {
+  .offer-dates {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}

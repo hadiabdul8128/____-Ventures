@@ -186,6 +186,14 @@ export const receipts = {
   ],
 };
 
+export type KeyDate = {
+  /** Machine-readable, for the <time> element. */
+  iso: string;
+  date: string;
+  label: string;
+  note?: string;
+};
+
 export type OfferItem = {
   value: string;
   label: string;
@@ -194,9 +202,28 @@ export type OfferItem = {
   kind?: "word";
 };
 
-export const offer: { heading: string; cta: string; items: OfferItem[] } = {
+export const offer: {
+  heading: string;
+  cta: string;
+  dates: KeyDate[];
+  items: OfferItem[];
+} = {
   heading: "what we offer.",
   cta: "apply to cohort 01",
+  dates: [
+    {
+      iso: "2026-10-15",
+      date: "October 15, 2026",
+      label: "cohort 01 starts",
+      note: "applications are open now",
+    },
+    {
+      iso: "2026-11-20",
+      date: "November 20, 2026",
+      label: "demo day 01",
+      note: "the Friday night before Thanksgiving break, then every six weeks",
+    },
+  ],
   items: [
     {
       value: "$100k",
