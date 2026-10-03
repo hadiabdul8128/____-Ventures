@@ -179,7 +179,11 @@ function gridPattern(id, step, dot, color, opacity) {
   return `<pattern id="${id}" width="${step}" height="${step}" patternUnits="userSpaceOnUse"><rect x="${step / 2 - dot / 2}" y="${step / 2 - dot / 2}" width="${dot}" height="${dot}" fill="${color}" opacity="${opacity}"/></pattern>`;
 }
 
-/** Generic dark banner: mark on the left, wordmark + line(s) of copy beside it. */
+/**
+ * Generic dark banner: mark on the left, wordmark + line(s) of copy beside it.
+ * align "right" sets the copy flush right with no mark (e.g. the LinkedIn
+ * company cover, where the page logo already sits over the left side).
+ */
 function bannerSvg({ w, h, markH, title, lines, align = "left", safe = 0 }) {
   const m = markParts(WHITE);
   const scale = markH / MARK.size;
@@ -208,6 +212,29 @@ function bannerSvg({ w, h, markH, title, lines, align = "left", safe = 0 }) {
         x: cx,
         y: markY + markH + titleSize * 1.15 + bodySize * 1.7 * (i + 1),
         anchor: "center",
+      });
+      body += `<path transform="${p.transform}" d="${p.d}" fill="${GRAY}"/>`;
+    });
+  } else if (align === "right") {
+    const right = w - safe - Math.round(h * 0.16);
+    const blockH = titleSize + lines.length * bodySize * 1.7;
+    const baseY = (h - blockH) / 2 + titleSize * 0.92;
+    const t = textPath(title, {
+      weight: 500,
+      size: titleSize,
+      x: right,
+      y: baseY,
+      anchor: "right",
+      letterSpacing: -titleSize * 0.02,
+    });
+    body += `<path transform="${t.transform}" d="${t.d}" fill="${WHITE}"/>`;
+    lines.forEach((line, i) => {
+      const p = textPath(line, {
+        weight: 400,
+        size: bodySize,
+        x: right,
+        y: baseY + bodySize * 1.7 * (i + 1),
+        anchor: "right",
       });
       body += `<path transform="${p.transform}" d="${p.d}" fill="${GRAY}"/>`;
     });
@@ -240,7 +267,7 @@ function bannerSvg({ w, h, markH, title, lines, align = "left", safe = 0 }) {
   }
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
 <defs>${gridPattern("g", gridStep, 2, WHITE, 0.16)}
-<radialGradient id="fade" cx="${align === "center" ? "50%" : "28%"}" cy="50%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<radialGradient id="fade" cx="${align === "center" ? "50%" : align === "right" ? "72%" : "28%"}" cy="50%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
 <mask id="m"><rect width="${w}" height="${h}" fill="url(#fade)"/></mask></defs>
 <rect width="${w}" height="${h}" fill="${BLACK}"/>
 <rect width="${w}" height="${h}" fill="url(#g)" mask="url(#m)"/>
@@ -343,8 +370,10 @@ async function main() {
       h: 191,
       markH: 96,
       title: "Boston Square Ventures",
-      lines: ["a free, online, 4-week founder sprint for student founders."],
-      safe: 0,
+      lines: ["incubator until you raise."],
+      align: "right",
+      // LinkedIn's cover cropper trims ~4% off each side; keep copy clear of it.
+      safe: 64,
     }),
     [{ width: 1128, png: true, scale: 2 }],
   );

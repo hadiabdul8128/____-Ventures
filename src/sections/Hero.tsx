@@ -2,7 +2,6 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { LiquidGlass } from "@/components/LiquidGlass";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
-import { Marquee } from "@/components/ui/marquee";
 import { hero, receipts, site } from "@/content";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -22,9 +21,6 @@ export function Hero() {
     <section className="hero" id="top" aria-labelledby="hero-heading">
       <LiquidGlass />
       <div className="wrap hero-inner">
-        <motion.p className="eyebrow" {...fade(0)}>
-          {hero.eyebrow}
-        </motion.p>
         <motion.h1 id="hero-heading" {...fade(0.1)}>
           <span>{hero.line}</span>
           <em>{hero.italic}</em>
@@ -56,7 +52,7 @@ export function Receipts() {
           <li key={logo.name}>{logo.name}</li>
         ))}
       </ul>
-      <Marquee className="receipts-marquee" repeat={4} aria-hidden="true">
+      <div className="receipts-row" aria-hidden="true">
         {receipts.items.map((logo) => (
           <span className="receipt" key={logo.name} title={logo.name}>
             <img
@@ -64,14 +60,13 @@ export function Receipts() {
               alt=""
               width={logo.width}
               height={logo.height}
-              data-tone={logo.tone ?? "invert"}
+              data-tone="invert"
               style={{ height: logo.marquee ?? 28 }}
               loading="lazy"
             />
-            <i aria-hidden="true" />
           </span>
         ))}
-      </Marquee>
+      </div>
     </section>
   );
 }
