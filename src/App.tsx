@@ -7,6 +7,7 @@ import { Founders } from "@/sections/Founders";
 import { Apply, Closing } from "@/sections/Apply";
 import { useRoute } from "@/lib/router";
 import { site } from "@/content";
+import InteractiveNeuralVortex from "@/components/ui/interactive-neural-vortex-background";
 
 const TITLES: Record<string, string> = {
   "/": `${site.name}: ${site.tagline}`,
@@ -18,9 +19,12 @@ function Landing() {
     <main id="main">
       <Hero />
       <Receipts />
-      <Offer />
-      <Founders />
-      <Closing />
+      <div className="venture-flow">
+        <InteractiveNeuralVortex />
+        <Offer />
+        <Founders />
+        <Closing />
+      </div>
     </main>
   );
 }
