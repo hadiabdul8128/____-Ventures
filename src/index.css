@@ -1685,13 +1685,19 @@ a.press-link:hover {
   border-top: 1px solid var(--line);
 }
 /* With a count that is not a multiple of three, let the trailing tile fill the
-   row so the grid does not end on an empty cell. */
-.offer-facts .fact:last-child:nth-child(3n + 2) {
-  grid-column: span 2;
+   row so the grid does not end on an empty cell. Scoped above the single-column
+   breakpoint: `span 2` against a 1fr template invents a second column. */
+@media (min-width: 601px) {
+  .offer-facts .fact:last-child:nth-child(3n + 2) {
+    grid-column: span 2;
+  }
 }
 @media (max-width: 600px) {
   .offer-facts {
     grid-template-columns: 1fr;
+  }
+  .offer-facts .fact {
+    grid-column: 1 / -1;
   }
   .offer-facts .fact {
     padding: 28px 0;
@@ -2244,5 +2250,42 @@ a.press-link:hover {
   .dash-week {
     grid-template-columns: 44px 1fr;
     gap: 16px;
+  }
+}
+
+/* ---- touch and small-screen refinements -------------------------------- */
+
+/* Keyed to pointer type, not width: tablets are touch devices too, and iOS
+   zooms on focus on iPad exactly as it does on iPhone. */
+@media (pointer: coarse) {
+  /* iOS Safari zooms the whole page when a focused control is under 16px. */
+  .apply-form input,
+  .apply-form textarea,
+  .apply-form select {
+    font-size: 16px;
+  }
+
+  .wordmark {
+    min-height: 44px;
+  }
+  .press-link {
+    min-height: 40px;
+  }
+  .text-link {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .site-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Long notes read better with a little room at the end of the line. */
+  .fact-note {
+    padding-right: 8px;
   }
 }
