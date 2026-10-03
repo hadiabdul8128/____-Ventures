@@ -132,7 +132,7 @@ export function SquareField({ className }: { className?: string }) {
     ctx.fillStyle = "#f4f4f2";
     start = performance.now();
     raf = requestAnimationFrame(loop);
-    // Only animate while the hero is on screen; on a long page that's a
+    // Only animate while the closing section is on screen; on a long page that's a
     // minority of the session.
     const io = new IntersectionObserver(([entry]) => {
       cancelAnimationFrame(raf);

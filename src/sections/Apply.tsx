@@ -1,4 +1,6 @@
 import { useState, type FormEvent } from "react";
+import { useReducedMotion } from "motion/react";
+import { SquareField } from "@/components/SquareField";
 import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/components/Shell";
 import { MetalCard } from "@/components/MetalCard";
@@ -200,8 +202,19 @@ export function Apply() {
 }
 
 export function Closing() {
+  const reduced = useReducedMotion();
   return (
-    <section className="section" aria-labelledby="closing-heading">
+    <section
+      className="section closing-section"
+      aria-labelledby="closing-heading"
+    >
+      <div className="closing-field" aria-hidden="true">
+        {reduced ? (
+          <div className="hero-bg-static" />
+        ) : (
+          <SquareField className="hero-canvas" />
+        )}
+      </div>
       <div className="wrap">
         <Reveal className="closing">
           <h2 id="closing-heading">
@@ -211,6 +224,11 @@ export function Closing() {
           <a className="btn btn--solid" href={site.applyHref}>
             {closing.cta} <ArrowRight size={14} />
           </a>
+          {!reduced && (
+            <p className="hero-hint">
+              move your cursor, or tap. the square notices.
+            </p>
+          )}
         </Reveal>
       </div>
     </section>

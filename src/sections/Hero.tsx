@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
-import { SquareField } from "@/components/SquareField";
+import { LiquidGlass } from "@/components/LiquidGlass";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { Marquee } from "@/components/ui/marquee";
 import { hero, receipts, site } from "@/content";
 
@@ -19,13 +20,7 @@ export function Hero() {
 
   return (
     <section className="hero" id="top" aria-labelledby="hero-heading">
-      <div className="hero-bg" aria-hidden="true">
-        {reduced ? (
-          <div className="hero-bg-static" />
-        ) : (
-          <SquareField className="hero-canvas" />
-        )}
-      </div>
+      <LiquidGlass />
       <div className="wrap hero-inner">
         <motion.p className="eyebrow" {...fade(0)}>
           {hero.eyebrow}
@@ -38,16 +33,18 @@ export function Hero() {
           {hero.body}
         </motion.p>
         <motion.div className="hero-actions" {...fade(0.35)}>
-          <a className="btn btn--solid" href={site.applyHref}>
-            {hero.primary} <ArrowRight size={14} />
-          </a>
+          <LiquidButton asChild>
+            <a href={site.applyHref}>
+              <span>{hero.primary}</span> <ArrowRight size={14} />
+            </a>
+          </LiquidButton>
           <a className="text-link" href="#founders">
             {hero.secondary} <ArrowDown size={14} />
           </a>
         </motion.div>
         {!reduced && (
           <motion.p className="hero-hint" {...fade(1.2)}>
-            {hero.hint}
+            move your cursor. follow the light.
           </motion.p>
         )}
       </div>
