@@ -1,6 +1,6 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal, SocialGlyph } from "@/components/Shell";
-import { cost, founders, site, type Credential } from "@/content";
+import { founders, type Credential } from "@/content";
 
 function CredentialPill({ credential }: { credential: Credential }) {
   const inner = (
@@ -66,22 +66,19 @@ export function Founders() {
                   </div>
                   <div className="founder-identity">
                     <span className="chip">{founder.role}</span>
-                    <h3>{founder.name}</h3>
+                    <h3 className="founder-name">
+                      {founder.name.split(" ").map((part) => (
+                        <span key={part}>{part}</span>
+                      ))}
+                    </h3>
                     <p className="founder-school">
-                      {founder.schoolLogo && (
-                        <img
-                          src={founder.schoolLogo.src}
-                          alt=""
-                          width={founder.schoolLogo.width}
-                          height={founder.schoolLogo.height}
-                          data-tone={founder.schoolLogo.tone ?? "invert"}
-                        />
-                      )}
                       {founder.school}
                     </p>
                   </div>
                 </div>
-                <p className="founder-bio">{founder.bio}</p>
+                {founder.bio ? (
+                  <p className="founder-bio">{founder.bio}</p>
+                ) : null}
                 <div className="founder-socials">
                   {founder.socials.map((social) => (
                     <a
@@ -109,23 +106,6 @@ export function Founders() {
             </Reveal>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-export function Cost() {
-  return (
-    <section className="section" id="terms" aria-labelledby="cost-heading">
-      <div className="wrap">
-        <Reveal className="cost">
-          <p className="eyebrow">what we get</p>
-          <h2 id="cost-heading">{cost.heading}</h2>
-          <p className="lede">{cost.body}</p>
-          <a className="btn btn--solid" href={site.applyHref}>
-            {cost.cta} <ArrowRight size={14} />
-          </a>
-        </Reveal>
       </div>
     </section>
   );

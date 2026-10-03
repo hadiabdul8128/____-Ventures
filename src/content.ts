@@ -8,10 +8,10 @@
 
 export type NavLink = { label: string; href: string };
 
-export type Point = { lead: string; rest?: string };
-
 export type Fact = {
   value: number;
+  /** Count up from zero on reveal. Off renders the number as-is. */
+  animate?: boolean;
   suffix?: string;
   prefix?: string;
   label: string;
@@ -20,11 +20,11 @@ export type Fact = {
 
 export type Perk = { title: string; body: string };
 
-export type Week = {
+export type Phase = {
   number: string;
   theme: string;
-  lecture: string;
-  homework: string;
+  focus: string;
+  outcome: string;
 };
 
 export type SocialKind = "linkedin" | "instagram" | "tiktok" | "github" | "web";
@@ -50,9 +50,8 @@ export type Founder = {
   name: string;
   role: string;
   school: string;
-  schoolLogo?: Logo;
   photo: string;
-  bio: string;
+  bio?: string;
   socials: Social[];
   credentials: Credential[];
 };
@@ -66,7 +65,7 @@ export const site = {
   tagline: "start at square one.",
   description:
     "From square one to your first raise. Capital, compute, and a founder network.",
-  applyHref: "#apply",
+  applyHref: "/apply",
   contactEmail: "hello@bostonsquareventures.com", // [PLACEHOLDER] set up this inbox
   year: new Date().getFullYear(),
 };
@@ -74,18 +73,14 @@ export const site = {
 export const nav: NavLink[] = [
   { label: "who we are", href: "#top" },
   { label: "what we offer", href: "#offer" },
-  { label: "what we get", href: "#terms" },
-  { label: "founders", href: "#founders" },
 ];
 
 export const hero = {
-  eyebrow: "who we are",
   line: "from square one",
   italic: "to your first raise.",
   body: "We connect student founders with capital, compute, and a founder network.",
   primary: "apply to cohort 01",
   secondary: "what we offer",
-  hint: "move your cursor, or tap. the square notices.",
 };
 
 export const logos = {
@@ -115,6 +110,14 @@ export const logos = {
     display: 16,
     marquee: 30,
     tone: "grayscale",
+  } satisfies Logo,
+  ycFull: {
+    name: "Y Combinator",
+    src: "/logos/y-combinator-full.svg",
+    width: 1346,
+    height: 256,
+    display: 16,
+    marquee: 26,
   } satisfies Logo,
   mercor: {
     name: "Mercor",
@@ -161,6 +164,14 @@ export const logos = {
     marquee: 26,
     tone: "invert",
   } satisfies Logo,
+  capsule: {
+    name: "Capsule Space Labs",
+    src: "/logos/capsule-space-labs.svg",
+    width: 64,
+    height: 64,
+    display: 18,
+    tone: "grayscale",
+  } satisfies Logo,
 };
 
 export const receipts = {
@@ -168,73 +179,105 @@ export const receipts = {
   items: [
     logos.harvard,
     logos.mit,
-    logos.yc,
+    logos.ycFull,
     logos.mercor,
     logos.forbes,
     logos.cokeScholars,
-    logos.duke,
   ],
 };
 
-export const track: {
-  eyebrow: string;
-  heading: string;
-  tagline: string;
-  body: string;
-  points: Point[];
-  cta: string;
-} = {
-  eyebrow: "the founder track",
-  heading: "one track. no junior varsity.",
-  tagline:
-    "for the ones who are going to build this whether or not anyone says yes.",
-  body: "four weeks of structure, a cohort that ships, and a network that keeps picking up the phone after demo day.",
-  points: [
+export type OfferItem = {
+  value: string;
+  label: string;
+  note?: string;
+  /** Word values render smaller than numeric ones so they fit the column. */
+  kind?: "word";
+};
+
+export const offer: { heading: string; cta: string; items: OfferItem[] } = {
+  heading: "what we offer.",
+  cta: "apply to cohort 01",
+  items: [
     {
-      lead: "4 weeks, fully online.",
-      rest: " one 30-minute lecture and one homework a week.",
+      value: "$100k",
+      label: "compute credits",
+      note: "Azure, AWS, Supabase, etc.",
     },
-    { lead: "a small cohort", rest: " of student founders who actually ship." },
-    { lead: "mentors", rest: " who've founded, operated, and invested." },
+    { value: "01", label: "cohort", note: "small on purpose" },
+    { value: "100%", label: "founder-run", note: "by students who ship" },
     {
-      lead: "warm intros",
-      rest: " to aligned angels and funds when you're ready — not before.",
+      value: "top VCs",
+      label: "connections",
+      note: "warm intros for your first raise",
+      kind: "word",
     },
-    { lead: "software credits", rest: " and tooling as we secure them." },
-    { lead: "demo day", rest: " in front of the whole network." },
-    { lead: "alumni for life", rest: " in the Boston Square network." },
-    { lead: "costs nothing.", rest: " no tuition, no equity." },
+    {
+      value: "mentors",
+      label: "who've done it",
+      note: "founders, operators, and investors",
+      kind: "word",
+    },
+    {
+      value: "no clock",
+      label: "open-ended",
+      note: "we stay until you raise",
+      kind: "word",
+    },
+    {
+      value: "weekly",
+      label: "check-ins",
+      note: "what you shipped, what's blocking you",
+      kind: "word",
+    },
+    {
+      value: "the room",
+      label: "pitch prep",
+      note: "practice before the real one",
+      kind: "word",
+    },
+    {
+      value: "for life",
+      label: "alumni",
+      note: "in the Boston Square network",
+      kind: "word",
+    },
   ],
-  cta: "apply to the founder track",
 };
 
 export const facts: Fact[] = [
-  { value: 4, label: "weeks", note: "start to demo day" },
   {
-    value: 30,
-    suffix: " min",
-    label: "lectures",
-    note: "once a week, recorded",
+    value: 20,
+    prefix: "$",
+    suffix: "K",
+    label: "compute credits",
+    note: "Azure, AWS, Supabase, etc.",
+    animate: false,
   },
-  { value: 1, label: "homework", note: "per week. that's it" },
-  { value: 0, prefix: "$", label: "cost", note: "no tuition, no equity" },
+  { value: 1, label: "cohort", note: "at a time. small on purpose" },
+  {
+    value: 100,
+    suffix: "%",
+    label: "founder-run",
+    note: "by students who ship",
+    animate: false,
+  },
 ];
 
 export const perks: { eyebrow: string; heading: string; items: Perk[] } = {
   eyebrow: "what's included?",
-  heading: "the stuff you can't google your way into.",
+  heading: "what you get.",
   items: [
     {
       title: "mentorship",
-      body: "founders, operators, and investors who've built real companies — on a call with you, not in a newsletter.",
+      body: "founders, operators, and investors who've built real companies. on a call with you, not in a newsletter.",
     },
     {
       title: "peer network",
-      body: "a small group of student founders from Harvard, MIT, and beyond who would be building regardless.",
+      body: "a small cohort of student founders from Harvard, MIT, and beyond.",
     },
     {
       title: "startup resources",
-      body: "templates, credits, and the unglamorous checklists that save you weeks.",
+      body: "$20,000 in compute credits across Azure, AWS, Supabase, etc., plus the templates and checklists that save you weeks.",
     },
     {
       title: "opportunity accelerator",
@@ -248,39 +291,39 @@ export const program: {
   heading: string;
   body: string;
   note: string[];
-  weeks: Week[];
+  phases: Phase[];
 } = {
-  eyebrow: "the program",
-  heading: "weekly lectures and homework.",
-  body: "nobody wakes up excited about lectures or homework. this is the version that's actually worth showing up for — short, specific, and graded by whether users show up.",
+  eyebrow: "how it works",
+  heading: "square one to term sheet.",
+  body: "there's no syllabus, because every company is standing on a different square. there is a sequence, though, and we move you through it as fast as you can ship.",
   note: [
-    "lectures: once a week, 30 minutes, recorded.",
-    "homework: once a week. part-timers and full-timers welcome.",
+    "pace: yours. we meet you where you are and push from there.",
+    "exit: when you raise. that's the only graduation.",
   ],
-  weeks: [
+  phases: [
     {
       number: "01",
-      theme: "problem",
-      lecture: "who hurts, how much, and how you'd prove it.",
-      homework: "ten real conversations with people who have the problem.",
+      theme: "square one",
+      focus: "the problem, the people who have it, and proof that it hurts.",
+      outcome: "ten real conversations and a thesis you can defend.",
     },
     {
       number: "02",
-      theme: "product",
-      lecture: "the smallest thing that could possibly work.",
-      homework: "ship a v0. ugly is fine. imaginary is not.",
+      theme: "build",
+      focus: "the smallest thing that could possibly work.",
+      outcome: "a v0 in strangers' hands. ugly is fine. imaginary is not.",
     },
     {
       number: "03",
-      theme: "distribution",
-      lecture: "getting strangers to use it without begging friends.",
-      homework: "first ten users you don't know.",
+      theme: "traction",
+      focus: "distribution, retention, and the numbers that actually matter.",
+      outcome: "users you don't know, and a reason they stay.",
     },
     {
       number: "04",
-      theme: "story",
-      lecture: "the pitch, the numbers, and the ask.",
-      homework: "demo day. four minutes. the network is watching.",
+      theme: "raise",
+      focus: "the story, the deck, the ask, and who to ask.",
+      outcome: "warm intros and a round you're ready to run.",
     },
   ],
 };
@@ -299,14 +342,17 @@ export const founders: {
       name: "Soneesh Kothagundla",
       role: "co-founder",
       school: "Harvard '30",
-      schoolLogo: logos.harvard,
       photo: "/founders/soneesh.jpg",
-      bio: "Author. Builder. Y Combinator Summer Fellow.",
       socials: [
         {
           kind: "linkedin",
           label: "LinkedIn",
           href: "https://www.linkedin.com/in/soneeshk",
+        },
+        {
+          kind: "github",
+          label: "GitHub",
+          href: "https://github.com/soneeshkothagundla",
         },
         {
           kind: "instagram",
@@ -321,33 +367,47 @@ export const founders: {
       ],
       credentials: [
         {
+          label: "Founder & CEO, Capsule Space Labs",
+          logo: logos.capsule,
+          href: "https://www.capsulelabs.space/",
+        },
+        { label: "Y Combinator Summer Fellow", logo: logos.yc },
+        {
+          label:
+            "Published in the Journal of the American Medical Association at age 16 (impact factor: 55)",
+        },
+        {
           label: "Featured in Forbes",
           logo: logos.forbes,
           href: "https://www.forbes.com/sites/toddnordstrom/2026/03/04/seatbelt-sign-is-off-how-soneesh-kothagundla-turned-airplanes-into-a-life-saving-movement/",
         },
         {
-          label: "#1 Amazon Bestselling Author, Fasten Your Seatbelt",
-          logo: logos.amazon,
-          href: "https://www.amazon.com/dp/B0G1SSKDZT",
+          label: "2026 Emerging Innovator of the Year, Horn Entrepreneurship",
         },
-        { label: "Y Combinator Summer Fellow", logo: logos.yc },
       ],
     },
     {
       name: "Hadi Abdul",
       role: "co-founder",
       school: "Harvard '30",
-      schoolLogo: logos.harvard,
       photo: "/founders/hadi.jpg",
-      bio: "Founder of VoiceWorks. Previously at Mercor. Physics researcher.",
       socials: [
+        {
+          kind: "linkedin",
+          label: "LinkedIn",
+          href: "https://www.linkedin.com/in/hadi-abdul-95618a31a/",
+        },
         {
           kind: "github",
           label: "GitHub",
           href: "https://github.com/hadiabdul8128",
         },
+        {
+          kind: "instagram",
+          label: "Instagram",
+          href: "https://www.instagram.com/hadi.__.abdul/",
+        },
         { kind: "web", label: "VoiceWorks", href: "https://voiceworks.coach/" },
-        // [PLACEHOLDER] add LinkedIn once confirmed: { kind: "linkedin", label: "LinkedIn", href: "" }
       ],
       credentials: [
         {
@@ -368,35 +428,29 @@ export const founders: {
   ],
 };
 
-export const cost = {
-  heading: "no fees. no equity.",
-  body: "You keep ownership.",
-  cta: "apply to cohort 01",
-};
-
 export const faq: { eyebrow: string; heading: string; items: Faq[] } = {
   eyebrow: "faq",
   heading: "the questions you'd dm us anyway.",
   items: [
     {
       q: "who can apply?",
-      a: "students and recent grads, anywhere in the world. the network started in Boston — Harvard and MIT — but that's where it started, not a requirement.",
+      a: "students and recent grads, anywhere in the world. the network started in Boston, at Harvard and MIT. but that's where it started, not a requirement.",
     },
     {
       q: "do i need a team or an idea?",
       a: "no. an idea helps. a team is nice. what we actually look for is someone who'd be building this with or without us.",
     },
     {
-      q: "is it really online?",
-      a: "yes. every lecture is recorded, live sessions are optional, and homework is async. if you have a laptop and a problem you can't stop thinking about, you're set.",
+      q: "how long is it?",
+      a: "until you raise. there's no fixed end date. some founders will close in a few months, others will take longer. you're in until the round is done, and alumni after.",
     },
     {
-      q: "what does it cost?",
-      a: "nothing. not tuition, not equity, not a percentage of anything, ever.",
+      q: "do i have to be in boston?",
+      a: "no. the network is rooted in boston: harvard, mit, the i-lab crowd. but the work happens wherever you are, and sessions are remote-friendly.",
     },
     {
       q: "do you invest?",
-      a: "not yet. the founder track is about warm introductions to aligned investors and mentors, not a fund. we'll say so loudly if that changes.",
+      a: "not yet. we get you in front of aligned investors and mentors; we're not a fund. we'll say so loudly if that changes.",
     },
     {
       q: "when does cohort 01 start?",
@@ -415,8 +469,11 @@ export const apply = {
     school: "school & year",
     stage: "where are you?",
     building: "what are you building, or what can't you stop thinking about?",
-    link: "a link (optional)",
+    achievement: "what's your greatest achievement?",
+    linkedin: "linkedin profile",
+    resume: "upload resume",
   },
+  resumeHint: "pdf or word, up to 5 mb. optional but it helps.",
   stages: [
     "just an idea",
     "building a v0",
@@ -426,9 +483,10 @@ export const apply = {
   ],
   submit: "send application",
   cardNote: "Your cohort 01 founder card.",
-  note: "saved on this device for now. delivery is wired before launch — nothing leaves your browser yet.",
+  sending: "sending…",
+  note: "we read every application ourselves. you'll hear back by email.",
   success: "got it. we read every one.",
-  error: "please fill in your name, email, and what you're building.",
+  error: "please fill in your name, a valid email, and what you're building.",
 };
 
 export const closing = {

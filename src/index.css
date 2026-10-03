@@ -323,9 +323,6 @@ em,
   letter-spacing: inherit;
   line-height: inherit;
 }
-.wordmark-hyper[data-hyper-phase="initial"] {
-  font-size: 0.76em;
-}
 .wordmark-hyper > span {
   font-family: inherit;
   width: auto;
@@ -493,36 +490,30 @@ em,
   margin-bottom: 20px;
   font-size: 10px;
 }
-.receipts-marquee {
-  --duration: 48s;
-  --gap: 72px;
-  padding: 0;
-  mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 12%,
-    #000 88%,
-    transparent
-  );
+.receipts-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px 64px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 .receipt {
-  white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 72px;
+  justify-content: center;
+  flex: 0 0 auto;
 }
+/* One white treatment for every mark in the strip, on the black background. */
 .receipt img {
   width: auto;
-  opacity: 0.8;
+  opacity: 0.92;
   transition: opacity 0.2s;
 }
 .receipt:hover img {
   opacity: 1;
-}
-.receipt i {
-  width: 4px;
-  height: 4px;
-  background: var(--dim);
 }
 img[data-tone="invert"] {
   filter: brightness(0) invert(1);
@@ -807,6 +798,10 @@ img[data-tone="grayscale"] {
 .founder-identity .chip {
   justify-self: start;
 }
+/* First and last name each get their own line. */
+.founder-name span {
+  display: block;
+}
 .chip {
   display: inline-flex;
   align-self: start;
@@ -830,11 +825,6 @@ img[data-tone="grayscale"] {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-}
-.founder-school img {
-  height: 16px;
-  width: auto;
-  opacity: 0.8;
 }
 .founder-bio {
   color: var(--muted);
@@ -1201,49 +1191,6 @@ a.press-link:hover {
     0 -1px 0 rgba(0, 0, 0, 0.9);
   padding-top: 6px;
 }
-.metal-card-chip {
-  position: relative;
-  width: clamp(40px, 11%, 50px);
-  aspect-ratio: 1.28;
-  border-radius: 7px;
-  background: linear-gradient(
-    145deg,
-    #4a4a48,
-    #1f1f1e 45%,
-    #3a3a38 70%,
-    #161615
-  );
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.9),
-    0 2px 6px rgba(0, 0, 0, 0.8);
-  overflow: hidden;
-  align-self: flex-start;
-  margin-top: -6px;
-}
-.metal-card-chip i {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.75);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-.metal-card-chip i:nth-child(1) {
-  top: 33%;
-}
-.metal-card-chip i:nth-child(2) {
-  top: 66%;
-}
-.metal-card-chip i:nth-child(3) {
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  right: auto;
-  width: 1px;
-  height: auto;
-  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.12);
-}
 .metal-card-bottom {
   display: flex;
   justify-content: space-between;
@@ -1496,8 +1443,8 @@ a.press-link:hover {
     border-left: 0;
     border-top: 1px solid var(--line);
   }
-  .receipt {
-    gap: 40px;
+  .receipts-row {
+    gap: 20px 36px;
   }
   .receipt img {
     transform: scale(0.8);
@@ -1721,6 +1668,18 @@ a.press-link:hover {
 .offer-facts .fact-value {
   font-size: clamp(48px, 6vw, 80px);
 }
+/* Word values would overflow the column at display size. */
+.offer-facts .fact-value[data-kind="word"] {
+  font-size: clamp(28px, 3vw, 42px);
+}
+/* `.fact + .fact` only draws column rules; a multi-row grid needs the row
+   starts cleared and horizontal rules between rows. */
+.offer-facts .fact:nth-child(3n + 1) {
+  border-left: 0;
+}
+.offer-facts .fact:nth-child(n + 4) {
+  border-top: 1px solid var(--line);
+}
 @media (max-width: 600px) {
   .offer-facts {
     grid-template-columns: 1fr;
@@ -1732,4 +1691,142 @@ a.press-link:hover {
     border-left: 0;
     border-top: 1px solid var(--line);
   }
+  .offer-facts .fact:nth-child(n + 4) {
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* ---- apply form: resume upload ------------------------------------------ */
+
+.file-field {
+  position: relative;
+  display: grid;
+  gap: 8px;
+}
+.file-field input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.file-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+}
+.file-field:focus-within .file-row,
+.file-row:hover {
+  border-color: var(--text);
+}
+.file-field[data-invalid="true"] .file-row {
+  border-color: #e7a89b;
+}
+.file-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px;
+  min-height: 48px;
+  border-right: 1px solid var(--line-strong);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.file-trigger:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+.file-trigger svg {
+  flex: none;
+}
+.file-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  padding: 0 14px;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+.file-name span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.file-name small {
+  flex: none;
+  font-size: 12px;
+  color: var(--dim);
+}
+.file-name:empty,
+.file-name.is-empty {
+  color: var(--dim);
+}
+.file-remove {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  min-height: 48px;
+  border-left: 1px solid var(--line-strong);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--muted);
+  cursor: pointer;
+}
+.file-remove:hover {
+  color: var(--text);
+}
+.file-hint {
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--dim);
+  line-height: 1.6;
+}
+.btn[disabled],
+.btn[aria-busy="true"] {
+  opacity: 0.55;
+  cursor: progress;
+  pointer-events: none;
+}
+
+/* ---- long-answer word counter ------------------------------------------- */
+
+.word-count {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.word-count[data-over="true"] {
+  color: #e7a89b;
+}
+.apply-form textarea[data-over="true"] {
+  border-color: #e7a89b;
+}
+
+/* ---- offer: the full list sits under the three headline numbers -------- */
+
+.offer-cta {
+  display: inline-flex;
+  margin-top: 48px;
 }
