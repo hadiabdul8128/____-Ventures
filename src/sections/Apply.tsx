@@ -1,85 +1,161 @@
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { useReducedMotion } from "motion/react";
 import { SquareField } from "@/components/SquareField";
 import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/components/Shell";
 import { MetalCard } from "@/components/MetalCard";
+import { ResumeField } from "@/components/ResumeField";
 import { apply, closing, site } from "@/content";
+import {
+  countWords,
+  emailOk,
+  submitApplication,
+  validateResume,
+  WORD_LIMIT,
+} from "@/lib/applications";
 
 const STORAGE_KEY = "ventures-application";
+const TEXT_FIELDS = [
+  "name",
+  "email",
+  "school",
+  "stage",
+  "building",
+  "achievement",
+  "linkedin",
+] as const;
 
-type Application = {
-  name: string;
-  email: string;
-  school: string;
-  stage: string;
-  building: string;
-  link: string;
-  savedAt: string;
-};
+type Draft = Partial<Record<(typeof TEXT_FIELDS)[number], string>>;
+type Status = "idle" | "sending" | "error" | "done";
 
-function loadDraft(): Partial<Application> {
+function loadDraft(): Draft {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Partial<Application>) : {};
+    return raw ? (JSON.parse(raw) as Draft) : {};
   } catch {
     return {};
   }
 }
 
-const emailOk = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+function saveDraft(draft: Draft) {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
+  } catch {
+    /* storage unavailable */
+  }
+}
+
+function clearDraft() {
+  try {
+    window.localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    /* storage unavailable */
+  }
+}
+
+function readText(form: HTMLFormElement): Required<Draft> {
+  const data = new FormData(form);
+  const get = (key: string) => String(data.get(key) ?? "").trim();
+  return {
+    name: get("name"),
+    email: get("email"),
+    school: get("school"),
+    stage: get("stage"),
+    building: get("building"),
+    achievement: get("achievement"),
+    linkedin: get("linkedin"),
+  };
+}
+
+const NO_MISSING = { name: false, email: false, building: false };
 
 export function Apply() {
-  const [draft, setDraft] = useState<Partial<Application>>(() => loadDraft());
-  const [status, setStatus] = useState<"idle" | "error" | "done">(
-    draft.savedAt ? "done" : "idle",
-  );
+  const [draft, setDraft] = useState<Draft>(() => loadDraft());
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState(apply.error);
   const [name, setName] = useState(draft.name ?? "");
-  const [missing, setMissing] = useState({
-    name: false,
-    email: false,
-    building: false,
+  const [missing, setMissing] = useState(NO_MISSING);
+  const [resume, setResume] = useState<File | null>(null);
+  const [resumeError, setResumeError] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [counts, setCounts] = useState({
+    building: countWords(draft.building ?? ""),
+    achievement: countWords(draft.achievement ?? ""),
   });
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const overLimit = (key: "building" | "achievement") => counts[key] > WORD_LIMIT;
+
+  const onFormChange = (event: FormEvent<HTMLFormElement>) => {
+    const text = readText(event.currentTarget);
+    saveDraft(text);
+    setCounts({
+      building: countWords(text.building),
+      achievement: countWords(text.achievement),
+    });
+  };
+
+  const onResumeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.currentTarget.files?.[0] ?? null;
+    if (!file) return;
+    const problem = validateResume(file);
+    if (problem) {
+      event.currentTarget.value = "";
+      setResume(null);
+      setResumeError(problem);
+      return;
+    }
+    setResume(file);
+    setResumeError(null);
+  };
+
+  const removeResume = () => {
+    if (fileRef.current) fileRef.current.value = "";
+    setResume(null);
+    setResumeError(null);
+  };
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const get = (key: string) => String(data.get(key) ?? "").trim();
-    const record: Application = {
-      name: get("name"),
-      email: get("email"),
-      school: get("school"),
-      stage: get("stage"),
-      building: get("building"),
-      link: get("link"),
-      savedAt: new Date().toISOString(),
-    };
+    if (status === "sending") return;
+    const text = readText(event.currentTarget);
     const invalid = {
-      name: !record.name,
-      email: !emailOk(record.email),
-      building: !record.building,
+      name: !text.name,
+      email: !emailOk(text.email),
+      building: !text.building,
     };
     setMissing(invalid);
     if (invalid.name || invalid.email || invalid.building) {
+      setErrorMessage(apply.error);
       setStatus("error");
       return;
     }
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
-    } catch {
-      /* storage unavailable; still show confirmation so the flow is testable */
+    if (
+      countWords(text.building) > WORD_LIMIT ||
+      countWords(text.achievement) > WORD_LIMIT
+    ) {
+      setErrorMessage(`keep each answer to ${WORD_LIMIT} words or fewer.`);
+      setStatus("error");
+      return;
     }
+    setStatus("sending");
+    const result = await submitApplication({ ...text, resume });
+    if (!result.ok) {
+      setErrorMessage(result.message || apply.error);
+      setStatus("error");
+      return;
+    }
+    clearDraft();
+    setDraft({});
     setStatus("done");
   };
 
   const reset = () => {
-    try {
-      window.localStorage.removeItem(STORAGE_KEY);
-    } catch {
-      /* storage unavailable */
-    }
+    clearDraft();
     setDraft({});
-    setMissing({ name: false, email: false, building: false });
+    setMissing(NO_MISSING);
+    setErrorMessage(apply.error);
+    setResume(null);
+    setResumeError(null);
     setStatus("idle");
     setName("");
   };
@@ -88,6 +164,8 @@ export function Apply() {
     status === "error" && missing[key]
       ? { "aria-invalid": true as const, "aria-describedby": "apply-error" }
       : {};
+
+  const sending = status === "sending";
 
   return (
     <section
@@ -114,7 +192,12 @@ export function Apply() {
               </button>
             </div>
           ) : (
-            <form className="apply-form" onSubmit={onSubmit} noValidate>
+            <form
+              className="apply-form"
+              onSubmit={onSubmit}
+              onChange={onFormChange}
+              noValidate
+            >
               <div className="two">
                 <label>
                   {apply.fields.name}
@@ -168,29 +251,64 @@ export function Apply() {
                   name="building"
                   defaultValue={draft.building}
                   required
+                  aria-describedby="building-count"
+                  data-over={overLimit("building")}
                   {...invalidProps("building")}
                 />
+                <span
+                  className="word-count"
+                  id="building-count"
+                  data-over={overLimit("building")}
+                >
+                  {counts.building} / {WORD_LIMIT} words
+                </span>
               </label>
               <label>
-                {apply.fields.link}
+                {apply.fields.achievement}
+                <textarea
+                  name="achievement"
+                  defaultValue={draft.achievement}
+                  aria-describedby="achievement-count"
+                  data-over={overLimit("achievement")}
+                />
+                <span
+                  className="word-count"
+                  id="achievement-count"
+                  data-over={overLimit("achievement")}
+                >
+                  {counts.achievement} / {WORD_LIMIT} words
+                </span>
+              </label>
+              <label>
+                {apply.fields.linkedin}
                 <input
-                  name="link"
+                  name="linkedin"
                   type="url"
-                  placeholder="https://"
-                  defaultValue={draft.link}
+                  placeholder="https://linkedin.com/in/"
+                  defaultValue={draft.linkedin}
                 />
               </label>
+              <ResumeField
+                file={resume}
+                error={resumeError}
+                inputRef={fileRef}
+                onChange={onResumeChange}
+                onRemove={removeResume}
+              />
               {status === "error" && (
                 <p className="form-error" role="alert" id="apply-error">
-                  {apply.error}
+                  {errorMessage}
                 </p>
               )}
               <button
                 type="submit"
                 className="btn btn--solid"
                 style={{ justifySelf: "start" }}
+                disabled={sending}
+                aria-busy={sending}
               >
-                {apply.submit} <ArrowRight size={14} />
+                {sending ? apply.sending : apply.submit}
+                {!sending && <ArrowRight size={14} />}
               </button>
               <p className="form-note">{apply.note}</p>
             </form>
@@ -219,7 +337,7 @@ export function Closing() {
         <Reveal className="closing">
           <h2 id="closing-heading">
             {closing.lines[0]}
-            <em>{closing.lines[1]}</em>
+            {closing.lines[1] && <em>{closing.lines[1]}</em>}
           </h2>
           <a className="btn btn--solid" href={site.applyHref}>
             {closing.cta} <ArrowRight size={14} />
