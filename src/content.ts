@@ -72,10 +72,8 @@ export const site = {
 };
 
 export const nav: NavLink[] = [
-  { label: "the track", href: "#track" },
   { label: "program", href: "#program" },
   { label: "founders", href: "#founders" },
-  { label: "faq", href: "#faq" },
 ];
 
 export const hero = {

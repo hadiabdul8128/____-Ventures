@@ -1,6 +1,6 @@
-import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal, SocialGlyph } from "@/components/Shell";
-import { cost, faq, founders, site, type Credential } from "@/content";
+import { cost, founders, site, type Credential } from "@/content";
 
 function CredentialPill({ credential }: { credential: Credential }) {
   const inner = (
@@ -125,30 +125,6 @@ export function Cost() {
             {cost.cta} <ArrowRight size={14} />
           </a>
         </Reveal>
-      </div>
-    </section>
-  );
-}
-
-export function Faq() {
-  return (
-    <section className="section" id="faq" aria-labelledby="faq-heading">
-      <div className="wrap">
-        <Reveal className="section-head">
-          <p className="eyebrow">{faq.eyebrow}</p>
-          <h2 id="faq-heading">{faq.heading}</h2>
-        </Reveal>
-        <div className="faq-list">
-          {faq.items.map((item, i) => (
-            <details className="faq-item" key={item.q} open={i === 0}>
-              <summary>
-                {item.q}
-                <Plus size={18} />
-              </summary>
-              <p>{item.a}</p>
-            </details>
-          ))}
-        </div>
       </div>
     </section>
   );

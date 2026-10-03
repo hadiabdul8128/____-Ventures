@@ -1,37 +1,6 @@
-import { ArrowRight } from "lucide-react";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { Reveal } from "@/components/Shell";
-import { Mark } from "@/components/Mark";
-import { facts, perks, program, site, track } from "@/content";
-
-export function Track() {
-  return (
-    <section className="section" id="track" aria-labelledby="track-heading">
-      <div className="wrap track-grid">
-        <Reveal className="track-copy">
-          <p className="eyebrow">{track.eyebrow}</p>
-          <h2 id="track-heading">{track.heading}</h2>
-          <p className="track-tagline">{track.tagline}</p>
-          <p className="lede">{track.body}</p>
-          <a className="btn btn--solid" href={site.applyHref}>
-            {track.cta} <ArrowRight size={14} />
-          </a>
-        </Reveal>
-        <Reveal className="track-card" delay={0.1}>
-          <Mark size={44} className="track-mark" />
-          <ul>
-            {track.points.map((point) => (
-              <li key={point.lead}>
-                <strong>{point.lead}</strong>
-                {point.rest}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
+import { facts, perks, program } from "@/content";
 
 export function Facts() {
   return (
