@@ -71,10 +71,7 @@ export const site = {
   year: new Date().getFullYear(),
 };
 
-export const nav: NavLink[] = [
-  { label: "program", href: "#program" },
-  { label: "founders", href: "#founders" },
-];
+export const nav: NavLink[] = [{ label: "founders", href: "#founders" }];
 
 export const hero = {
   eyebrow: "boston square ventures · cohort 01 · online · free",

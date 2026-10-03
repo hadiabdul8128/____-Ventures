@@ -1,6 +1,6 @@
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { Reveal } from "@/components/Shell";
-import { facts, perks, program } from "@/content";
+import { facts, perks } from "@/content";
 
 export function Facts() {
   return (
@@ -45,65 +45,6 @@ export function Perks() {
             <Reveal key={perk.title} className="perk" delay={i * 0.05}>
               <h3>{perk.title}</h3>
               <p>{perk.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Program() {
-  return (
-    <section
-      className="program section"
-      id="program"
-      aria-labelledby="program-heading"
-    >
-      <div className="wrap program-grid">
-        <Reveal className="program-copy">
-          <p className="eyebrow">{program.eyebrow}</p>
-          <h2 id="program-heading">{program.heading}</h2>
-          <p className="lede">{program.body}</p>
-          <div className="program-note">
-            {program.note.map((line) => {
-              const [label, ...rest] = line.split(":");
-              return (
-                <p key={line}>
-                  <strong>{label}:</strong>
-                  {rest.join(":")}
-                </p>
-              );
-            })}
-          </div>
-        </Reveal>
-        <div className="weeks">
-          {program.weeks.map((week, i) => (
-            <Reveal key={week.number} className="week" delay={i * 0.06}>
-              <span className="week-number" aria-hidden="true">
-                {week.number}
-              </span>
-              <div>
-                <h3>
-                  <span
-                    className="eyebrow"
-                    style={{ display: "block", marginBottom: 8 }}
-                  >
-                    week {week.number}
-                  </span>
-                  {week.theme}
-                </h3>
-                <dl>
-                  <div>
-                    <dt>lecture</dt>
-                    <dd>{week.lecture}</dd>
-                  </div>
-                  <div>
-                    <dt>homework</dt>
-                    <dd>{week.homework}</dd>
-                  </div>
-                </dl>
-              </div>
             </Reveal>
           ))}
         </div>
