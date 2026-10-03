@@ -1709,3 +1709,27 @@ a.press-link:hover {
     transition: none;
   }
 }
+
+.offer-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-block: 1px solid var(--line);
+}
+.offer-facts .fact {
+  padding-block: 44px;
+}
+.offer-facts .fact-value {
+  font-size: clamp(48px, 6vw, 80px);
+}
+@media (max-width: 600px) {
+  .offer-facts {
+    grid-template-columns: 1fr;
+  }
+  .offer-facts .fact {
+    padding: 28px 0;
+  }
+  .offer-facts .fact + .fact {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}

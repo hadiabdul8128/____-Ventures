@@ -116,9 +116,10 @@ export function Founders() {
 
 export function Cost() {
   return (
-    <section className="section" aria-labelledby="cost-heading">
+    <section className="section" id="terms" aria-labelledby="cost-heading">
       <div className="wrap">
         <Reveal className="cost">
+          <p className="eyebrow">what we get</p>
           <h2 id="cost-heading">{cost.heading}</h2>
           <p className="lede">{cost.body}</p>
           <a className="btn btn--solid" href={site.applyHref}>

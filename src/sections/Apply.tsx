@@ -224,11 +224,6 @@ export function Closing() {
           <a className="btn btn--solid" href={site.applyHref}>
             {closing.cta} <ArrowRight size={14} />
           </a>
-          {!reduced && (
-            <p className="hero-hint">
-              move your cursor, or tap. the square notices.
-            </p>
-          )}
         </Reveal>
       </div>
     </section>

@@ -65,21 +65,26 @@ export const site = {
   wordmark: ["Boston", "Square", "Ventures"],
   tagline: "start at square one.",
   description:
-    "Boston Square Ventures is a free, online, 4-week founder sprint for student founders from Harvard, MIT, and beyond — and the network that backs them after.",
+    "From square one to your first raise. Capital, compute, and a founder network.",
   applyHref: "#apply",
   contactEmail: "hello@bostonsquareventures.com", // [PLACEHOLDER] set up this inbox
   year: new Date().getFullYear(),
 };
 
-export const nav: NavLink[] = [{ label: "founders", href: "#founders" }];
+export const nav: NavLink[] = [
+  { label: "who we are", href: "#top" },
+  { label: "what we offer", href: "#offer" },
+  { label: "what we get", href: "#terms" },
+  { label: "founders", href: "#founders" },
+];
 
 export const hero = {
-  eyebrow: "boston square ventures · cohort 01 · online · free",
-  line: "4 weeks. one track.",
-  italic: "for founders who'd build anyway.",
-  body: "a free, online founder sprint for student founders from Harvard, MIT, and beyond — plus the network that backs them when the four weeks end.",
+  eyebrow: "who we are",
+  line: "from square one",
+  italic: "to your first raise.",
+  body: "We connect student founders with capital, compute, and a founder network.",
   primary: "apply to cohort 01",
-  secondary: "who are we, anyway?",
+  secondary: "what we offer",
   hint: "move your cursor, or tap. the square notices.",
 };
 
@@ -286,9 +291,9 @@ export const founders: {
   body: string;
   items: Founder[];
 } = {
-  eyebrow: "who are we, anyway?",
-  heading: "two freshmen who got tired of waiting.",
-  body: "we're students too. we've shipped things, been told no, and kept going. we built the program we wished existed in our first semester.",
+  eyebrow: "founders",
+  heading: "built by founders.",
+  body: "Harvard '30. Building Boston Square.",
   items: [
     {
       name: "Soneesh Kothagundla",
@@ -296,7 +301,7 @@ export const founders: {
       school: "Harvard '30",
       schoolLogo: logos.harvard,
       photo: "/founders/soneesh.jpg",
-      bio: "author, builder, and the kind of person who turns a flight delay into a movement. featured in Forbes for exactly that.",
+      bio: "Author. Builder. Y Combinator Summer Fellow.",
       socials: [
         {
           kind: "linkedin",
@@ -334,7 +339,7 @@ export const founders: {
       school: "Harvard '30",
       schoolLogo: logos.harvard,
       photo: "/founders/hadi.jpg",
-      bio: "physicist by training, founder by habit. previously at Mercor; built VoiceWorks to reach 9,000+ non-verbal students before he could vote.",
+      bio: "Founder of VoiceWorks. Previously at Mercor. Physics researcher.",
       socials: [
         {
           kind: "github",
@@ -364,8 +369,8 @@ export const founders: {
 };
 
 export const cost = {
-  heading: "costs? nothing.",
-  body: "no tuition. no equity. no \u201cpay it forward\u201d clause. we're students — we remember what a $400 course felt like.",
+  heading: "no fees. no equity.",
+  body: "You keep ownership.",
   cta: "apply to cohort 01",
 };
 
@@ -402,8 +407,8 @@ export const faq: { eyebrow: string; heading: string; items: Faq[] } = {
 
 export const apply = {
   eyebrow: "apply",
-  heading: "founders, are you ready to build?",
-  body: "two minutes. no essay. tell us what you're working on and where you are with it.",
+  heading: "join cohort 01.",
+  body: "Tell us what you’re building.",
   fields: {
     name: "name",
     email: "email",
@@ -420,15 +425,14 @@ export const apply = {
     "revenue",
   ],
   submit: "send application",
-  cardNote:
-    "every founder in cohort 01 gets one. type your name and watch it engrave.",
+  cardNote: "Your cohort 01 founder card.",
   note: "saved on this device for now. delivery is wired before launch — nothing leaves your browser yet.",
   success: "got it. we read every one.",
   error: "please fill in your name, email, and what you're building.",
 };
 
 export const closing = {
-  lines: ["we're students. we've shipped.", "you already know if this is you."],
+  lines: ["start at square one.", "build from here."],
   cta: "apply to cohort 01",
 };
 

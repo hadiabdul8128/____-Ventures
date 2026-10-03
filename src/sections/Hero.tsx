@@ -38,15 +38,10 @@ export function Hero() {
               <span>{hero.primary}</span> <ArrowRight size={14} />
             </a>
           </LiquidButton>
-          <a className="text-link" href="#founders">
+          <a className="text-link" href="#offer">
             {hero.secondary} <ArrowDown size={14} />
           </a>
         </motion.div>
-        {!reduced && (
-          <motion.p className="hero-hint" {...fade(1.2)}>
-            move your cursor. follow the light.
-          </motion.p>
-        )}
       </div>
     </section>
   );

@@ -1,52 +1,29 @@
-import { NumberTicker } from "@/components/ui/number-ticker";
 import { Reveal } from "@/components/Shell";
-import { facts, perks } from "@/content";
 
-export function Facts() {
+export function Offer() {
   return (
-    <section aria-label="Program at a glance">
-      <div className="wrap">
-        <div className="facts">
-          {facts.map((fact, i) => (
-            <div className="fact" key={fact.label}>
-              <span className="fact-value">
-                {fact.prefix && (
-                  <span className="fact-affix">{fact.prefix}</span>
-                )}
-                <NumberTicker
-                  value={fact.value}
-                  delay={i * 0.1}
-                  className="tracking-normal"
-                />
-                {fact.suffix && (
-                  <span className="fact-affix">{fact.suffix}</span>
-                )}
-              </span>
-              <span className="fact-label">{fact.label}</span>
-              <span className="fact-note">{fact.note}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Perks() {
-  return (
-    <section className="section" aria-labelledby="perks-heading">
+    <section
+      className="section offer-section"
+      id="offer"
+      aria-labelledby="offer-heading"
+    >
       <div className="wrap">
         <Reveal className="section-head">
-          <p className="eyebrow">{perks.eyebrow}</p>
-          <h2 id="perks-heading">{perks.heading}</h2>
+          <h2 id="offer-heading">what we offer.</h2>
         </Reveal>
-        <div className="perks-list">
-          {perks.items.map((perk, i) => (
-            <Reveal key={perk.title} className="perk" delay={i * 0.05}>
-              <h3>{perk.title}</h3>
-              <p>{perk.body}</p>
-            </Reveal>
-          ))}
+        <div className="offer-facts">
+          <Reveal className="fact">
+            <span className="fact-value">20k</span>
+            <h3 className="fact-label">compute credits</h3>
+          </Reveal>
+          <Reveal className="fact" delay={0.05}>
+            <span className="fact-value">01</span>
+            <h3 className="fact-label">cohort</h3>
+          </Reveal>
+          <Reveal className="fact" delay={0.1}>
+            <span className="fact-value">100%</span>
+            <h3 className="fact-label">founder-run</h3>
+          </Reveal>
         </div>
       </div>
     </section>
