@@ -66,7 +66,6 @@ export const site = {
   description:
     "From square one to your first raise. Capital, compute, and a founder network.",
   applyHref: "/apply",
-  contactEmail: "hello@bostonsquareventures.com", // [PLACEHOLDER] set up this inbox
   year: new Date().getFullYear(),
 };
 

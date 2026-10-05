@@ -157,7 +157,6 @@ export function Footer() {
         <div className="footer-meta">
           <span>{footer.copyright}</span>
           <span>{footer.disclaimer}</span>
-          <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
         </div>
       </div>
     </footer>

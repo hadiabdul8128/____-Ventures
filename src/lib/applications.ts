@@ -1,5 +1,4 @@
 import { getSupabase } from "@/lib/supabase";
-import { site } from "@/content";
 
 export type ApplicationInput = {
   name: string;
@@ -33,7 +32,7 @@ export const countWords = (value: string) =>
   value.trim().split(/\s+/).filter(Boolean).length;
 
 export const MESSAGES = {
-  notConfigured: `applications aren't wired up yet. email us instead at ${site.contactEmail}.`,
+  notConfigured: "applications aren't open yet. check back soon.",
   network: "couldn't reach the server, try again.",
   resumeType: "resume must be a pdf or word document.",
   resumeSize: "resume must be 5 mb or smaller.",
