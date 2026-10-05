@@ -180,6 +180,10 @@ export function Apply() {
           <p className="eyebrow">{apply.eyebrow}</p>
           <h2 id="apply-heading">{apply.heading}</h2>
           <p className="lede">{apply.body}</p>
+          <p className="apply-deadline">
+            {apply.deadline.label}{" "}
+            <time dateTime={apply.deadline.iso}>{apply.deadline.value}</time>
+          </p>
           <MetalCard name={name} className="apply-card" />
           <p className="form-note apply-card-note">{apply.cardNote}</p>
         </Reveal>

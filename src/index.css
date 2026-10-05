@@ -963,6 +963,14 @@ a.press-link:hover {
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
+.apply-deadline {
+  font-size: 13px;
+  color: var(--muted);
+}
+.apply-deadline time {
+  color: var(--text);
+  font-weight: 500;
+}
 .apply-form {
   display: grid;
   gap: 18px;
