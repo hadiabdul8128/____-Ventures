@@ -10,6 +10,10 @@ type Props = {
   inputRef: RefObject<HTMLInputElement | null>;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onRemove: () => void;
+  /** Defaults to the fellowship form's copy. */
+  label?: string;
+  hint?: string;
+  required?: boolean;
 };
 
 /** Native file input (kept for keyboard/AT) with a styled trigger row. */
@@ -19,10 +23,13 @@ export function ResumeField({
   inputRef,
   onChange,
   onRemove,
+  label = apply.fields.resume,
+  hint = apply.resumeHint,
+  required = false,
 }: Props) {
   return (
     <div className="file-field" data-invalid={Boolean(error)}>
-      <label htmlFor="apply-resume">{apply.fields.resume}</label>
+      <label htmlFor="apply-resume">{label}</label>
       <input
         ref={inputRef}
         id="apply-resume"
@@ -30,6 +37,7 @@ export function ResumeField({
         type="file"
         accept={RESUME_ACCEPT}
         onChange={onChange}
+        required={required}
         aria-describedby={error ? "resume-error" : "resume-hint"}
         aria-invalid={error ? true : undefined}
       />
@@ -73,7 +81,7 @@ export function ResumeField({
         </p>
       ) : (
         <p className="file-hint" id="resume-hint">
-          {apply.resumeHint}
+          {hint}
         </p>
       )}
     </div>

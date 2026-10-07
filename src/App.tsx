@@ -2,9 +2,10 @@ import { Suspense, lazy, useEffect } from "react";
 import { MotionConfig } from "motion/react";
 import { Footer, Header } from "@/components/Shell";
 import { Hero, Receipts } from "@/sections/Hero";
-import { Offer } from "@/sections/Program";
+import { Offer, Tracks } from "@/sections/Program";
 import { Founders } from "@/sections/Founders";
 import { Apply, Closing } from "@/sections/Apply";
+import { PreFounderApply } from "@/sections/PreFounderApply";
 import { useRoute } from "@/lib/router";
 import { site } from "@/content";
 import InteractiveNeuralVortex from "@/components/ui/interactive-neural-vortex-background";
@@ -23,7 +24,8 @@ const Dashboard = import.meta.env.DEV
 
 const TITLES: Record<string, string> = {
   "/": `${site.name}: ${site.tagline}`,
-  "/apply": `apply to cohort 01 | ${site.name}`,
+  "/apply": `apply to the fellowship track | ${site.name}`,
+  "/apply/pre-founder": `apply to the pre-founder track | ${site.name}`,
   "/dashboard": `founder dashboard | ${site.name}`,
 };
 
@@ -34,6 +36,7 @@ function Landing() {
       <Receipts />
       <div className="venture-flow">
         <InteractiveNeuralVortex />
+        <Tracks />
         <Offer />
         <Founders />
         <Closing />
@@ -69,6 +72,10 @@ export default function App() {
         </Suspense>
       ) : route === "/apply" ? (
         <ApplyPage />
+      ) : route === "/apply/pre-founder" ? (
+        <main id="main" className="apply-page">
+          <PreFounderApply />
+        </main>
       ) : (
         <Landing />
       )}

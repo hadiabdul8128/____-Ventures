@@ -34,7 +34,7 @@ export function Hero() {
               <span>{hero.primary}</span> <ArrowRight size={14} />
             </a>
           </LiquidButton>
-          <a className="text-link" href="#offer">
+          <a className="text-link" href="#tracks">
             {hero.secondary} <ArrowDown size={14} />
           </a>
         </motion.div>

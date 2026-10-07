@@ -104,7 +104,7 @@ export function Header() {
           <div className="header-actions">
             <LiquidButton asChild size="sm" className="btn">
               <a href={site.applyHref}>
-                apply to cohort 01 <ArrowRight size={14} />
+                apply to the fellowship <ArrowRight size={14} />
               </a>
             </LiquidButton>
             <LiquidButton
@@ -135,7 +135,7 @@ export function Header() {
         ))}
         <LiquidButton asChild className="btn">
           <a href={site.applyHref} onClick={close}>
-            apply to cohort 01 <ArrowRight size={14} />
+            apply to the fellowship <ArrowRight size={14} />
           </a>
         </LiquidButton>
       </nav>

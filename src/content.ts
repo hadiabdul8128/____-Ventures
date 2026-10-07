@@ -66,11 +66,13 @@ export const site = {
   description:
     "From square one to your first raise. Capital, compute, and a founder network.",
   applyHref: "/apply",
+  preFounderHref: "/apply/pre-founder",
   year: new Date().getFullYear(),
 };
 
 export const nav: NavLink[] = [
   { label: "who we are", href: "#top" },
+  { label: "tracks", href: "#tracks" },
   { label: "what we offer", href: "#offer" },
 ];
 
@@ -78,8 +80,8 @@ export const hero = {
   line: "from square one",
   italic: "to your first raise.",
   body: "We connect student founders with capital, compute, and a founder network.",
-  primary: "apply to cohort 01",
-  secondary: "what we offer",
+  primary: "apply to the fellowship",
+  secondary: "explore the tracks",
 };
 
 export const logos = {
@@ -195,13 +197,49 @@ export type OfferItem = {
   kind?: "word";
 };
 
+export type Track = {
+  number: string;
+  name: string;
+  body: string;
+  /** Omitted while a track is not open; the card shows `status` instead. */
+  cta?: { label: string; href: string };
+  status?: string;
+};
+
+export const tracks: { eyebrow: string; heading: string; items: Track[] } = {
+  eyebrow: "tracks",
+  heading: "three ways in.",
+  items: [
+    {
+      number: "01",
+      name: "Boston Square Ventures Fellowship Track",
+      body: "for student founders. capital, compute, and a founder network, from square one until you raise. cohort 01 starts October 15.",
+      cta: { label: "apply to the fellowship", href: "/apply" },
+    },
+    {
+      number: "02",
+      name: "Pre-Founder Track",
+      body: "not building yet? we connect you with startups that are looking to hire talent.",
+      cta: { label: "apply to the pre-founder track", href: "/apply/pre-founder" },
+    },
+    {
+      number: "03",
+      name: "Angel Investment Track",
+      body: "",
+      status: "coming soon",
+    },
+  ],
+};
+
 export const offer: {
+  eyebrow: string;
   heading: string;
   cta: string;
   items: OfferItem[];
 } = {
+  eyebrow: "the fellowship track",
   heading: "what we offer.",
-  cta: "apply to cohort 01",
+  cta: "apply to the fellowship",
   items: [
     {
       value: "October 15",
@@ -479,8 +517,8 @@ export const faq: { eyebrow: string; heading: string; items: Faq[] } = {
 };
 
 export const apply = {
-  eyebrow: "apply",
-  heading: "join cohort 01.",
+  eyebrow: "apply · fellowship track",
+  heading: "join the fellowship.",
   body: "Tell us what you’re building.",
   deadline: {
     label: "applications close",
@@ -506,16 +544,47 @@ export const apply = {
     "revenue",
   ],
   submit: "send application",
-  cardNote: "Your cohort 01 founder card.",
+  cardNote: "Your fellowship founder card.",
   sending: "sending…",
   note: "we read every application ourselves. you'll hear back by email.",
   success: "got it. we read every one.",
   error: "please fill in your name, a valid email, and what you're building.",
 };
 
+export const preFounder = {
+  eyebrow: "apply · pre-founder track",
+  heading: "join the pre-founder track.",
+  body: "We connect you with startups that are looking to hire talent.",
+  fields: {
+    firstName: "first name",
+    lastName: "last name",
+    email: "email",
+    school: "school",
+    level: "education",
+    gradYear: "graduation year",
+    major: "field of study",
+    linkedin: "linkedin profile",
+    resume: "upload resume",
+  },
+  levels: [
+    "high school",
+    "undergraduate",
+    "graduate",
+    "recent grad",
+    "not in school",
+  ],
+  resumeHint: "pdf or word, up to 5 mb. required.",
+  submit: "send application",
+  sending: "sending…",
+  note: "we read every application ourselves. you'll hear back by email.",
+  success: "got it. we'll be in touch.",
+  error: "please fill in your first and last name, a valid email, and your school.",
+  resumeMissing: "please upload your resume.",
+};
+
 export const closing = {
   lines: ["start at square one.", "build from here."],
-  cta: "apply to cohort 01",
+  cta: "apply to the fellowship",
 };
 
 export const footer = {

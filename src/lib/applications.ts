@@ -165,3 +165,88 @@ export async function submitApplication(
     };
   }
 }
+
+export type PreFounderInput = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  school: string;
+  level: string;
+  gradYear: string;
+  major: string;
+  linkedin: string;
+  resume: File | null;
+};
+
+/**
+ * Pre-founder track: talent we place with hiring startups. Same rules as the
+ * fellowship form, but the resume is required and the row goes to its own table.
+ * Never throws.
+ */
+export async function submitPreFounder(
+  input: PreFounderInput,
+): Promise<SubmitResult> {
+  const firstName = input.firstName.trim();
+  const lastName = input.lastName.trim();
+  const email = input.email.trim();
+  const school = input.school.trim();
+  const resume = input.resume;
+  if (!firstName || !lastName || !emailOk(email) || !school || !resume) {
+    return { ok: false, message: "" };
+  }
+  const problem = validateResume(resume);
+  if (problem) return { ok: false, message: problem };
+
+  const supabase = getSupabase();
+  if (!supabase) return { ok: false, message: MESSAGES.notConfigured };
+
+  try {
+    const path = `pre-founder/${crypto.randomUUID()}/${sanitizeFileName(resume.name)}`;
+    const upload = await supabase.storage
+      .from("resumes")
+      .upload(path, resume, {
+        upsert: false,
+        contentType: resume.type || undefined,
+      });
+    if (upload.error) {
+      return {
+        ok: false,
+        message: isNetworkError(upload.error)
+          ? MESSAGES.network
+          : MESSAGES.resumeUpload,
+      };
+    }
+
+    // Anon may INSERT but not SELECT, so the id is minted client-side.
+    const id = crypto.randomUUID();
+    const { error } = await supabase.from("pre_founder_applications").insert({
+      id,
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      school,
+      education_level: input.level.trim() || null,
+      grad_year: input.gradYear.trim() || null,
+      field_of_study: input.major.trim() || null,
+      linkedin: input.linkedin.trim() || null,
+      resume_path: path,
+      user_agent:
+        typeof navigator === "undefined"
+          ? null
+          : navigator.userAgent.slice(0, 512),
+      source: "web",
+    });
+    if (error) {
+      return {
+        ok: false,
+        message: isNetworkError(error) ? MESSAGES.network : MESSAGES.generic,
+      };
+    }
+    return { ok: true, id };
+  } catch (error) {
+    return {
+      ok: false,
+      message: isNetworkError(error) ? MESSAGES.network : MESSAGES.generic,
+    };
+  }
+}

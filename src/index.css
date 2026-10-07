@@ -1847,6 +1847,73 @@ a.press-link:hover {
   border-color: #e7a89b;
 }
 
+/* ---- tracks: three ways in, ruled like the offer grid ------------------ */
+
+.tracks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-block: 1px solid var(--line);
+}
+.track {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 16px;
+  padding: 44px 32px;
+}
+.track + .track {
+  border-left: 1px solid var(--line);
+}
+.track-number {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.track-name {
+  font-weight: 500;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.track-body {
+  color: var(--muted);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.track-cta {
+  justify-self: start;
+  align-self: end;
+  margin-top: 12px;
+}
+.track-status {
+  grid-row: 4;
+  justify-self: start;
+  margin-top: 12px;
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.track.is-soon .track-name {
+  color: var(--muted);
+}
+@media (max-width: 900px) {
+  .tracks {
+    grid-template-columns: 1fr;
+  }
+  .track {
+    padding-inline: 0;
+  }
+  .track + .track {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
 /* ---- offer: the full list sits under the three headline numbers -------- */
 
 .offer-cta {
