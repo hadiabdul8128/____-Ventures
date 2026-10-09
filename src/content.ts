@@ -67,6 +67,7 @@ export const site = {
     "From square one to your first raise. Capital, compute, and a founder network.",
   applyHref: "/apply",
   preFounderHref: "/apply/pre-founder",
+  ambassadorHref: "/apply/ambassador",
   year: new Date().getFullYear(),
 };
 
@@ -208,7 +209,7 @@ export type Track = {
 
 export const tracks: { eyebrow: string; heading: string; items: Track[] } = {
   eyebrow: "tracks",
-  heading: "three ways in.",
+  heading: "four ways in.",
   items: [
     {
       number: "01",
@@ -224,6 +225,12 @@ export const tracks: { eyebrow: string; heading: string; items: Track[] } = {
     },
     {
       number: "03",
+      name: "Campus Ambassador Program",
+      body: "represent Boston Square Ventures at your school. find founders, host events, and grow the network on your campus.",
+      cta: { label: "become an ambassador", href: "/apply/ambassador" },
+    },
+    {
+      number: "04",
       name: "Angel Investment Track",
       body: "",
       status: "coming soon",
@@ -580,6 +587,29 @@ export const preFounder = {
   success: "got it. we'll be in touch.",
   error: "please fill in your first and last name, a valid email, and your school.",
   resumeMissing: "please upload your resume.",
+};
+
+export const ambassador = {
+  eyebrow: "apply · campus ambassador program",
+  heading: "become a campus ambassador.",
+  body: "Represent Boston Square Ventures at your school. Find founders, host events, and grow the network on your campus.",
+  fields: {
+    firstName: "first name",
+    lastName: "last name",
+    email: "email",
+    school: "school",
+    gradYear: "graduation year",
+    linkedin: "linkedin profile",
+    why: "how would you grow Boston Square Ventures on your campus?",
+    resume: "upload resume",
+  },
+  resumeHint: "pdf or word, up to 5 mb. optional but it helps.",
+  submit: "send application",
+  sending: "sending…",
+  note: "we read every application ourselves. you'll hear back by email.",
+  success: "got it. we'll be in touch.",
+  error:
+    "please fill in your first and last name, a valid email, your school, and how you'd grow BSV on your campus.",
 };
 
 export const closing = {

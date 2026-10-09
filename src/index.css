@@ -1851,7 +1851,7 @@ a.press-link:hover {
 
 .tracks {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   border-block: 1px solid var(--line);
 }
 .track {
@@ -1860,8 +1860,12 @@ a.press-link:hover {
   gap: 16px;
   padding: 44px 32px;
 }
-.track + .track {
+/* 2x2: rule between the columns, and between the two rows. */
+.track:nth-child(2n) {
   border-left: 1px solid var(--line);
+}
+.track:nth-child(n + 3) {
+  border-top: 1px solid var(--line);
 }
 .track-number {
   font-size: 11px;
@@ -1908,8 +1912,10 @@ a.press-link:hover {
   .track {
     padding-inline: 0;
   }
-  .track + .track {
+  .track:nth-child(2n) {
     border-left: 0;
+  }
+  .track + .track {
     border-top: 1px solid var(--line);
   }
 }

@@ -6,6 +6,7 @@ import { Offer, Tracks } from "@/sections/Program";
 import { Founders } from "@/sections/Founders";
 import { Apply, Closing } from "@/sections/Apply";
 import { PreFounderApply } from "@/sections/PreFounderApply";
+import { AmbassadorApply } from "@/sections/AmbassadorApply";
 import { useRoute } from "@/lib/router";
 import { site } from "@/content";
 import InteractiveNeuralVortex from "@/components/ui/interactive-neural-vortex-background";
@@ -26,6 +27,7 @@ const TITLES: Record<string, string> = {
   "/": `${site.name}: ${site.tagline}`,
   "/apply": `apply to the fellowship track | ${site.name}`,
   "/apply/pre-founder": `apply to the pre-founder track | ${site.name}`,
+  "/apply/ambassador": `apply to the campus ambassador program | ${site.name}`,
   "/dashboard": `founder dashboard | ${site.name}`,
 };
 
@@ -72,6 +74,10 @@ export default function App() {
         </Suspense>
       ) : route === "/apply" ? (
         <ApplyPage />
+      ) : route === "/apply/ambassador" ? (
+        <main id="main" className="apply-page">
+          <AmbassadorApply />
+        </main>
       ) : route === "/apply/pre-founder" ? (
         <main id="main" className="apply-page">
           <PreFounderApply />

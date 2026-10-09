@@ -250,3 +250,95 @@ export async function submitPreFounder(
     };
   }
 }
+
+export type AmbassadorInput = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  school: string;
+  gradYear: string;
+  linkedin: string;
+  why: string;
+  resume?: File | null;
+};
+
+/**
+ * Campus ambassador program. Resume optional; the row goes to its own table.
+ * Never throws.
+ */
+export async function submitAmbassador(
+  input: AmbassadorInput,
+): Promise<SubmitResult> {
+  const firstName = input.firstName.trim();
+  const lastName = input.lastName.trim();
+  const email = input.email.trim();
+  const school = input.school.trim();
+  const why = input.why.trim();
+  if (!firstName || !lastName || !emailOk(email) || !school || !why) {
+    return { ok: false, message: "" };
+  }
+  if (countWords(why) > WORD_LIMIT) {
+    return { ok: false, message: MESSAGES.tooLong };
+  }
+  const resume = input.resume ?? null;
+  if (resume) {
+    const problem = validateResume(resume);
+    if (problem) return { ok: false, message: problem };
+  }
+
+  const supabase = getSupabase();
+  if (!supabase) return { ok: false, message: MESSAGES.notConfigured };
+
+  try {
+    let resumePath: string | null = null;
+    if (resume) {
+      const path = `ambassador/${crypto.randomUUID()}/${sanitizeFileName(resume.name)}`;
+      const upload = await supabase.storage
+        .from("resumes")
+        .upload(path, resume, {
+          upsert: false,
+          contentType: resume.type || undefined,
+        });
+      if (upload.error) {
+        return {
+          ok: false,
+          message: isNetworkError(upload.error)
+            ? MESSAGES.network
+            : MESSAGES.resumeUpload,
+        };
+      }
+      resumePath = path;
+    }
+
+    // Anon may INSERT but not SELECT, so the id is minted client-side.
+    const id = crypto.randomUUID();
+    const { error } = await supabase.from("ambassador_applications").insert({
+      id,
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      school,
+      grad_year: input.gradYear.trim() || null,
+      linkedin: input.linkedin.trim() || null,
+      why,
+      resume_path: resumePath,
+      user_agent:
+        typeof navigator === "undefined"
+          ? null
+          : navigator.userAgent.slice(0, 512),
+      source: "web",
+    });
+    if (error) {
+      return {
+        ok: false,
+        message: isNetworkError(error) ? MESSAGES.network : MESSAGES.generic,
+      };
+    }
+    return { ok: true, id };
+  } catch (error) {
+    return {
+      ok: false,
+      message: isNetworkError(error) ? MESSAGES.network : MESSAGES.generic,
+    };
+  }
+}
