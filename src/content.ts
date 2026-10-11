@@ -620,6 +620,6 @@ export const closing = {
 export const footer = {
   disclaimer:
     "an independent network. not affiliated with or endorsed by Harvard University or MIT.",
-  copyright: `\u00A9 ${site.year} Boston Square Ventures`,
+  copyright: `\u00A9 ${site.year} Boston Square Ventures Inc.`,
   backToTop: "back to top",
 };
