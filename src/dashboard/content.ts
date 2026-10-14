@@ -1,15 +1,15 @@
 /**
- * Founder dashboard content.
+ * Founder dashboard copy and types.
  *
- * Separate from the marketing `src/content.ts` so the public site and the
- * cohort-only surface can be edited without stepping on each other.
- *
- * [PLACEHOLDER] markers are things Soneesh and Hadi still need to supply.
+ * The cohort's actual content (curriculum, check-in links, perks, compute
+ * list) lives in Supabase `cohort_content` and is only readable by signed-in
+ * cohort members, so it never ships in the public JS bundle. Only UI strings
+ * and the public cohort dates live here.
  */
 
 export const cohort = {
+  id: "cohort-01",
   name: "cohort 01",
-  /** Kickoff and demo day, mirroring the public site. */
   startIso: "2026-10-15",
   demoDayIso: "2026-11-20T18:00:00-05:00",
   demoDayLabel: "Friday, November 20, 2026",
@@ -27,87 +27,7 @@ export type Week = {
   homework: string;
 };
 
-export const curriculum: { note: string[]; weeks: Week[] } = {
-  note: [
-    "lectures: once a week, 30 minutes, recorded.",
-    "homework: once a week. part-timers and full-timers welcome.",
-  ],
-  // [PLACEHOLDER] draft, carried over from the original four-week program and
-  // stretched to five working weeks plus demo day. Replace with the real plan.
-  weeks: [
-    {
-      number: "01",
-      startIso: "2026-10-15",
-      theme: "problem",
-      lecture: "who hurts, how much, and how you'd prove it.",
-      homework: "ten real conversations with people who have the problem.",
-    },
-    {
-      number: "02",
-      startIso: "2026-10-22",
-      theme: "product",
-      lecture: "the smallest thing that could possibly work.",
-      homework: "ship a v0. ugly is fine. imaginary is not.",
-    },
-    {
-      number: "03",
-      startIso: "2026-10-29",
-      theme: "distribution",
-      lecture: "getting strangers to use it without begging friends.",
-      homework: "first ten users you don't know.",
-    },
-    {
-      number: "04",
-      startIso: "2026-11-05",
-      theme: "traction",
-      lecture: "retention, and the numbers that actually matter.",
-      homework: "a number that moved, and why you think it moved.",
-    },
-    {
-      number: "05",
-      startIso: "2026-11-12",
-      theme: "story",
-      lecture: "the pitch, the numbers, and the ask.",
-      homework: "four minutes, rehearsed out loud, in front of someone.",
-    },
-    {
-      number: "06",
-      startIso: "2026-11-19",
-      theme: "demo day",
-      lecture: "run of show, order, and who is in the room.",
-      homework: "demo day. four minutes. the network is watching.",
-    },
-  ],
-};
-
-export const checkins = {
-  weekly: {
-    label: "weekly check-in",
-    when: "Wednesdays, 7:00pm ET",
-    note: "the whole cohort, 45 minutes.",
-    // [PLACEHOLDER] paste the recurring Google Meet / Zoom link here.
-    href: "",
-  },
-  booking: {
-    label: "book extra time",
-    note: "any time during the week, with both of us.",
-    // [PLACEHOLDER] a Cal.com or Calendly link with Soneesh + Hadi on the
-    // same event. Until this is set the dashboard shows it as pending.
-    href: "",
-  },
-};
-
-/**
- * Unlocks are manual: Soneesh and Hadi decide when a founder is ready for a
- * given firm, flip the row in Supabase, and the founder sees it here. There is
- * no deadline and no automatic criteria.
- */
-export const vcBoard = {
-  /** [PLACEHOLDER] the 15 firm names are not decided yet. */
-  slots: 15,
-  lockedLabel: "locked",
-  lockedNote: "unlocked when we think you're ready",
-};
+export type CheckinSlot = { label: string; note: string; href: string; when?: string };
 
 export type Partner = {
   name: string;
@@ -118,85 +38,56 @@ export type Partner = {
   cta: string;
 };
 
-/**
- * Partner perks. Links go straight to the partner; the Gusto one is our
- * affiliate link, so keep it exactly as issued.
- */
-export const perks: { heading: string; body: string; partners: Partner[] } = {
-  heading: "compute, credits, and perks.",
-  body: "what cohort 01 gets on top of the program. if anything here doesn't work for you, tell us and we'll sort it out.",
-  partners: [
-    {
-      name: "Rho",
-      value: "$200K",
-      label: "in compute and credits",
-      body: "startups banking with Rho can open the Rho perks page for $200K in compute and credits. we also give you free incorporation and free banking through Rho.",
-      href: "https://www.rho.co/perks",
-      cta: "open Rho perks",
-    },
-    {
-      name: "Gusto",
-      value: "payroll",
-      label: "payroll, benefits, and HR",
-      body: "when you hire, set up payroll, benefits, and HR through Gusto using our link.",
-      href: "https://gusto.com/go/bd/bostonsquareventures?cache_reset=1792005923038",
-      cta: "sign up for Gusto",
-    },
-  ],
-};
-
 export type ComputeGroup = { title: string; items: string[] };
 
-/**
- * Names only, no amounts. Most of these are partner or student programmes with
- * their own eligibility and their own application, so the heading says
- * "through our network" rather than implying Boston Square grants them.
- */
-export const compute: { note: string; groups: ComputeGroup[] } = {
-  note: "available through our network. several have their own application and eligibility. ask us and we'll point you at the right one.",
-  groups: [
-    {
-      title: "cloud & infrastructure",
-      items: ["AWS", "Google Cloud", "Supabase", "Blaxel"],
-    },
-    {
-      title: "ai & developer tools",
-      items: [
-        "Devin",
-        "Browser Use",
-        "Sarvam AI",
-        "Firecrawl",
-        "Langfuse",
-        "Greptile",
-        "Respan",
-        "Roboflow",
-        "Gumloop",
-        "AgentMail",
-        "Corsair",
-      ],
-    },
-    {
-      title: "voice & video",
-      items: ["Deepgram", "Bolna AI", "Tavus", "sync."],
-    },
-    {
-      title: "other",
-      items: ["Razorpay", "Coinbase / Base", "écentic"],
-    },
-  ],
+/** Shape of `cohort_content.data`. */
+export type CohortContent = {
+  curriculum: { note: string[]; weeks: Week[] };
+  checkins: { weekly: CheckinSlot; booking: CheckinSlot };
+  perks: { heading: string; body: string; partners: Partner[] };
+  compute: { note: string; groups: ComputeGroup[] };
+  vcSlots: number;
+};
+
+export const sections = [
+  { id: "overview", label: "overview" },
+  { id: "curriculum", label: "curriculum" },
+  { id: "investors", label: "investors" },
+  { id: "checkins", label: "check-ins" },
+  { id: "perks", label: "compute, credits & perks" },
+] as const;
+
+export type SectionId = (typeof sections)[number]["id"] | "team";
+
+export const login = {
+  eyebrow: "cohort 01 · founder dashboard",
+  heading: "sign in.",
+  body: "for founders in Boston Square Ventures cohort 01.",
+  email: "email",
+  password: "password",
+  submit: "sign in",
+  sending: "signing in…",
+  error: "that email and password don't match.",
+  forgot:
+    "forgot your password or never set one? message Soneesh or Hadi and we'll send you a new link.",
+  notMember:
+    "you're signed in, but this email isn't on the cohort 01 list. if that's a mistake, message Soneesh or Hadi.",
+  setHeading: "set your password.",
+  setBody: "pick a password for your dashboard. at least 8 characters.",
+  setSubmit: "save password",
+  setShort: "use at least 8 characters.",
+  setMismatch: "the two passwords don't match.",
 };
 
 export const computeForm = {
   heading: "what compute do you need?",
   body: "tell us what you're trying to run and we'll go get it.",
   fields: {
-    founder: "your name",
-    email: "email",
     need: "what do you need, and what are you building with it?",
-    tools: "anything from the list above? (optional)",
+    tools: "anything from the list below? (optional)",
   },
   submit: "send request",
   sending: "sending…",
   success: "got it. we'll come back to you.",
-  error: "please tell us your name, a valid email, and what you need.",
+  error: "tell us what you need.",
 };

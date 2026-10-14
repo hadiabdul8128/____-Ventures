@@ -1,380 +1,356 @@
-import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { ArrowUpRight, Check, Lock } from "lucide-react";
-import { Reveal } from "@/components/Shell";
+import { useEffect, useState, type FormEvent } from "react";
+import type { Session } from "@supabase/supabase-js";
 import {
-  checkins,
+  BookOpen,
+  CalendarClock,
+  Gift,
+  Landmark,
+  LayoutDashboard,
+  LogOut,
+  Users,
+} from "lucide-react";
+import { Mark } from "@/components/Mark";
+import {
   cohort,
-  compute,
-  computeForm,
-  curriculum,
-  perks,
-  vcBoard,
+  login,
+  sections,
+  type CohortContent,
+  type SectionId,
 } from "@/dashboard/content";
 import {
+  fetchContent,
+  fetchMe,
   fetchVcUnlocks,
-  submitComputeRequest,
+  getCohortClient,
+  type Member,
   type VcUnlock,
 } from "@/lib/dashboard";
-import { emailOk } from "@/lib/applications";
+import {
+  CheckIns,
+  Curriculum,
+  Investors,
+  Overview,
+  Perks,
+  useCountdown,
+} from "@/dashboard/panels";
+import { Team } from "@/dashboard/Team";
 
-const DAY = 24 * 60 * 60 * 1000;
+// Read before the Supabase client consumes and clears the hash: a set-password
+// link lands here as #access_token=…&type=invite (or type=recovery).
+const landing = typeof window === "undefined" ? "" : window.location.hash;
+const arrivedToSetPassword = /type=(invite|recovery)/.test(landing);
+const arrivedWithError = /error_code=|error=/.test(landing)
+  ? "that link has expired or was already used. ask Soneesh or Hadi for a new one."
+  : "";
 
-function useNow(tickMs = 1000) {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const id = window.setInterval(() => setNow(Date.now()), tickMs);
-    return () => window.clearInterval(id);
-  }, [tickMs]);
-  return now;
+const ICONS: Record<SectionId, typeof LayoutDashboard> = {
+  overview: LayoutDashboard,
+  curriculum: BookOpen,
+  investors: Landmark,
+  checkins: CalendarClock,
+  perks: Gift,
+  team: Users,
+};
+
+function sectionFromHash(): SectionId {
+  const id = window.location.hash.replace("#", "");
+  if (id === "team" || sections.some((s) => s.id === id)) return id as SectionId;
+  return "overview";
 }
 
-function Countdown() {
-  const now = useNow();
-  const target = useMemo(() => new Date(cohort.demoDayIso).getTime(), []);
-  const start = useMemo(() => new Date(cohort.startIso).getTime(), []);
+// ------------------------------------------------------------------ auth --
 
-  const left = Math.max(target - now, 0);
-  const days = Math.floor(left / DAY);
-  const hours = Math.floor((left % DAY) / (60 * 60 * 1000));
-  const minutes = Math.floor((left % (60 * 60 * 1000)) / 60000);
-  const seconds = Math.floor((left % 60000) / 1000);
+function AuthFrame({ children }: { children: React.ReactNode }) {
+  return (
+    <main id="main" className="cd-auth">
+      <div className="cd-auth-card">
+        <a href="/" className="cd-auth-brand" aria-label="Boston Square Ventures home">
+          <Mark size={28} />
+          <span>Boston Square Ventures</span>
+        </a>
+        {children}
+      </div>
+    </main>
+  );
+}
 
-  const total = curriculum.weeks.length;
-  const elapsed = Math.floor((now - start) / (7 * DAY));
-  const week = Math.min(Math.max(elapsed + 1, 1), total);
-  const started = now >= start;
+function Login({ notice }: { notice: string }) {
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const supabase = getCohortClient();
+    if (!supabase || status === "sending") return;
+    const data = new FormData(event.currentTarget);
+    setStatus("sending");
+    const { error } = await supabase.auth.signInWithPassword({
+      email: String(data.get("email") ?? "").trim(),
+      password: String(data.get("password") ?? ""),
+    });
+    setStatus(error ? "error" : "idle");
+  };
 
   return (
-    <div className="dash-countdown">
-      <p className="key-date-label">demo day 01</p>
-      <div className="dash-clock" aria-label={`${days} days until demo day`}>
-        {[
-          [days, "days"],
-          [hours, "hrs"],
-          [minutes, "min"],
-          [seconds, "sec"],
-        ].map(([value, unit]) => (
-          <span className="dash-clock-unit" key={unit as string}>
-            <span className="dash-clock-value">
-              {String(value).padStart(2, "0")}
-            </span>
-            <span className="dash-clock-label">{unit as string}</span>
-          </span>
-        ))}
-      </div>
-      <p className="key-date-note">
-        {cohort.demoDayLabel}, {cohort.demoDayTime}.{" "}
-        {started
-          ? `week ${week} of ${total}.`
-          : `${cohort.name} starts October 15.`}{" "}
-        then every {cohort.cadenceWeeks} weeks.
+    <AuthFrame>
+      <p className="eyebrow">{login.eyebrow}</p>
+      <h1 className="cd-auth-heading">{login.heading}</h1>
+      <p className="cd-muted">{login.body}</p>
+      {notice && (
+        <p className="form-error" role="alert">
+          {notice}
+        </p>
+      )}
+      <form className="apply-form cd-auth-form" onSubmit={onSubmit}>
+        <label>
+          {login.email}
+          <input name="email" type="email" autoComplete="email" required />
+        </label>
+        <label>
+          {login.password}
+          <input
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            required
+          />
+        </label>
+        {status === "error" && (
+          <p className="form-error" role="alert">
+            {login.error}
+          </p>
+        )}
+        <button type="submit" className="btn btn--solid" disabled={status === "sending"}>
+          {status === "sending" ? login.sending : login.submit}
+        </button>
+      </form>
+      <p className="cd-hint">{login.forgot}</p>
+    </AuthFrame>
+  );
+}
+
+function SetPassword({ email, onDone }: { email: string; onDone: () => void }) {
+  const [error, setError] = useState("");
+  const [sending, setSending] = useState(false);
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const password = String(data.get("password") ?? "");
+    if (password.length < 8) return setError(login.setShort);
+    if (password !== String(data.get("confirm") ?? "")) return setError(login.setMismatch);
+    const supabase = getCohortClient();
+    if (!supabase) return;
+    setSending(true);
+    const { error: err } = await supabase.auth.updateUser({ password });
+    setSending(false);
+    if (err) return setError(err.message.toLowerCase());
+    onDone();
+  };
+
+  return (
+    <AuthFrame>
+      <p className="eyebrow">{login.eyebrow}</p>
+      <h1 className="cd-auth-heading">{login.setHeading}</h1>
+      <p className="cd-muted">
+        {login.setBody} you'll sign in as <strong>{email}</strong>.
       </p>
-    </div>
+      <form className="apply-form cd-auth-form" onSubmit={onSubmit}>
+        <input type="email" name="username" value={email} autoComplete="username" readOnly hidden />
+        <label>
+          new password
+          <input name="password" type="password" autoComplete="new-password" required />
+        </label>
+        <label>
+          confirm password
+          <input name="confirm" type="password" autoComplete="new-password" required />
+        </label>
+        {error && (
+          <p className="form-error" role="alert">
+            {error}
+          </p>
+        )}
+        <button type="submit" className="btn btn--solid" disabled={sending}>
+          {sending ? "saving…" : login.setSubmit}
+        </button>
+      </form>
+    </AuthFrame>
   );
 }
 
-function Curriculum() {
-  const now = useNow(60_000);
-  const currentIndex = curriculum.weeks.reduce((acc, wk, i) => {
-    return now >= new Date(wk.startIso).getTime() ? i : acc;
-  }, -1);
+// ----------------------------------------------------------------- shell --
 
-  return (
-    <section className="dash-block" aria-labelledby="dash-curriculum">
-      <h2 id="dash-curriculum">curriculum.</h2>
-      <div className="dash-note">
-        {curriculum.note.map((line) => {
-          const [label, ...rest] = line.split(":");
-          return (
-            <p key={line}>
-              <strong>{label}:</strong>
-              {rest.join(":")}
-            </p>
-          );
-        })}
-      </div>
-      <ol className="dash-weeks">
-        {curriculum.weeks.map((wk, i) => (
-          <li
-            key={wk.number}
-            className="dash-week"
-            data-state={
-              i === currentIndex ? "now" : i < currentIndex ? "done" : "ahead"
-            }
-          >
-            <span className="dash-week-number">{wk.number}</span>
-            <div className="dash-week-body">
-              <h3>
-                {wk.theme}
-                {i === currentIndex && (
-                  <span className="dash-pill">this week</span>
-                )}
-              </h3>
-              <dl>
-                <div>
-                  <dt>lecture</dt>
-                  <dd>{wk.lecture}</dd>
-                </div>
-                <div>
-                  <dt>homework</dt>
-                  <dd>{wk.homework}</dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
-}
-
-function VcBoard() {
-  const [rows, setRows] = useState<VcUnlock[] | null>(null);
-  const [loaded, setLoaded] = useState(false);
+function Shell({ me, onSignOut }: { me: Member; onSignOut: () => void }) {
+  const [section, setSection] = useState<SectionId>(sectionFromHash);
+  const [content, setContent] = useState<CohortContent | null>(null);
+  const [vcs, setVcs] = useState<VcUnlock[] | null>(null);
+  const [loadError, setLoadError] = useState(false);
+  const { days } = useCountdown();
 
   useEffect(() => {
     let alive = true;
-    fetchVcUnlocks().then((data) => {
+    Promise.all([fetchContent(), fetchVcUnlocks()]).then(([c, v]) => {
       if (!alive) return;
-      setRows(data);
-      setLoaded(true);
+      setContent(c);
+      setVcs(v);
+      setLoadError(!c);
     });
     return () => {
       alive = false;
     };
   }, []);
 
-  // Until the table exists (or the names are decided) show empty slots so the
-  // shape of the thing is visible.
-  const slots: VcUnlock[] =
-    rows && rows.length
-      ? rows
-      : Array.from({ length: vcBoard.slots }, (_, i) => ({
-          id: `placeholder-${i}`,
-          firm: null,
-          position: i + 1,
-          status: "locked" as const,
-          note: null,
-        }));
-
-  return (
-    <section className="dash-block" aria-labelledby="dash-vcs">
-      <h2 id="dash-vcs">your investor list.</h2>
-      <p className="dash-lede">
-        {vcBoard.slots} firms. we unlock one when we think you're ready and the
-        intro will land. no deadline, no checklist.
-      </p>
-      <ul className="dash-vcs">
-        {slots.map((slot) => {
-          const unlocked = slot.status !== "locked";
-          return (
-            <li
-              key={slot.id}
-              className="dash-vc"
-              data-status={slot.status}
-              aria-label={
-                unlocked ? (slot.firm ?? "unlocked") : vcBoard.lockedLabel
-              }
-            >
-              <span className="dash-vc-index">
-                {String(slot.position).padStart(2, "0")}
-              </span>
-              <span className="dash-vc-name">
-                {unlocked ? (slot.firm ?? "unlocked") : vcBoard.lockedLabel}
-              </span>
-              {unlocked ? (
-                <Check size={14} aria-hidden="true" />
-              ) : (
-                <Lock size={13} aria-hidden="true" />
-              )}
-            </li>
-          );
-        })}
-      </ul>
-      {loaded && !rows && (
-        <p className="dash-hint">
-          not reading live unlock state. run the dashboard migration and set
-          the Supabase env vars to connect it.
-        </p>
-      )}
-    </section>
-  );
-}
-
-function CheckIns() {
-  return (
-    <section className="dash-block" aria-labelledby="dash-checkins">
-      <h2 id="dash-checkins">check-ins.</h2>
-      <div className="dash-two">
-        <div className="dash-card">
-          <p className="key-date-label">{checkins.weekly.label}</p>
-          <p className="dash-card-value">{checkins.weekly.when}</p>
-          <p className="key-date-note">{checkins.weekly.note}</p>
-          {checkins.weekly.href ? (
-            <a
-              className="btn btn--ghost btn--sm"
-              href={checkins.weekly.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              join the call <ArrowUpRight size={14} />
-            </a>
-          ) : (
-            <p className="dash-hint">meeting link not set yet.</p>
-          )}
-        </div>
-        <div className="dash-card">
-          <p className="key-date-label">{checkins.booking.label}</p>
-          <p className="dash-card-value">any time this week</p>
-          <p className="key-date-note">{checkins.booking.note}</p>
-          {checkins.booking.href ? (
-            <a
-              className="btn btn--ghost btn--sm"
-              href={checkins.booking.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              book a slot <ArrowUpRight size={14} />
-            </a>
-          ) : (
-            <p className="dash-hint">booking link not set yet.</p>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ComputeRequest() {
-  const [status, setStatus] = useState<"idle" | "sending" | "error" | "done">(
-    "idle",
-  );
-  const [message, setMessage] = useState(computeForm.error);
-
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (status === "sending") return;
-    const data = new FormData(event.currentTarget);
-    const get = (k: string) => String(data.get(k) ?? "").trim();
-    const input = {
-      founder: get("founder"),
-      email: get("email"),
-      need: get("need"),
-      tools: get("tools"),
-    };
-    if (!input.founder || !emailOk(input.email) || !input.need) {
-      setMessage(computeForm.error);
-      setStatus("error");
-      return;
-    }
-    setStatus("sending");
-    const result = await submitComputeRequest(input);
-    if (!result.ok) {
-      setMessage(result.message || computeForm.error);
-      setStatus("error");
-      return;
-    }
-    setStatus("done");
+  const go = (id: SectionId) => {
+    setSection(id);
+    window.history.replaceState(null, "", `#${id}`);
+    window.scrollTo({ top: 0 });
   };
 
+  const nav = me.role === "admin" ? [...sections, { id: "team" as const, label: "team" }] : sections;
+  const current = nav.find((s) => s.id === section) ?? nav[0];
+  const first = (me.name || me.email).split(/[\s@]/)[0];
+
   return (
-    <section className="dash-block" aria-labelledby="dash-perks">
-      <h2 id="dash-perks">{perks.heading}</h2>
-      <p className="dash-lede">{perks.body}</p>
-      <div className="dash-two">
-        {perks.partners.map((p) => (
-          <div className="dash-card" key={p.name}>
-            <p className="key-date-label">{p.name}</p>
-            <p className="dash-card-value">{p.value}</p>
-            <p className="key-date-note">{p.label}</p>
-            <p className="dash-perk-body">{p.body}</p>
-            <a
-              className="btn btn--ghost btn--sm"
-              href={p.href}
-              target="_blank"
-              rel="noopener sponsored"
-            >
-              {p.cta} <ArrowUpRight size={14} />
-            </a>
-          </div>
-        ))}
-      </div>
-
-      <h3 className="dash-subhead" id="dash-compute">
-        {computeForm.heading}
-      </h3>
-      <p className="dash-lede">{computeForm.body}</p>
-
-      {status === "done" ? (
-        <p className="dash-success">
-          <Check size={16} /> {computeForm.success}
-        </p>
-      ) : (
-        <form className="apply-form dash-form" onSubmit={onSubmit} noValidate>
-          <div className="two">
-            <label>
-              {computeForm.fields.founder}
-              <input name="founder" autoComplete="name" required />
-            </label>
-            <label>
-              {computeForm.fields.email}
-              <input name="email" type="email" autoComplete="email" required />
-            </label>
-          </div>
-          <label>
-            {computeForm.fields.need}
-            <textarea name="need" required />
-          </label>
-          <label>
-            {computeForm.fields.tools}
-            <input name="tools" placeholder="AWS, Deepgram, …" />
-          </label>
-          {status === "error" && (
-            <p className="form-error" role="alert">
-              {message}
-            </p>
-          )}
-          <button
-            type="submit"
-            className="btn btn--solid"
-            style={{ justifySelf: "start" }}
-            disabled={status === "sending"}
-          >
-            {status === "sending" ? computeForm.sending : computeForm.submit}
+    <div className="cd">
+      <aside className="cd-side" aria-label="dashboard">
+        <a href="/" className="cd-brand" aria-label="Boston Square Ventures home">
+          <Mark size={26} />
+          <span>
+            Boston Square
+            <small>{cohort.name}</small>
+          </span>
+        </a>
+        <nav className="cd-nav">
+          {nav.map((s) => {
+            const Icon = ICONS[s.id];
+            return (
+              <button
+                key={s.id}
+                type="button"
+                className="cd-nav-item"
+                aria-current={s.id === section ? "page" : undefined}
+                onClick={() => go(s.id)}
+              >
+                <Icon size={16} aria-hidden="true" />
+                <span>{s.label}</span>
+              </button>
+            );
+          })}
+        </nav>
+        <div className="cd-user">
+          <span className="cd-avatar" aria-hidden="true">
+            {first.charAt(0).toUpperCase()}
+          </span>
+          <span className="cd-user-text">
+            <strong>{me.name || first}</strong>
+            <small>{me.company || me.role}</small>
+          </span>
+          <button type="button" className="cd-icon-btn" onClick={onSignOut} aria-label="sign out" title="sign out">
+            <LogOut size={16} />
           </button>
-        </form>
-      )}
+        </div>
+      </aside>
 
-      <div className="dash-compute-list">
-        <p className="dash-hint">{compute.note}</p>
-        {compute.groups.map((group) => (
-          <div className="dash-compute-group" key={group.title}>
-            <p className="key-date-label">{group.title}</p>
-            <ul>
-              {group.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
+      <main id="main" className="cd-main">
+        <header className="cd-top">
+          <h1>{current.label}</h1>
+          <span className="cd-chip">
+            <span className="cd-dot" aria-hidden="true" />
+            {days} days to demo day
+          </span>
+        </header>
+
+        {loadError ? (
+          <p className="cd-empty">couldn't load the cohort content. refresh, or message Soneesh or Hadi.</p>
+        ) : !content ? (
+          <div className="cd-skeleton" aria-busy="true" aria-label="loading">
+            <span />
+            <span />
+            <span />
           </div>
-        ))}
-      </div>
-    </section>
+        ) : section === "overview" ? (
+          <Overview me={me} content={content} vcs={vcs} go={go} />
+        ) : section === "curriculum" ? (
+          <Curriculum content={content} />
+        ) : section === "investors" ? (
+          <Investors content={content} vcs={vcs} />
+        ) : section === "checkins" ? (
+          <CheckIns content={content} />
+        ) : section === "perks" ? (
+          <Perks content={content} me={me} />
+        ) : section === "team" && me.role === "admin" ? (
+          <Team me={me} />
+        ) : null}
+      </main>
+    </div>
   );
 }
 
+// ------------------------------------------------------------------ root --
+
+type State =
+  | { kind: "loading" }
+  | { kind: "signed-out" }
+  | { kind: "set-password"; email: string }
+  | { kind: "not-member"; email: string }
+  | { kind: "in"; me: Member };
+
 export function Dashboard() {
-  return (
-    <main id="main" className="dash">
-      <div className="wrap">
-        <Reveal className="dash-head">
-          <p className="eyebrow">{cohort.name} · founder dashboard</p>
-          <Countdown />
-        </Reveal>
-        <Curriculum />
-        <VcBoard />
-        <CheckIns />
-        <ComputeRequest />
-      </div>
-    </main>
-  );
+  const [state, setState] = useState<State>({ kind: "loading" });
+  const [needsPassword, setNeedsPassword] = useState(arrivedToSetPassword);
+
+  useEffect(() => {
+    const supabase = getCohortClient();
+    if (!supabase) {
+      setState({ kind: "signed-out" });
+      return;
+    }
+    let alive = true;
+
+    const resolve = async (session: Session | null) => {
+      const email = session?.user.email;
+      if (!email) return alive && setState({ kind: "signed-out" });
+      if (needsPassword) return alive && setState({ kind: "set-password", email });
+      const me = await fetchMe(email);
+      if (!alive) return;
+      setState(me ? { kind: "in", me } : { kind: "not-member", email });
+    };
+
+    supabase.auth.getSession().then(({ data }) => resolve(data.session));
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY") setNeedsPassword(true);
+      if (event === "SIGNED_IN" || event === "SIGNED_OUT" || event === "USER_UPDATED") {
+        // Defer: supabase-js warns against awaiting its own calls in here.
+        setTimeout(() => resolve(session), 0);
+      }
+    });
+    return () => {
+      alive = false;
+      sub.subscription.unsubscribe();
+    };
+  }, [needsPassword]);
+
+  const signOut = async () => {
+    await getCohortClient()?.auth.signOut();
+    window.history.replaceState(null, "", window.location.pathname);
+    setState({ kind: "signed-out" });
+  };
+
+  if (state.kind === "loading") return <main id="main" className="cd-auth" aria-busy="true" />;
+  if (state.kind === "signed-out") return <Login notice={arrivedWithError} />;
+  if (state.kind === "set-password")
+    return <SetPassword email={state.email} onDone={() => setNeedsPassword(false)} />;
+  if (state.kind === "not-member")
+    return (
+      <AuthFrame>
+        <h1 className="cd-auth-heading">not on the list.</h1>
+        <p className="cd-muted">{login.notMember}</p>
+        <p className="cd-muted">
+          signed in as <strong>{state.email}</strong>.
+        </p>
+        <button type="button" className="btn btn--ghost" onClick={signOut}>
+          sign out
+        </button>
+      </AuthFrame>
+    );
+  return <Shell me={state.me} onSignOut={signOut} />;
 }

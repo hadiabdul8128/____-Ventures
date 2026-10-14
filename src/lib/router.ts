@@ -17,8 +17,7 @@ export type Route =
   | "/apply"
   | "/apply/pre-founder"
   | "/apply/scout"
-  | "/cohort-01"
-  | "/dashboard";
+  | "/cohort-01";
 
 export function toRoute(pathname: string): Route {
   const path = pathname.replace(/\/+$/, "");
@@ -26,12 +25,8 @@ export function toRoute(pathname: string): Route {
   if (path === "/apply/pre-founder") return "/apply/pre-founder";
   // The program was renamed from "ambassador" to "scout"; keep old links working.
   if (path === "/apply/scout" || path === "/apply/ambassador") return "/apply/scout";
-  // Unlisted cohort dashboard. Anyone with the link can open it; there is no
-  // login yet, so keep anything private out of it.
-  if (path === "/cohort-01") return "/cohort-01";
-  // Dev only for now: the production build drops the dashboard entirely, so
-  // /dashboard cannot be reached on the live site until we add real auth.
-  if (path === "/dashboard" && import.meta.env.DEV) return "/dashboard";
+  // Cohort dashboard. Behind Supabase sign-in plus the cohort_members list.
+  if (path === "/cohort-01" || path === "/dashboard") return "/cohort-01";
   return "/";
 }
 

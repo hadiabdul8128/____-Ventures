@@ -12,8 +12,8 @@ import { site } from "@/content";
 import InteractiveNeuralVortex from "@/components/ui/interactive-neural-vortex-background";
 
 /**
- * Lazy so the landing page never downloads the cohort dashboard. It ships at
- * the unlisted /cohort-01 link; /dashboard stays dev only.
+ * Lazy so the landing page never downloads the cohort dashboard. The chunk is
+ * just UI: the cohort's content is fetched from Supabase after sign-in.
  */
 const Dashboard = lazy(() =>
   import("@/dashboard/Dashboard").then((m) => ({ default: m.Dashboard })),
@@ -25,7 +25,6 @@ const TITLES: Record<string, string> = {
   "/apply/pre-founder": `apply to the pre-founder track | ${site.name}`,
   "/apply/scout": `apply to the campus scout program | ${site.name}`,
   "/cohort-01": `cohort 01 dashboard | ${site.name}`,
-  "/dashboard": `founder dashboard | ${site.name}`,
 };
 
 function Landing() {
@@ -57,9 +56,9 @@ export default function App() {
 
   useEffect(() => {
     document.title = TITLES[route] ?? TITLES["/"];
-    // Keep the unlisted dashboard out of search results.
+    // Keep the sign-in page out of search results.
     let robots = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
-    if (route === "/cohort-01" || route === "/dashboard") {
+    if (route === "/cohort-01") {
       if (!robots) {
         robots = document.createElement("meta");
         robots.name = "robots";
@@ -76,8 +75,8 @@ export default function App() {
       <a className="skip-link" href="#main">
         skip to content
       </a>
-      <Header />
-      {route === "/cohort-01" || route === "/dashboard" ? (
+      {route !== "/cohort-01" && <Header />}
+      {route === "/cohort-01" ? (
         <Suspense fallback={null}>
           <Dashboard />
         </Suspense>
@@ -94,7 +93,7 @@ export default function App() {
       ) : (
         <Landing />
       )}
-      <Footer />
+      {route !== "/cohort-01" && <Footer />}
     </MotionConfig>
   );
 }
