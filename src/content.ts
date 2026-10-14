@@ -67,7 +67,7 @@ export const site = {
     "From square one to your first raise. Capital, compute, and a founder network.",
   applyHref: "/apply",
   preFounderHref: "/apply/pre-founder",
-  ambassadorHref: "/apply/ambassador",
+  ambassadorHref: "/apply/scout",
   year: new Date().getFullYear(),
 };
 
@@ -225,9 +225,9 @@ export const tracks: { eyebrow: string; heading: string; items: Track[] } = {
     },
     {
       number: "03",
-      name: "Campus Ambassador Program",
+      name: "Campus Scout Program",
       body: "represent Boston Square Ventures at your school. find founders, host events, and grow the network on your campus.",
-      cta: { label: "become an ambassador", href: "/apply/ambassador" },
+      cta: { label: "become a scout", href: "/apply/scout" },
     },
     {
       number: "04",
@@ -266,6 +266,12 @@ export const offer: {
       value: "$100k",
       label: "compute credits",
       note: "Azure, AWS, Supabase, etc.",
+    },
+    {
+      value: "free",
+      label: "startup support",
+      note: "incorporation, banking, and anything else you need",
+      kind: "word",
     },
     { value: "01", label: "cohort", note: "small on purpose" },
     { value: "100%", label: "founder-run", note: "by students who ship" },
@@ -310,7 +316,7 @@ export const offer: {
 
 export const facts: Fact[] = [
   {
-    value: 20,
+    value: 100,
     prefix: "$",
     suffix: "K",
     label: "compute credits",
@@ -341,7 +347,7 @@ export const perks: { eyebrow: string; heading: string; items: Perk[] } = {
     },
     {
       title: "startup resources",
-      body: "$20,000 in compute credits across Azure, AWS, Supabase, etc., plus the templates and checklists that save you weeks.",
+      body: "$100,000 in compute credits across Azure, AWS, Supabase, etc., plus free incorporation, free banking, and anything else you need to get your company off the ground.",
     },
     {
       title: "opportunity accelerator",
@@ -590,8 +596,8 @@ export const preFounder = {
 };
 
 export const ambassador = {
-  eyebrow: "apply · campus ambassador program",
-  heading: "become a campus ambassador.",
+  eyebrow: "apply · campus scout program",
+  heading: "become a campus scout.",
   body: "Represent Boston Square Ventures at your school. Find founders, host events, and grow the network on your campus.",
   fields: {
     firstName: "first name",

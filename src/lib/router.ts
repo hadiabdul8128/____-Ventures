@@ -16,14 +16,15 @@ export type Route =
   | "/"
   | "/apply"
   | "/apply/pre-founder"
-  | "/apply/ambassador"
+  | "/apply/scout"
   | "/dashboard";
 
 export function toRoute(pathname: string): Route {
   const path = pathname.replace(/\/+$/, "");
   if (path === "/apply") return "/apply";
   if (path === "/apply/pre-founder") return "/apply/pre-founder";
-  if (path === "/apply/ambassador") return "/apply/ambassador";
+  // The program was renamed from "ambassador" to "scout"; keep old links working.
+  if (path === "/apply/scout" || path === "/apply/ambassador") return "/apply/scout";
   // Dev only for now: the production build drops the dashboard entirely, so
   // /dashboard cannot be reached on the live site until we add real auth.
   if (path === "/dashboard" && import.meta.env.DEV) return "/dashboard";

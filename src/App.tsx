@@ -27,7 +27,7 @@ const TITLES: Record<string, string> = {
   "/": `${site.name}: ${site.tagline}`,
   "/apply": `apply to the fellowship track | ${site.name}`,
   "/apply/pre-founder": `apply to the pre-founder track | ${site.name}`,
-  "/apply/ambassador": `apply to the campus ambassador program | ${site.name}`,
+  "/apply/scout": `apply to the campus scout program | ${site.name}`,
   "/dashboard": `founder dashboard | ${site.name}`,
 };
 
@@ -74,7 +74,7 @@ export default function App() {
         </Suspense>
       ) : route === "/apply" ? (
         <ApplyPage />
-      ) : route === "/apply/ambassador" ? (
+      ) : route === "/apply/scout" ? (
         <main id="main" className="apply-page">
           <AmbassadorApply />
         </main>
