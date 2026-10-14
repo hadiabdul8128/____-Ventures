@@ -2292,7 +2292,19 @@ a.press-link:hover {
   margin-top: 6px;
 }
 
-/* compute */
+/* compute, credits, and perks */
+.dash-perk-body {
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.55;
+}
+.dash-subhead {
+  margin-top: 24px;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
 .dash-form {
   max-width: 720px;
 }

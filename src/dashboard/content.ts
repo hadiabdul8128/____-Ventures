@@ -109,6 +109,42 @@ export const vcBoard = {
   lockedNote: "unlocked when we think you're ready",
 };
 
+export type Partner = {
+  name: string;
+  value: string;
+  label: string;
+  body: string;
+  href: string;
+  cta: string;
+};
+
+/**
+ * Partner perks. Links go straight to the partner; the Gusto one is our
+ * affiliate link, so keep it exactly as issued.
+ */
+export const perks: { heading: string; body: string; partners: Partner[] } = {
+  heading: "compute, credits, and perks.",
+  body: "what cohort 01 gets on top of the program. if anything here doesn't work for you, tell us and we'll sort it out.",
+  partners: [
+    {
+      name: "Rho",
+      value: "$200K",
+      label: "in compute and credits",
+      body: "startups banking with Rho can open the Rho perks page for $200K in compute and credits. we also give you free incorporation and free banking through Rho.",
+      href: "https://www.rho.co/perks",
+      cta: "open Rho perks",
+    },
+    {
+      name: "Gusto",
+      value: "payroll",
+      label: "payroll, benefits, and HR",
+      body: "when you hire, set up payroll, benefits, and HR through Gusto using our link.",
+      href: "https://gusto.com/go/bd/bostonsquareventures?cache_reset=1792005923038",
+      cta: "sign up for Gusto",
+    },
+  ],
+};
+
 export type ComputeGroup = { title: string; items: string[] };
 
 /**

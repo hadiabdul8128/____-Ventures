@@ -7,6 +7,7 @@ import {
   compute,
   computeForm,
   curriculum,
+  perks,
   vcBoard,
 } from "@/dashboard/content";
 import {
@@ -277,8 +278,31 @@ function ComputeRequest() {
   };
 
   return (
-    <section className="dash-block" aria-labelledby="dash-compute">
-      <h2 id="dash-compute">{computeForm.heading}</h2>
+    <section className="dash-block" aria-labelledby="dash-perks">
+      <h2 id="dash-perks">{perks.heading}</h2>
+      <p className="dash-lede">{perks.body}</p>
+      <div className="dash-two">
+        {perks.partners.map((p) => (
+          <div className="dash-card" key={p.name}>
+            <p className="key-date-label">{p.name}</p>
+            <p className="dash-card-value">{p.value}</p>
+            <p className="key-date-note">{p.label}</p>
+            <p className="dash-perk-body">{p.body}</p>
+            <a
+              className="btn btn--ghost btn--sm"
+              href={p.href}
+              target="_blank"
+              rel="noopener sponsored"
+            >
+              {p.cta} <ArrowUpRight size={14} />
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <h3 className="dash-subhead" id="dash-compute">
+        {computeForm.heading}
+      </h3>
       <p className="dash-lede">{computeForm.body}</p>
 
       {status === "done" ? (

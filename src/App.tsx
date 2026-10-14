@@ -12,22 +12,19 @@ import { site } from "@/content";
 import InteractiveNeuralVortex from "@/components/ui/interactive-neural-vortex-background";
 
 /**
- * Dev only. `import.meta.env.DEV` is replaced with `false` at build time, so
- * the dynamic import sits in dead code and the dashboard never reaches the
- * production bundle. A static import would ship the VC board and curriculum
- * to every visitor even with the route blocked.
+ * Lazy so the landing page never downloads the cohort dashboard. It ships at
+ * the unlisted /cohort-01 link; /dashboard stays dev only.
  */
-const Dashboard = import.meta.env.DEV
-  ? lazy(() =>
-      import("@/dashboard/Dashboard").then((m) => ({ default: m.Dashboard })),
-    )
-  : null;
+const Dashboard = lazy(() =>
+  import("@/dashboard/Dashboard").then((m) => ({ default: m.Dashboard })),
+);
 
 const TITLES: Record<string, string> = {
   "/": `${site.name}: ${site.tagline}`,
   "/apply": `apply to the fellowship track | ${site.name}`,
   "/apply/pre-founder": `apply to the pre-founder track | ${site.name}`,
   "/apply/scout": `apply to the campus scout program | ${site.name}`,
+  "/cohort-01": `cohort 01 dashboard | ${site.name}`,
   "/dashboard": `founder dashboard | ${site.name}`,
 };
 
@@ -60,6 +57,18 @@ export default function App() {
 
   useEffect(() => {
     document.title = TITLES[route] ?? TITLES["/"];
+    // Keep the unlisted dashboard out of search results.
+    let robots = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (route === "/cohort-01" || route === "/dashboard") {
+      if (!robots) {
+        robots = document.createElement("meta");
+        robots.name = "robots";
+        document.head.appendChild(robots);
+      }
+      robots.content = "noindex, nofollow";
+    } else {
+      robots?.remove();
+    }
   }, [route]);
 
   return (
@@ -68,7 +77,7 @@ export default function App() {
         skip to content
       </a>
       <Header />
-      {route === "/dashboard" && Dashboard ? (
+      {route === "/cohort-01" || route === "/dashboard" ? (
         <Suspense fallback={null}>
           <Dashboard />
         </Suspense>
