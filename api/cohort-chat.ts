@@ -8,7 +8,7 @@
  * Env (Vercel):
  *   AWS_BEARER_TOKEN_BEDROCK  Bedrock API key (required)
  *   AWS_REGION                default us-east-1
- *   BEDROCK_MODEL_ID          default us.anthropic.claude-sonnet-4-6
+ *   BEDROCK_MODEL_ID          default us.anthropic.claude-opus-4-6-v1
  *   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY  (already set for the site)
  *
  * Responds 503 when Bedrock isn't configured; the client then falls back to
@@ -66,7 +66,7 @@ function parseReply(raw: string) {
 export async function POST(request: Request): Promise<Response> {
   const bedrockKey = (process.env.AWS_BEARER_TOKEN_BEDROCK || "").trim();
   const region = (process.env.AWS_REGION || "us-east-1").trim();
-  const model = (process.env.BEDROCK_MODEL_ID || "us.anthropic.claude-sonnet-4-6").trim();
+  const model = (process.env.BEDROCK_MODEL_ID || "us.anthropic.claude-opus-4-6-v1").trim();
   const base = (process.env.VITE_SUPABASE_URL || "").trim().replace(/\/+$/, "");
   const anon = (process.env.VITE_SUPABASE_ANON_KEY || "").trim();
   if (!bedrockKey || !base || !anon) return json(503, { error: "assistant not configured" });
