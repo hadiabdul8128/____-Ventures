@@ -106,12 +106,17 @@ export function Chat({
   deals,
   progress,
   onProgress,
+  question,
+  onQuestionHandled,
 }: {
   me: Member;
   content: CohortContent;
   deals: Deal[];
   progress: Progress | null;
   onProgress: (p: Progress) => void;
+  /** A question asked from the dashboard home; sent once, then cleared. */
+  question?: string | null;
+  onQuestionHandled?: () => void;
 }) {
   const locked = !isUnlocked(progress);
   const first = (me.name || me.email).split(/[\s@]/)[0];
@@ -159,6 +164,13 @@ export function Chat({
   }, [msgs, thinking]);
 
   const ctx: Ctx = { deals, locked, fee: content.rho.fee };
+
+  useEffect(() => {
+    if (!question) return;
+    onQuestionHandled?.();
+    send(question);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [question]);
 
   const send = async (text: string, viaChip = false) => {
     const clean = text.trim();

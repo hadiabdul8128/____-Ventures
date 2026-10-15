@@ -155,6 +155,27 @@ export async function submitDealRequest(input: {
   }
 }
 
+export type DealRequest = {
+  id: string;
+  created_at: string;
+  companies: string;
+  status: string;
+};
+
+/** The founder's own requests, newest first (RLS limits it to their rows). */
+export async function fetchMyRequests(email: string): Promise<DealRequest[] | null> {
+  const supabase = getCohortClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from("deal_requests")
+    .select("id, created_at, companies, status")
+    .eq("email", email.toLowerCase())
+    .order("created_at", { ascending: false })
+    .limit(10);
+  if (error || !data) return null;
+  return data as DealRequest[];
+}
+
 export type AssistantTurn = { role: "user" | "assistant"; content: string };
 
 export type AssistantReply = {

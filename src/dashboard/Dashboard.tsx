@@ -4,6 +4,7 @@ import {
   CalendarClock,
   Gift,
   Landmark,
+  LayoutDashboard,
   LogOut,
   MessageSquare,
   SendHorizontal,
@@ -32,6 +33,7 @@ import {
 } from "@/lib/dashboard";
 import { CheckIns, Investors, useCountdown } from "@/dashboard/panels";
 import { Chat } from "@/dashboard/Chat";
+import { Home } from "@/dashboard/Home";
 import { DealsPanel, RequestForm, isUnlocked } from "@/dashboard/Deals";
 import { Team } from "@/dashboard/Team";
 
@@ -45,6 +47,7 @@ const arrivedWithError = /error_code=|error=/.test(landing)
   : "";
 
 const ICONS: Record<SectionId, typeof MessageSquare> = {
+  home: LayoutDashboard,
   chat: MessageSquare,
   deals: Gift,
   request: SendHorizontal,
@@ -56,7 +59,7 @@ const ICONS: Record<SectionId, typeof MessageSquare> = {
 function sectionFromHash(): SectionId {
   const id = window.location.hash.replace("#", "");
   if (id === "team" || sections.some((s) => s.id === id)) return id as SectionId;
-  return "chat";
+  return "home";
 }
 
 // ------------------------------------------------------------------ auth --
@@ -187,6 +190,8 @@ function Shell({ me, onSignOut }: { me: Member; onSignOut: () => void }) {
   const [deals, setDeals] = useState<Deal[] | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
   const [loadError, setLoadError] = useState(false);
+  const [question, setQuestion] = useState<string | null>(null);
+  const [category, setCategory] = useState<string | null>(null);
   const { days } = useCountdown();
 
   useEffect(() => {
@@ -206,7 +211,8 @@ function Shell({ me, onSignOut }: { me: Member; onSignOut: () => void }) {
     };
   }, []);
 
-  const go = (id: SectionId) => {
+  const go = (id: SectionId, keepCategory = false) => {
+    if (!keepCategory) setCategory(null);
     setSection(id);
     window.history.replaceState(null, "", `#${id}`);
     window.scrollTo({ top: 0 });
@@ -274,10 +280,33 @@ function Shell({ me, onSignOut }: { me: Member; onSignOut: () => void }) {
             <span />
             <span />
           </div>
-        ) : section === "chat" ? (
-          <Chat me={me} content={content} deals={deals} progress={progress} onProgress={setProgress} />
+        ) : section === "chat" ? null : section === "home" ? (
+          <Home
+            me={me}
+            content={content}
+            deals={deals}
+            progress={progress}
+            vcs={vcs}
+            go={go}
+            onAsk={(q) => {
+              setQuestion(q);
+              go("chat");
+            }}
+            onPickCategory={(c) => {
+              setCategory(c);
+              go("deals", true);
+            }}
+          />
         ) : section === "deals" ? (
-          <DealsPanel deals={deals} rho={content.rho} me={me} progress={progress} onProgress={setProgress} />
+          <DealsPanel
+            key={category ?? "all"}
+            deals={deals}
+            rho={content.rho}
+            me={me}
+            progress={progress}
+            onProgress={setProgress}
+            initialCategory={category}
+          />
         ) : section === "request" ? (
           <div className="cd-stack">
             <section className="cd-card">
@@ -293,6 +322,21 @@ function Shell({ me, onSignOut }: { me: Member; onSignOut: () => void }) {
         ) : section === "team" && me.role === "admin" ? (
           <Team me={me} />
         ) : null}
+
+        {/* Kept mounted so the conversation survives switching tabs. */}
+        {content && deals && !loadError && (
+          <div hidden={section !== "chat"}>
+            <Chat
+              me={me}
+              content={content}
+              deals={deals}
+              progress={progress}
+              onProgress={setProgress}
+              question={section === "chat" ? question : null}
+              onQuestionHandled={() => setQuestion(null)}
+            />
+          </div>
+        )}
       </main>
     </div>
   );

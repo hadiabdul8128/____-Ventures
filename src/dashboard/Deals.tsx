@@ -189,15 +189,17 @@ export function DealsPanel({
   me,
   progress,
   onProgress,
+  initialCategory = null,
 }: {
   deals: Deal[];
   rho: RhoContent;
   me: Member;
   progress: Progress | null;
   onProgress: (p: Progress) => void;
+  initialCategory?: string | null;
 }) {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<string | null>(null);
+  const [category, setCategory] = useState<string | null>(initialCategory);
   const locked = !isUnlocked(progress);
   const cats = useMemo(() => categoriesOf(deals), [deals]);
   const shown = useMemo(() => {

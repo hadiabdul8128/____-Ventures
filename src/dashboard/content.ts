@@ -101,6 +101,7 @@ export const logoUrl = (domain: string | null) =>
   domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=128` : "";
 
 export const sections = [
+  { id: "home", label: "dashboard" },
   { id: "chat", label: "assistant" },
   { id: "deals", label: "deals" },
   { id: "request", label: "request a deal" },
