@@ -69,7 +69,14 @@ export async function POST(request: Request): Promise<Response> {
   const model = (process.env.BEDROCK_MODEL_ID || "us.anthropic.claude-opus-4-6-v1").trim();
   const base = (process.env.VITE_SUPABASE_URL || "").trim().replace(/\/+$/, "");
   const anon = (process.env.VITE_SUPABASE_ANON_KEY || "").trim();
-  if (!bedrockKey || !base || !anon) return json(503, { error: "assistant not configured" });
+  if (!bedrockKey || !base || !anon) {
+    const missing = [
+      !bedrockKey && "AWS_BEARER_TOKEN_BEDROCK",
+      !base && "VITE_SUPABASE_URL",
+      !anon && "VITE_SUPABASE_ANON_KEY",
+    ].filter(Boolean);
+    return json(503, { error: "assistant not configured", missing });
+  }
 
   const token = (request.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
   if (!token) return json(401, { error: "sign in first." });
