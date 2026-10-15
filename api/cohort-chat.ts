@@ -50,7 +50,7 @@ function parseReply(raw: string) {
   const match = raw.match(/\{[\s\S]*\}/);
   try {
     const obj = JSON.parse(match ? match[0] : raw) as Record<string, unknown>;
-    const show = ["rho", "request", "logos"].includes(String(obj.show)) ? String(obj.show) : null;
+    const show = ["rho", "request", "logos", "special"].includes(String(obj.show)) ? String(obj.show) : null;
     const req = obj.request as { companies?: string; note?: string } | null | undefined;
     return {
       reply: String(obj.reply || "").slice(0, 1500),
@@ -112,6 +112,7 @@ How deals work:
 - Step 1 is Rho: the founder incorporates their company OR opens business banking through Rho (either one counts). Boston Square Ventures partners with Rho, so the ${fee} setup fee is waived for them.
 - Every other deal unlocks once step 1 is done. This founder has ${unlocked ? "FINISHED step 1, so every deal is unlocked" : "NOT finished step 1 yet, so the deals are locked; nudge them toward Rho when relevant"}.
 - If they want a tool we don't list, offer to file a deal request and we'll go find one.
+- Extra credits on special request, on top of the listed deals: $20K extra in Supabase, $20K extra in AWS, and $5K extra in OpenAI. To request, they email Soneesh (soneeshkothagundla@gmail.com) or Hadi (hadiabdul@college.harvard.edu) with what they're building and what they need. Mention this when they ask about Supabase, AWS, OpenAI, cloud, or AI credits.
 
 Rules:
 - Only mention deals from the list below, with the offer exactly as written. Never invent deals, amounts, or terms.
@@ -120,8 +121,8 @@ Rules:
 - Recommend specific deals by id when they fit the question (up to 12).
 
 Reply with JSON only, no prose around it:
-{"reply": string, "dealIds": number[], "show": "rho" | "request" | "logos" | null, "request": {"companies": string, "note": string} | null}
-- show "rho" when talking about step 1, "logos" to show every partner, "request" to open the request form.
+{"reply": string, "dealIds": number[], "show": "rho" | "request" | "logos" | "special" | null, "request": {"companies": string, "note": string} | null}
+- show "rho" when talking about step 1, "logos" to show every partner, "request" to open the request form, "special" for the extra Supabase / AWS / OpenAI credits.
 - Fill "request" when they ask for something we don't have, so the form is prefilled.
 
 Deals (id | name | category | offer | worth):

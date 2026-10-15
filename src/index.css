@@ -3594,6 +3594,117 @@ a.cd-top-row:hover .cd-deal-text strong {
   }
 }
 
+/* ---- cohort dashboard: extra credits on special request ----------------- */
+
+.cd-special {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 20px 28px;
+  padding: 26px 28px;
+  border: 1px solid rgba(120, 140, 255, 0.35);
+  border-radius: 16px;
+  background:
+    radial-gradient(80% 140% at 100% 0%, rgba(120, 140, 255, 0.16), transparent 60%),
+    linear-gradient(180deg, #0f0f14, #09090b);
+}
+.cd-special-head {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.cd-special-items {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  align-content: start;
+}
+.cd-special-item {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+}
+.cd-special-item span {
+  display: grid;
+  gap: 2px;
+}
+.cd-special-item strong {
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.03em;
+  color: #a9b6ff;
+  font-variant-numeric: tabular-nums;
+}
+.cd-special-item small {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.cd-special-contacts {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.cd-special-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--muted);
+  transition: border-color 0.15s, background 0.15s;
+}
+.cd-special-contact:hover {
+  border-color: #a9b6ff;
+  background: rgba(120, 140, 255, 0.08);
+  color: var(--text);
+}
+.cd-special-contact span {
+  display: grid;
+  line-height: 1.25;
+}
+.cd-special-contact strong {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--text);
+}
+.cd-special-contact small {
+  font-size: 12px;
+}
+.cd-special-contacts .btn {
+  margin-left: auto;
+  gap: 8px;
+}
+.cd-special--compact {
+  padding: 20px 22px;
+}
+@media (max-width: 1100px) {
+  .cd-special {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .cd-special-items {
+    grid-template-columns: 1fr;
+  }
+  .cd-special-item {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+  .cd-special-contacts .btn {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* ---- touch and small-screen refinements -------------------------------- */
 
 /* Keyed to pointer type, not width: tablets are touch devices too, and iOS

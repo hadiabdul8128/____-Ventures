@@ -145,6 +145,21 @@ export const requestForm = {
   error: "tell us at least one company or tool.",
 };
 
+/** Extra credits on top of the listed deals, granted case by case. */
+export const specialCredits = {
+  heading: "extra credits on special request",
+  body: "need more than the listed deals? cohort 01 founders can request extra credits on top. email either of us with what you're building and what you need.",
+  items: [
+    { name: "Supabase", domain: "supabase.com", amount: "$20K" },
+    { name: "AWS", domain: "aws.amazon.com", amount: "$20K" },
+    { name: "OpenAI", domain: "openai.com", amount: "$5K" },
+  ],
+  contacts: [
+    { name: "Soneesh Kothagundla", email: "soneeshkothagundla@gmail.com" },
+    { name: "Hadi Abdul", email: "hadiabdul@college.harvard.edu" },
+  ],
+};
+
 export const unlockCopy = {
   locked: "locked until step 1",
   doneIncorporation: "I incorporated through Rho",

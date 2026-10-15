@@ -3,13 +3,14 @@ import { ArrowUp } from "lucide-react";
 import { Mark } from "@/components/Mark";
 import { totalValue, type CohortContent, type Deal, type Progress } from "@/dashboard/content";
 import { askAssistant, type AssistantTurn, type Member } from "@/lib/dashboard";
-import { DealGrid, LogoWall, RequestForm, RhoStep, categoriesOf, isUnlocked } from "@/dashboard/Deals";
+import { DealGrid, LogoWall, RequestForm, RhoStep, SpecialCredits, categoriesOf, isUnlocked } from "@/dashboard/Deals";
 
 type Block =
   | { kind: "rho" }
   | { kind: "wall" }
   | { kind: "deals"; ids: number[] }
-  | { kind: "request"; initial?: { companies: string; note: string } };
+  | { kind: "request"; initial?: { companies: string; note: string } }
+  | { kind: "special" };
 
 type Msg = {
   id: number;
@@ -65,6 +66,12 @@ function localAnswer(text: string, ctx: Ctx): Omit<Msg, "id" | "role"> {
         ? `step 1 is Rho. incorporate your company or open your business bank account through Rho, either one counts. we partner with Rho, so the ${ctx.fee} setup fee is waived for you. once you're done, tap the button below and all ${total} deals unlock.`
         : "you're done with Rho, so everything is unlocked. ask me for anything else.",
       blocks: [{ kind: "rho" }],
+    };
+  }
+  if (/\b(extra|more|special|additional|bigger)\b.*\b(credits?|supabase|aws|openai)\b|\b(supabase|aws|openai)\b.*\b(extra|more|special|additional)\b/.test(t)) {
+    return {
+      text: "on top of the listed deals, we can get you $20K extra in Supabase, $20K extra in AWS, and $5K extra in OpenAI on special request. email Soneesh (soneeshkothagundla@gmail.com) or Hadi (hadiabdul@college.harvard.edu) with what you're building and what you need.",
+      blocks: [{ kind: "special" }],
     };
   }
   if (/\b(request|missing|can'?t find|not (here|listed|on)|find me|don'?t see)\b/.test(t)) {
@@ -188,6 +195,7 @@ export function Chat({
         const blocks: Block[] = [];
         if (reply.show === "rho") blocks.push({ kind: "rho" });
         if (reply.show === "logos") blocks.push({ kind: "wall" });
+        if (reply.show === "special") blocks.push({ kind: "special" });
         const ids = (reply.dealIds ?? []).filter((i) => byId.has(i));
         if (ids.length) blocks.push({ kind: "deals", ids });
         if (reply.show === "request" || reply.request)
@@ -214,6 +222,7 @@ export function Chat({
       return <RhoStep key={key} rho={content.rho} me={me} progress={progress} onProgress={onProgress} compact />;
     if (b.kind === "wall") return <LogoWall key={key} deals={deals} locked={locked} />;
     if (b.kind === "request") return <RequestForm key={key} me={me} initial={b.initial} source="chat" />;
+    if (b.kind === "special") return <SpecialCredits key={key} compact />;
     const list = b.ids.map((i) => byId.get(i)).filter((d): d is Deal => Boolean(d));
     return <DealGrid key={key} deals={list} locked={locked} />;
   };

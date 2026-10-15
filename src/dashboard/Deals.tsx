@@ -1,9 +1,10 @@
 import { useMemo, useState, type FormEvent } from "react";
-import { ArrowUpRight, Check, Lock, Search } from "lucide-react";
+import { ArrowUpRight, Check, Lock, Mail, Search } from "lucide-react";
 import {
   formatValue,
   logoUrl,
   requestForm,
+  specialCredits,
   totalValue,
   unlockCopy,
   type Deal,
@@ -123,6 +124,50 @@ export function RhoStep({
   );
 }
 
+// ------------------------------------------------------- special credits --
+
+export function SpecialCredits({ compact = false }: { compact?: boolean }) {
+  const subject = encodeURIComponent("Special credit request: Boston Square Ventures cohort 01");
+  const body = encodeURIComponent(
+    "Hi,\n\nI'm in Boston Square Ventures cohort 01 and would like to request extra credits.\n\nWhich credits (Supabase / AWS / OpenAI):\nWhat I'm building:\nWhat I'll use them for:\n\nThanks!",
+  );
+  const all = specialCredits.contacts.map((c) => c.email).join(",");
+  return (
+    <section className={`cd-special${compact ? " cd-special--compact" : ""}`}>
+      <div className="cd-special-head">
+        <p className="cd-label">special request</p>
+        <h2 className="cd-card-title">{specialCredits.heading}</h2>
+        <p className="cd-muted">{specialCredits.body}</p>
+      </div>
+      <div className="cd-special-items">
+        {specialCredits.items.map((item) => (
+          <div className="cd-special-item" key={item.name}>
+            <Logo deal={{ name: item.name, domain: item.domain }} size={36} />
+            <span>
+              <strong>{item.amount}</strong>
+              <small>extra in {item.name}</small>
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="cd-special-contacts">
+        {specialCredits.contacts.map((c) => (
+          <a key={c.email} className="cd-special-contact" href={`mailto:${c.email}?subject=${subject}&body=${body}`}>
+            <Mail size={14} aria-hidden="true" />
+            <span>
+              <strong>{c.name}</strong>
+              <small>{c.email}</small>
+            </span>
+          </a>
+        ))}
+        <a className="btn btn--solid btn--sm" href={`mailto:${all}?subject=${subject}&body=${body}`}>
+          email us both <ArrowUpRight size={14} />
+        </a>
+      </div>
+    </section>
+  );
+}
+
 // ------------------------------------------------------------- logo wall --
 
 export function LogoWall({ deals, locked }: { deals: Deal[]; locked: boolean }) {
@@ -213,6 +258,7 @@ export function DealsPanel({
   return (
     <div className="cd-stack">
       <RhoStep rho={rho} me={me} progress={progress} onProgress={onProgress} />
+      <SpecialCredits compact />
       <div className="cd-deals-head">
         <h2 className="cd-card-title">
           {deals.length} deals · {totalValue(deals)} in value{" "}

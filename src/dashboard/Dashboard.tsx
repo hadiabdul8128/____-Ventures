@@ -34,7 +34,7 @@ import {
 import { CheckIns, Investors, useCountdown } from "@/dashboard/panels";
 import { Chat } from "@/dashboard/Chat";
 import { Home } from "@/dashboard/Home";
-import { DealsPanel, RequestForm, isUnlocked } from "@/dashboard/Deals";
+import { DealsPanel, RequestForm, SpecialCredits, isUnlocked } from "@/dashboard/Deals";
 import { Team } from "@/dashboard/Team";
 
 // Read before the Supabase client consumes and clears the hash. Any emailed
@@ -309,6 +309,7 @@ function Shell({ me, onSignOut }: { me: Member; onSignOut: () => void }) {
           />
         ) : section === "request" ? (
           <div className="cd-stack">
+            <SpecialCredits compact />
             <section className="cd-card">
               <h2 className="cd-card-title">{requestForm.heading}</h2>
               <p className="cd-muted">{requestForm.body}</p>

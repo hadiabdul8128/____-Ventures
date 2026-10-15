@@ -10,7 +10,7 @@ import {
   type SectionId,
 } from "@/dashboard/content";
 import { fetchMyRequests, type DealRequest, type Member, type VcUnlock } from "@/lib/dashboard";
-import { Logo, isUnlocked } from "@/dashboard/Deals";
+import { Logo, SpecialCredits, isUnlocked } from "@/dashboard/Deals";
 import Padlock from "@/components/ui/padlock";
 import { AnimatePresence, motion } from "motion/react";
 import { useCountdown } from "@/dashboard/panels";
@@ -387,6 +387,7 @@ export function Home({
         <Stat label="demo day 01" value={`${days}d`} note={cohort.demoDayLabel} />
       </div>
       <LogoMarquee deals={deals} />
+      <SpecialCredits />
       <div className="cd-grid-2 cd-grid-2--wide">
         <TopDeals deals={deals} locked={locked} go={go} />
         <Journey progress={progress} go={go} />

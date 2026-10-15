@@ -181,7 +181,7 @@ export type AssistantTurn = { role: "user" | "assistant"; content: string };
 export type AssistantReply = {
   reply: string;
   dealIds: number[];
-  show: "rho" | "request" | "logos" | null;
+  show: "rho" | "request" | "logos" | "special" | null;
   request: { companies: string; note: string } | null;
 };
 
