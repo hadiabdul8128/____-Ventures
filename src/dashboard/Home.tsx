@@ -145,9 +145,18 @@ function Journey({ progress, go }: { progress: Progress | null; go: (id: Section
     { title: "join cohort 01", note: "you're in.", done: true },
     {
       title: "incorporate or bank through Rho",
-      note: unlocked ? `done (${progress?.rho_path}).` : "$2,000 setup fee waived. unlocks every deal.",
+      note: unlocked
+        ? `verified (${progress?.rho_path}).`
+        : progress?.rho_status === "pending"
+          ? "proof received. we're reviewing it, usually within a day."
+          : progress?.rho_status === "rejected"
+            ? "we couldn't verify your proof. upload a clearer one."
+            : "$2,000 setup fee waived. upload proof to unlock every deal.",
       done: unlocked,
-      action: unlocked ? undefined : { label: "do it", to: "deals" as SectionId },
+      action:
+        unlocked || progress?.rho_status === "pending"
+          ? undefined
+          : { label: "upload proof", to: "deals" as SectionId },
     },
     {
       title: "claim the deals you need",

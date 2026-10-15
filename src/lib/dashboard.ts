@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { MESSAGES, isNetworkError } from "@/lib/applications";
+import { MESSAGES, isNetworkError, sanitizeFileName } from "@/lib/applications";
 import { cohort, type CohortContent, type Deal, type Progress } from "@/dashboard/content";
 
 const url = import.meta.env.VITE_SUPABASE_URL?.trim() ?? "";
@@ -110,28 +110,95 @@ export async function fetchProgress(email: string): Promise<Progress | null> {
   if (!supabase) return null;
   const { data } = await supabase
     .from("cohort_progress")
-    .select("email, rho_path, rho_done_at")
+    .select(PROGRESS_COLUMNS)
     .eq("email", email.toLowerCase())
     .maybeSingle();
   return (data as Progress | null) ?? null;
 }
 
-/** Step 1: the founder confirms they incorporated or bank through Rho. */
-export async function markRhoDone(
+const PROOF_BUCKET = "rho-proofs";
+const PROOF_MAX_BYTES = 10 * 1024 * 1024;
+const PROOF_TYPES = /\.(pdf|png|jpe?g|webp|heic)$/i;
+const PROGRESS_COLUMNS =
+  "email, rho_path, rho_done_at, rho_status, proof_path, submitted_at, reviewed_at, reviewed_by, review_note";
+
+export function validateProof(file: File | null): "fileMissing" | "fileType" | "fileSize" | null {
+  if (!file || !file.size) return "fileMissing";
+  if (!PROOF_TYPES.test(file.name)) return "fileType";
+  if (file.size > PROOF_MAX_BYTES) return "fileSize";
+  return null;
+}
+
+/**
+ * Step 1: upload proof of incorporating or banking through Rho. The row goes
+ * to 'pending'; only an admin approval (RLS-enforced) unlocks the deals.
+ */
+export async function submitRhoProof(
   email: string,
   path: "incorporation" | "banking",
+  file: File,
 ): Promise<Result<Progress>> {
   const supabase = getCohortClient();
   if (!supabase) return { ok: false, message: MESSAGES.notConfigured };
-  const row = {
-    email: email.toLowerCase(),
-    rho_path: path,
-    rho_done_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  };
-  const { error } = await supabase.from("cohort_progress").upsert(row, { onConflict: "email" });
-  if (error) return fail(error);
-  return { ok: true, data: row };
+  const { data: auth } = await supabase.auth.getUser();
+  const uid = auth.user?.id;
+  if (!uid) return { ok: false, message: "your session expired. sign in again." };
+  try {
+    const objectPath = `${uid}/${crypto.randomUUID()}-${sanitizeFileName(file.name)}`;
+    const up = await supabase.storage.from(PROOF_BUCKET).upload(objectPath, file, {
+      contentType: file.type || undefined,
+      upsert: false,
+    });
+    if (up.error) return fail(up.error);
+    const row = {
+      email: email.toLowerCase(),
+      rho_path: path,
+      rho_status: "pending" as const,
+      proof_path: objectPath,
+      submitted_at: new Date().toISOString(),
+      reviewed_at: null,
+      reviewed_by: null,
+      review_note: null,
+    };
+    const { data, error } = await supabase
+      .from("cohort_progress")
+      .upsert(row, { onConflict: "email" })
+      .select(PROGRESS_COLUMNS)
+      .single();
+    if (error || !data) return fail(error);
+    return { ok: true, data: data as Progress };
+  } catch (error) {
+    return fail(error);
+  }
+}
+
+/** Admins: a short-lived link to view an uploaded proof. */
+export async function proofLink(objectPath: string): Promise<string | null> {
+  const supabase = getCohortClient();
+  if (!supabase) return null;
+  const { data } = await supabase.storage.from(PROOF_BUCKET).createSignedUrl(objectPath, 600);
+  return data?.signedUrl ?? null;
+}
+
+/** Admins: approve or reject a founder's proof. */
+export async function reviewProof(
+  email: string,
+  decision: "approved" | "rejected",
+  reviewer: string,
+  note: string,
+): Promise<Result> {
+  const supabase = getCohortClient();
+  if (!supabase) return { ok: false, message: MESSAGES.notConfigured };
+  const { error } = await supabase
+    .from("cohort_progress")
+    .update({
+      rho_status: decision,
+      reviewed_at: new Date().toISOString(),
+      reviewed_by: reviewer.toLowerCase(),
+      review_note: note.trim() || null,
+    })
+    .eq("email", email.toLowerCase());
+  return error ? fail(error) : { ok: true, data: true };
 }
 
 export async function submitDealRequest(input: {
@@ -227,7 +294,7 @@ export async function fetchAllProgress(): Promise<Map<string, Progress>> {
   const supabase = getCohortClient();
   const out = new Map<string, Progress>();
   if (!supabase) return out;
-  const { data } = await supabase.from("cohort_progress").select("email, rho_path, rho_done_at");
+  const { data } = await supabase.from("cohort_progress").select(PROGRESS_COLUMNS);
   for (const row of (data ?? []) as Progress[]) out.set(row.email, row);
   return out;
 }

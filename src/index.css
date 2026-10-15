@@ -3614,7 +3614,7 @@ a.cd-top-row:hover .cd-deal-text strong {
 }
 .cd-special-items {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
   align-content: start;
 }
@@ -3690,6 +3690,11 @@ a.cd-top-row:hover .cd-deal-text strong {
     grid-template-columns: 1fr;
   }
 }
+@media (max-width: 700px) {
+  .cd-special-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 @media (max-width: 520px) {
   .cd-special-items {
     grid-template-columns: 1fr;
@@ -3703,6 +3708,132 @@ a.cd-top-row:hover .cd-deal-text strong {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* ---- cohort dashboard: Rho proof upload + review ------------------------ */
+
+.cd-proof {
+  gap: 14px;
+  max-width: 640px;
+  padding: 18px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+}
+.cd-proof-heading {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.cd-proof-paths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.cd-proof-paths legend {
+  width: 100%;
+  margin-bottom: 8px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.apply-form .cd-proof-paths label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+.apply-form .cd-proof-paths input {
+  width: auto;
+  accent-color: #7ee2a8;
+}
+.cd-proof .btn {
+  justify-self: start;
+  gap: 8px;
+}
+.cd-rho-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.cd-rho-status p {
+  flex: 1 1 260px;
+}
+.cd-rho-status[data-status="pending"] {
+  border: 1px solid rgba(242, 201, 76, 0.4);
+  background: rgba(242, 201, 76, 0.08);
+  color: #f2d27a;
+}
+.cd-rho-status[data-status="rejected"] {
+  border: 1px solid rgba(231, 168, 155, 0.45);
+  background: rgba(231, 168, 155, 0.08);
+  color: #e7a89b;
+}
+
+.cd-pill--alert {
+  border-color: #f2c94c;
+  color: #f2c94c;
+}
+.cd-proofs {
+  display: grid;
+}
+.cd-proof-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px 14px;
+  align-items: start;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.cd-proof-row[data-status="pending"] {
+  box-shadow: inset 3px 0 0 #f2c94c;
+  padding-left: 12px;
+}
+.cd-proof-who {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.cd-proof-who strong {
+  font-weight: 500;
+}
+.cd-proof-who small {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.cd-proof-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.cd-proof-actions .btn {
+  gap: 6px;
+}
+.cd-proof-note {
+  flex: 1 1 200px;
+  min-width: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--bg);
+  font-size: 13px;
+  color: var(--text);
 }
 
 /* ---- touch and small-screen refinements -------------------------------- */

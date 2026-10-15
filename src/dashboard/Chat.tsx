@@ -58,19 +58,19 @@ type Ctx = { deals: Deal[]; locked: boolean; fee: string };
 function localAnswer(text: string, ctx: Ctx): Omit<Msg, "id" | "role"> {
   const t = text.toLowerCase();
   const total = ctx.deals.length;
-  const lockNote = ctx.locked ? " they unlock as soon as you finish step 1 with Rho." : "";
+  const lockNote = ctx.locked ? " they unlock once we verify your step 1 proof from Rho." : "";
 
   if (/\b(rho|incorporat\w*|bank\w*|setup fee|step 1|step one|already did|i did it)\b/.test(t)) {
     return {
       text: ctx.locked
-        ? `step 1 is Rho. incorporate your company or open your business bank account through Rho, either one counts. we partner with Rho, so the ${ctx.fee} setup fee is waived for you. once you're done, tap the button below and all ${total} deals unlock.`
-        : "you're done with Rho, so everything is unlocked. ask me for anything else.",
+        ? `step 1 is Rho. incorporate your company or open your business bank account through Rho, either one counts. we partner with Rho, so the ${ctx.fee} setup fee is waived for you. once you're done, upload proof below (your certificate of incorporation or a Rho account confirmation). we review it and unlock all ${total} deals, usually within a day.`
+        : "your Rho proof is verified, so everything is unlocked. ask me for anything else.",
       blocks: [{ kind: "rho" }],
     };
   }
-  if (/\b(extra|more|special|additional|bigger)\b.*\b(credits?|supabase|aws|openai)\b|\b(supabase|aws|openai)\b.*\b(extra|more|special|additional)\b/.test(t)) {
+  if (/\b(extra|more|special|additional|bigger)\b.*\b(credits?|azure|supabase|aws|openai)\b|\b(azure|supabase|aws|openai)\b.*\b(extra|more|special|additional)\b/.test(t)) {
     return {
-      text: "on top of the listed deals, we can get you $20K extra in Supabase, $20K extra in AWS, and $5K extra in OpenAI on special request. email Soneesh (soneeshkothagundla@gmail.com) or Hadi (hadiabdul@college.harvard.edu) with what you're building and what you need.",
+      text: "on top of the listed deals, we can get you $50K extra in Azure, $20K extra in Supabase, $20K extra in AWS, and $5K extra in OpenAI on special request. email Soneesh (soneeshkothagundla@gmail.com) or Hadi (hadiabdul@college.harvard.edu) with what you're building and what you need.",
       blocks: [{ kind: "special" }],
     };
   }

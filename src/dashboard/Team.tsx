@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Check, Copy, KeyRound, Trash2 } from "lucide-react";
 import type { Progress } from "@/dashboard/content";
+import { ProofReview } from "@/dashboard/ProofReview";
 import { fetchAllProgress, fetchMembers, inviteMember, removeMember, type Member } from "@/lib/dashboard";
 
 /**
@@ -69,6 +70,7 @@ export function Team({ me }: { me: Member }) {
 
   return (
     <div className="cd-stack">
+      <ProofReview me={me} members={members ?? []} progress={progress} onChange={load} />
       <section className="cd-card">
         <h2 className="cd-card-title">add a founder</h2>
         <p className="cd-muted">
@@ -147,7 +149,13 @@ export function Team({ me }: { me: Member }) {
                   <td>
                     <span className="cd-pill">{m.role}</span>
                   </td>
-                  <td>{progress.get(m.email)?.rho_done_at ? `done (${progress.get(m.email)?.rho_path})` : "not yet"}</td>
+                  <td>{progress.get(m.email)?.rho_status === "approved"
+                      ? `verified (${progress.get(m.email)?.rho_path})`
+                      : progress.get(m.email)?.rho_status === "pending"
+                        ? "proof under review"
+                        : progress.get(m.email)?.rho_status === "rejected"
+                          ? "proof rejected"
+                          : "not yet"}</td>
                   <td className="cd-row-actions">
                     <button
                       type="button"

@@ -110,9 +110,9 @@ export async function POST(request: Request): Promise<Response> {
 
 How deals work:
 - Step 1 is Rho: the founder incorporates their company OR opens business banking through Rho (either one counts). Boston Square Ventures partners with Rho, so the ${fee} setup fee is waived for them.
-- Every other deal unlocks once step 1 is done. This founder has ${unlocked ? "FINISHED step 1, so every deal is unlocked" : "NOT finished step 1 yet, so the deals are locked; nudge them toward Rho when relevant"}.
+- Every other deal unlocks once step 1 is verified: the founder uploads proof (certificate of incorporation or formation, or a Rho account confirmation or statement) on the dashboard, and Soneesh or Hadi approve it, usually within a day. Clicking a button alone does not unlock anything. This founder has ${unlocked ? "FINISHED step 1, so every deal is unlocked" : "NOT finished step 1 yet, so the deals are locked; nudge them toward Rho when relevant"}.
 - If they want a tool we don't list, offer to file a deal request and we'll go find one.
-- Extra credits on special request, on top of the listed deals: $20K extra in Supabase, $20K extra in AWS, and $5K extra in OpenAI. To request, they email Soneesh (soneeshkothagundla@gmail.com) or Hadi (hadiabdul@college.harvard.edu) with what they're building and what they need. Mention this when they ask about Supabase, AWS, OpenAI, cloud, or AI credits.
+- Extra credits on special request, on top of the listed deals: $50K extra in Azure, $20K extra in Supabase, $20K extra in AWS, and $5K extra in OpenAI. To request, they email Soneesh (soneeshkothagundla@gmail.com) or Hadi (hadiabdul@college.harvard.edu) with what they're building and what they need. Mention this when they ask about Azure, Supabase, AWS, OpenAI, cloud, or AI credits.
 
 Rules:
 - Only mention deals from the list below, with the offer exactly as written. Never invent deals, amounts, or terms.
@@ -122,7 +122,7 @@ Rules:
 
 Reply with JSON only, no prose around it:
 {"reply": string, "dealIds": number[], "show": "rho" | "request" | "logos" | "special" | null, "request": {"companies": string, "note": string} | null}
-- show "rho" when talking about step 1, "logos" to show every partner, "request" to open the request form, "special" for the extra Supabase / AWS / OpenAI credits.
+- show "rho" when talking about step 1, "logos" to show every partner, "request" to open the request form, "special" for the extra Azure / Supabase / AWS / OpenAI credits.
 - Fill "request" when they ask for something we don't have, so the form is prefilled.
 
 Deals (id | name | category | offer | worth):

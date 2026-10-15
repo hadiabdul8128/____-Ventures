@@ -1,5 +1,5 @@
 import { useMemo, useState, type FormEvent } from "react";
-import { ArrowUpRight, Check, Lock, Mail, Search } from "lucide-react";
+import { ArrowUpRight, Check, Clock, Lock, Mail, Search, Upload, X } from "lucide-react";
 import {
   formatValue,
   logoUrl,
@@ -11,9 +11,10 @@ import {
   type Progress,
   type RhoContent,
 } from "@/dashboard/content";
-import { markRhoDone, submitDealRequest, type Member } from "@/lib/dashboard";
+import { submitDealRequest, submitRhoProof, validateProof, type Member } from "@/lib/dashboard";
 
-export const isUnlocked = (p: Progress | null) => Boolean(p?.rho_done_at);
+/** Unlocked only once an admin has approved the proof (the DB sets rho_done_at then). */
+export const isUnlocked = (p: Progress | null) => p?.rho_status === "approved" && Boolean(p.rho_done_at);
 
 export function Logo({ deal, size = 36 }: { deal: Pick<Deal, "name" | "domain">; size?: number }) {
   const [broken, setBroken] = useState(false);
@@ -68,14 +69,25 @@ export function RhoStep({
 }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [replacing, setReplacing] = useState(false);
   const done = isUnlocked(progress);
+  const status = progress?.rho_status ?? "none";
+  const showForm = !done && (status === "none" || status === "rejected" || replacing);
 
-  const confirm = async (path: "incorporation" | "banking") => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (busy) return;
+    const data = new FormData(event.currentTarget);
+    const path = data.get("path") === "banking" ? "banking" : "incorporation";
+    const file = data.get("proof") instanceof File ? (data.get("proof") as File) : null;
+    const problem = validateProof(file);
+    if (problem) return setError(unlockCopy[problem]);
     setBusy(true);
     setError("");
-    const result = await markRhoDone(me.email, path);
+    const result = await submitRhoProof(me.email, path, file as File);
     setBusy(false);
     if (!result.ok) return setError(result.message);
+    setReplacing(false);
     onProgress(result.data);
   };
 
@@ -83,7 +95,9 @@ export function RhoStep({
     <section className={`cd-rho${compact ? " cd-rho--compact" : ""}`} data-done={done || undefined}>
       <div className="cd-rho-head">
         <span className="cd-rho-step">{done ? <Check size={14} /> : "1"}</span>
-        <p className="cd-label">step 1 · {done ? "done" : "unlocks every deal"}</p>
+        <p className="cd-label">
+          step 1 · {done ? "verified" : status === "pending" ? "under review" : "unlocks every deal"}
+        </p>
       </div>
       <div className="cd-rho-body">
         <div className="cd-rho-mark" aria-hidden="true">
@@ -97,28 +111,68 @@ export function RhoStep({
           <p className="cd-muted">{rho.body}</p>
         </div>
       </div>
+
       {done ? (
         <p className="cd-success">
-          <Check size={16} /> you {progress?.rho_path === "banking" ? "bank" : "incorporated"} through Rho. every deal is
-          unlocked.
+          <Check size={16} /> verified: you {progress?.rho_path === "banking" ? "bank" : "incorporated"} through Rho. every
+          deal is unlocked.
         </p>
       ) : (
-        <div className="cd-rho-actions">
-          <a className="btn btn--solid" href={rho.href} target="_blank" rel="noopener">
-            {rho.cta} <ArrowUpRight size={14} />
-          </a>
-          <button type="button" className="btn btn--ghost btn--sm" disabled={busy} onClick={() => confirm("incorporation")}>
-            {unlockCopy.doneIncorporation}
-          </button>
-          <button type="button" className="btn btn--ghost btn--sm" disabled={busy} onClick={() => confirm("banking")}>
-            {unlockCopy.doneBanking}
-          </button>
-        </div>
-      )}
-      {error && (
-        <p className="form-error" role="alert">
-          {error}
-        </p>
+        <>
+          <div className="cd-rho-actions">
+            <a className="btn btn--solid" href={rho.href} target="_blank" rel="noopener">
+              {rho.cta} <ArrowUpRight size={14} />
+            </a>
+          </div>
+
+          {status === "pending" && !replacing && (
+            <div className="cd-rho-status" data-status="pending">
+              <Clock size={16} aria-hidden="true" />
+              <p>{unlockCopy.pending}</p>
+              <button type="button" className="cd-link" onClick={() => setReplacing(true)}>
+                {unlockCopy.replace}
+              </button>
+            </div>
+          )}
+
+          {status === "rejected" && (
+            <div className="cd-rho-status" data-status="rejected">
+              <X size={16} aria-hidden="true" />
+              <p>
+                {unlockCopy.rejected}
+                {progress?.review_note ? ` note from us: ${progress.review_note}` : ""}
+              </p>
+            </div>
+          )}
+
+          {showForm && (
+            <form className="apply-form cd-proof" onSubmit={onSubmit} noValidate>
+              <p className="cd-proof-heading">{unlockCopy.proofHeading}</p>
+              <p className="cd-muted">{unlockCopy.proofBody}</p>
+              <fieldset className="cd-proof-paths">
+                <legend>{unlockCopy.pathLabel}</legend>
+                <label>
+                  <input type="radio" name="path" value="incorporation" defaultChecked /> {unlockCopy.incorporation}
+                </label>
+                <label>
+                  <input type="radio" name="path" value="banking" /> {unlockCopy.banking}
+                </label>
+              </fieldset>
+              <label>
+                {unlockCopy.fileLabel}
+                <input type="file" name="proof" accept=".pdf,.png,.jpg,.jpeg,.webp,.heic,application/pdf,image/*" required />
+              </label>
+              {error && (
+                <p className="form-error" role="alert">
+                  {error}
+                </p>
+              )}
+              <button type="submit" className="btn btn--ghost btn--sm" disabled={busy}>
+                <Upload size={14} /> {busy ? unlockCopy.sending : unlockCopy.submit}
+              </button>
+            </form>
+          )}
+        </>
       )}
     </section>
   );
@@ -129,7 +183,7 @@ export function RhoStep({
 export function SpecialCredits({ compact = false }: { compact?: boolean }) {
   const subject = encodeURIComponent("Special credit request: Boston Square Ventures cohort 01");
   const body = encodeURIComponent(
-    "Hi,\n\nI'm in Boston Square Ventures cohort 01 and would like to request extra credits.\n\nWhich credits (Supabase / AWS / OpenAI):\nWhat I'm building:\nWhat I'll use them for:\n\nThanks!",
+    "Hi,\n\nI'm in Boston Square Ventures cohort 01 and would like to request extra credits.\n\nWhich credits (Azure / Supabase / AWS / OpenAI):\nWhat I'm building:\nWhat I'll use them for:\n\nThanks!",
   );
   const all = specialCredits.contacts.map((c) => c.email).join(",");
   return (

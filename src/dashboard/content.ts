@@ -94,7 +94,14 @@ export function totalValue(deals: Deal[]) {
 export type Progress = {
   email: string;
   rho_path: "incorporation" | "banking" | null;
+  /** Set by the database only when an admin approves the proof. */
   rho_done_at: string | null;
+  rho_status: "none" | "pending" | "approved" | "rejected";
+  proof_path: string | null;
+  submitted_at: string | null;
+  reviewed_at: string | null;
+  reviewed_by: string | null;
+  review_note: string | null;
 };
 
 export const logoUrl = (domain: string | null) =>
@@ -150,6 +157,7 @@ export const specialCredits = {
   heading: "extra credits on special request",
   body: "need more than the listed deals? cohort 01 founders can request extra credits on top. email either of us with what you're building and what you need.",
   items: [
+    { name: "Azure", domain: "azure.microsoft.com", amount: "$50K" },
     { name: "Supabase", domain: "supabase.com", amount: "$20K" },
     { name: "AWS", domain: "aws.amazon.com", amount: "$20K" },
     { name: "OpenAI", domain: "openai.com", amount: "$5K" },
@@ -162,6 +170,19 @@ export const specialCredits = {
 
 export const unlockCopy = {
   locked: "locked until step 1",
-  doneIncorporation: "I incorporated through Rho",
-  doneBanking: "I opened banking with Rho",
+  proofHeading: "send us your proof",
+  proofBody:
+    "once you've incorporated or opened your account with Rho, upload proof: your certificate of incorporation or formation, or a Rho account confirmation or statement. we review it and unlock every deal, usually within a day.",
+  pathLabel: "what did you do through Rho?",
+  incorporation: "incorporated",
+  banking: "opened banking",
+  fileLabel: "proof (pdf or image, up to 10 mb)",
+  submit: "submit for review",
+  sending: "uploading…",
+  replace: "replace proof",
+  pending: "proof received. we're reviewing it and will unlock your deals soon, usually within a day.",
+  rejected: "we couldn't verify that proof. upload a clearer document and we'll take another look.",
+  fileType: "upload a pdf, png, jpg, webp, or heic file.",
+  fileSize: "that file is over 10 mb.",
+  fileMissing: "choose a file to upload.",
 };
