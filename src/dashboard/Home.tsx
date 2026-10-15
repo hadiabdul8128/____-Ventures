@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useReducedMotion } from "motion/react";
-import { ArrowRight, ArrowUpRight, Check, Lock, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Sparkles } from "lucide-react";
 import {
   cohort,
   formatValue,
@@ -10,7 +10,9 @@ import {
   type SectionId,
 } from "@/dashboard/content";
 import { fetchMyRequests, type DealRequest, type Member, type VcUnlock } from "@/lib/dashboard";
-import { Logo, categoriesOf, isUnlocked } from "@/dashboard/Deals";
+import { Logo, isUnlocked } from "@/dashboard/Deals";
+import Padlock from "@/components/ui/padlock";
+import { AnimatePresence, motion } from "motion/react";
 import { useCountdown } from "@/dashboard/panels";
 
 const usdShort = (n: number) =>
@@ -35,71 +37,45 @@ function useCountUp(target: number, ms = 1400) {
   return value;
 }
 
-function greeting() {
-  const h = new Date().getHours();
-  return h < 5 ? "up late" : h < 12 ? "good morning" : h < 18 ? "good afternoon" : "good evening";
-}
-
 // ------------------------------------------------------------------ hero --
 
-function Hero({
-  me,
-  deals,
-  progress,
-  go,
-}: {
-  me: Member;
-  deals: Deal[];
-  progress: Progress | null;
-  go: (id: SectionId) => void;
-}) {
-  const total = deals.reduce((s, d) => s + (d.value_amount ?? 0), 0);
-  const shown = useCountUp(total);
-  const unlocked = isUnlocked(progress);
-  const first = (me.name || me.email).split(/[\s@]/)[0];
-
+function DealReveal({ total }: { total: number }) {
+  const shown = useCountUp(total, 900);
   return (
-    <section className="cd-hero">
+    <h2 className="cd-hero-value">
+      {usdShort(shown)}
+      <small>deals waiting for you</small>
+    </h2>
+  );
+}
+
+export function Hero({ deals }: { deals: Deal[] }) {
+  const [revealed, setRevealed] = useState(false);
+  const reduced = useReducedMotion();
+  const total = deals.reduce((sum, deal) => sum + (deal.value_amount ?? 0), 0);
+  return (
+    <section className="cd-hero cd-hero--reveal" aria-label="Your deals">
       <div className="cd-hero-grid" aria-hidden="true" />
-      <div className="cd-hero-copy">
-        <p className="cd-label">
-          {greeting()}, {first} · {cohort.name}
-        </p>
-        <h2 className="cd-hero-value">
-          ${shown.toLocaleString("en-US")}
-          <small>in deals {unlocked ? "unlocked" : "waiting for you"}</small>
-        </h2>
-        <p className="cd-muted">
-          {deals.length} partner deals across {categoriesOf(deals).length} categories.{" "}
-          {unlocked
-            ? "everything is open. go claim the ones you need."
-            : "one step unlocks all of it: incorporate or bank through Rho, with the setup fee waived."}
-        </p>
-        <div className="cd-hero-actions">
-          {unlocked ? (
-            <button type="button" className="btn btn--solid" onClick={() => go("deals")}>
-              browse deals <ArrowRight size={14} />
+      <AnimatePresence mode="wait" initial={false}>
+        {revealed ? (
+          <motion.div key="value" className="cd-reveal-content" role="status"
+            initial={{ opacity: 0, y: reduced ? 0 : 12 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduced ? 0 : 0.3 }}>
+            <DealReveal total={total} />
+          </motion.div>
+        ) : (
+          <motion.div key="lock" className="cd-reveal-content"
+            exit={{ opacity: 0, scale: reduced ? 1 : 0.96 }}
+            transition={{ duration: reduced ? 0 : 0.2 }}>
+            <div className="cd-reveal-lock" onClick={() => setRevealed(true)} aria-hidden="true">
+              <Padlock theme="dark" tabIndex={-1} intensity={0.8} />
+            </div>
+            <button type="button" className="btn btn--solid" onClick={() => setRevealed(true)}>
+              unlock <ArrowRight size={14} />
             </button>
-          ) : (
-            <button type="button" className="btn btn--solid" onClick={() => go("deals")}>
-              unlock with Rho <ArrowRight size={14} />
-            </button>
-          )}
-          <button type="button" className="btn btn--ghost" onClick={() => go("chat")}>
-            <Sparkles size={14} /> ask the assistant
-          </button>
-        </div>
-      </div>
-      <div className="cd-ring" data-done={unlocked || undefined} aria-label={unlocked ? "step 1 done" : "step 1 not done"}>
-        <svg viewBox="0 0 120 120" aria-hidden="true">
-          <circle cx="60" cy="60" r="52" className="cd-ring-track" />
-          <circle cx="60" cy="60" r="52" className="cd-ring-fill" pathLength={100} strokeDasharray={`${unlocked ? 100 : 8} 100`} />
-        </svg>
-        <span className="cd-ring-label">
-          {unlocked ? <Check size={22} /> : <Lock size={20} />}
-          <small>{unlocked ? "unlocked" : "step 1"}</small>
-        </span>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
@@ -403,7 +379,7 @@ export function Home({
 
   return (
     <div className="cd-stack cd-home">
-      <Hero me={me} deals={deals} progress={progress} go={go} />
+      <Hero deals={deals} />
       <div className="cd-stats">
         <Stat label="partner deals" value={String(deals.length)} note={locked ? "locked until step 1" : "all unlocked"} />
         <Stat label="stated credits" value={usdShort(credits)} note="dollar amounts written into the offers" />

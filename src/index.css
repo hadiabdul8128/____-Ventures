@@ -3630,3 +3630,28 @@ a.cd-top-row:hover .cd-deal-text strong {
     padding-right: 8px;
   }
 }
+
+/* A quiet, click-to-reveal opening for the cohort dashboard. */
+.cd-hero.cd-hero--reveal {
+  justify-content: center;
+  min-height: 360px;
+  text-align: center;
+}
+.cd-reveal-content {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  width: 100%;
+}
+.cd-reveal-lock {
+  width: min(240px, 100%);
+  cursor: pointer;
+}
+.cd-reveal-lock > div { width: 100%; }
+.cd-reveal-content .cd-hero-value { gap: 20px; }
+.cd-reveal-content .btn { min-height: 44px; }
+@media (max-width: 600px) {
+  .cd-hero.cd-hero--reveal { min-height: 320px; }
+  .cd-reveal-lock { width: 200px; }
+}
