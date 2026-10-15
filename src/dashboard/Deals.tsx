@@ -28,7 +28,7 @@ export function Logo({ deal, size = 36 }: { deal: Pick<Deal, "name" | "domain">;
   );
 }
 
-/** Hover / focus card: what the deal is worth and what you get. */
+/** Hover / focus card: the deal name and its value. */
 function WorthTip({ deal, locked }: { deal: Deal; locked: boolean }) {
   const worth = formatValue(deal);
   return (
@@ -36,12 +36,11 @@ function WorthTip({ deal, locked }: { deal: Deal; locked: boolean }) {
       <span className="cd-tip-name">{deal.name}</span>
       {worth ? (
         <span className="cd-tip-worth">
-          worth {worth}
+          {worth}
         </span>
       ) : (
         <span className="cd-tip-worth cd-tip-worth--none">no fixed dollar value</span>
       )}
-      {deal.offer && <span className="cd-tip-offer">{deal.offer}</span>}
       {locked && (
         <span className="cd-tip-lock">
           <Lock size={11} /> unlocks after step 1
