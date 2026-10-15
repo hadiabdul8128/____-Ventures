@@ -40,21 +40,52 @@ export type Partner = {
 
 export type ComputeGroup = { title: string; items: string[] };
 
+export type RhoContent = {
+  headline: string;
+  fee: string;
+  body: string;
+  href: string;
+  cta: string;
+};
+
 /** Shape of `cohort_content.data`. */
 export type CohortContent = {
-  curriculum: { note: string[]; weeks: Week[] };
+  rho: RhoContent;
   checkins: { weekly: CheckinSlot; booking: CheckinSlot };
   perks: { heading: string; body: string; partners: Partner[] };
   compute: { note: string; groups: ComputeGroup[] };
   vcSlots: number;
+  /** Unused since the chat replaced it; kept in the row for reference. */
+  curriculum?: { note: string[]; weeks: Week[] };
 };
 
+/** One row of `public.deals`. */
+export type Deal = {
+  id: number;
+  name: string;
+  url: string;
+  domain: string | null;
+  category: string;
+  blurb: string | null;
+  sort: number;
+};
+
+/** One row of `public.cohort_progress`; null until the founder starts. */
+export type Progress = {
+  email: string;
+  rho_path: "incorporation" | "banking" | null;
+  rho_done_at: string | null;
+};
+
+export const logoUrl = (domain: string | null) =>
+  domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=128` : "";
+
 export const sections = [
-  { id: "overview", label: "overview" },
-  { id: "curriculum", label: "curriculum" },
+  { id: "chat", label: "assistant" },
+  { id: "deals", label: "deals" },
+  { id: "request", label: "request a deal" },
   { id: "investors", label: "investors" },
   { id: "checkins", label: "check-ins" },
-  { id: "perks", label: "compute, credits & perks" },
 ] as const;
 
 export type SectionId = (typeof sections)[number]["id"] | "team";
@@ -79,15 +110,22 @@ export const login = {
   setMismatch: "the two passwords don't match.",
 };
 
-export const computeForm = {
-  heading: "what compute do you need?",
-  body: "tell us what you're trying to run and we'll go get it.",
+export const requestForm = {
+  heading: "request a deal.",
+  body: "don't see a tool you need? tell us which ones and we'll go find you a deal.",
   fields: {
-    need: "what do you need, and what are you building with it?",
-    tools: "anything from the list below? (optional)",
+    companies: "which companies or tools?",
+    companiesHint: "e.g. OpenAI, Figma, Mercury",
+    note: "what are you using them for? (optional)",
   },
   submit: "send request",
   sending: "sending…",
-  success: "got it. we'll come back to you.",
-  error: "tell us what you need.",
+  success: "got it. we'll go find those for you and follow up by email.",
+  error: "tell us at least one company or tool.",
+};
+
+export const unlockCopy = {
+  locked: "locked until step 1",
+  doneIncorporation: "I incorporated through Rho",
+  doneBanking: "I opened banking with Rho",
 };

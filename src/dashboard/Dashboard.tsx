@@ -1,12 +1,12 @@
 import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
 import {
-  BookOpen,
   CalendarClock,
   Gift,
   Landmark,
-  LayoutDashboard,
   LogOut,
+  MessageSquare,
+  SendHorizontal,
   Users,
 } from "lucide-react";
 import { Mark } from "@/components/Mark";
@@ -14,25 +14,25 @@ import {
   cohort,
   login,
   sections,
+  requestForm,
   type CohortContent,
+  type Deal,
+  type Progress,
   type SectionId,
 } from "@/dashboard/content";
 import {
   fetchContent,
+  fetchDeals,
   fetchMe,
+  fetchProgress,
   fetchVcUnlocks,
   getCohortClient,
   type Member,
   type VcUnlock,
 } from "@/lib/dashboard";
-import {
-  CheckIns,
-  Curriculum,
-  Investors,
-  Overview,
-  Perks,
-  useCountdown,
-} from "@/dashboard/panels";
+import { CheckIns, Investors, useCountdown } from "@/dashboard/panels";
+import { Chat } from "@/dashboard/Chat";
+import { DealsPanel, RequestForm, isUnlocked } from "@/dashboard/Deals";
 import { Team } from "@/dashboard/Team";
 
 // Read before the Supabase client consumes and clears the hash. Any emailed
@@ -44,19 +44,19 @@ const arrivedWithError = /error_code=|error=/.test(landing)
   ? "that link has expired or was already used. ask Soneesh or Hadi for a new one."
   : "";
 
-const ICONS: Record<SectionId, typeof LayoutDashboard> = {
-  overview: LayoutDashboard,
-  curriculum: BookOpen,
+const ICONS: Record<SectionId, typeof MessageSquare> = {
+  chat: MessageSquare,
+  deals: Gift,
+  request: SendHorizontal,
   investors: Landmark,
   checkins: CalendarClock,
-  perks: Gift,
   team: Users,
 };
 
 function sectionFromHash(): SectionId {
   const id = window.location.hash.replace("#", "");
   if (id === "team" || sections.some((s) => s.id === id)) return id as SectionId;
-  return "overview";
+  return "chat";
 }
 
 // ------------------------------------------------------------------ auth --
@@ -184,17 +184,23 @@ function Shell({ me, onSignOut }: { me: Member; onSignOut: () => void }) {
   const [section, setSection] = useState<SectionId>(sectionFromHash);
   const [content, setContent] = useState<CohortContent | null>(null);
   const [vcs, setVcs] = useState<VcUnlock[] | null>(null);
+  const [deals, setDeals] = useState<Deal[] | null>(null);
+  const [progress, setProgress] = useState<Progress | null>(null);
   const [loadError, setLoadError] = useState(false);
   const { days } = useCountdown();
 
   useEffect(() => {
     let alive = true;
-    Promise.all([fetchContent(), fetchVcUnlocks()]).then(([c, v]) => {
-      if (!alive) return;
-      setContent(c);
-      setVcs(v);
-      setLoadError(!c);
-    });
+    Promise.all([fetchContent(), fetchVcUnlocks(), fetchDeals(), fetchProgress(me.email)]).then(
+      ([c, v, d, p]) => {
+        if (!alive) return;
+        setContent(c);
+        setVcs(v);
+        setDeals(d ?? []);
+        setProgress(p);
+        setLoadError(!c || !c.rho);
+      },
+    );
     return () => {
       alive = false;
     };
@@ -255,29 +261,35 @@ function Shell({ me, onSignOut }: { me: Member; onSignOut: () => void }) {
         <header className="cd-top">
           <h1>{current.label}</h1>
           <span className="cd-chip">
-            <span className="cd-dot" aria-hidden="true" />
-            {days} days to demo day
+            <span className="cd-dot" data-locked={!isUnlocked(progress) || undefined} aria-hidden="true" />
+            {isUnlocked(progress) ? `${deals?.length ?? 0} deals unlocked` : "step 1: Rho"} · {days} days to demo day
           </span>
         </header>
 
         {loadError ? (
           <p className="cd-empty">couldn't load the cohort content. refresh, or message Soneesh or Hadi.</p>
-        ) : !content ? (
+        ) : !content || !deals ? (
           <div className="cd-skeleton" aria-busy="true" aria-label="loading">
             <span />
             <span />
             <span />
           </div>
-        ) : section === "overview" ? (
-          <Overview me={me} content={content} vcs={vcs} go={go} />
-        ) : section === "curriculum" ? (
-          <Curriculum content={content} />
+        ) : section === "chat" ? (
+          <Chat me={me} content={content} deals={deals} progress={progress} onProgress={setProgress} />
+        ) : section === "deals" ? (
+          <DealsPanel deals={deals} rho={content.rho} me={me} progress={progress} onProgress={setProgress} />
+        ) : section === "request" ? (
+          <div className="cd-stack">
+            <section className="cd-card">
+              <h2 className="cd-card-title">{requestForm.heading}</h2>
+              <p className="cd-muted">{requestForm.body}</p>
+              <RequestForm me={me} />
+            </section>
+          </div>
         ) : section === "investors" ? (
           <Investors content={content} vcs={vcs} />
         ) : section === "checkins" ? (
           <CheckIns content={content} />
-        ) : section === "perks" ? (
-          <Perks content={content} me={me} />
         ) : section === "team" && me.role === "admin" ? (
           <Team me={me} />
         ) : null}

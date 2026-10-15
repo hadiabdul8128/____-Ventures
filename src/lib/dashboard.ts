@@ -1,6 +1,6 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { MESSAGES, isNetworkError } from "@/lib/applications";
-import { cohort, type CohortContent } from "@/dashboard/content";
+import { cohort, type CohortContent, type Deal, type Progress } from "@/dashboard/content";
 
 const url = import.meta.env.VITE_SUPABASE_URL?.trim() ?? "";
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim() ?? "";
@@ -94,29 +94,97 @@ export async function fetchVcUnlocks(): Promise<VcUnlock[] | null> {
   return data as VcUnlock[];
 }
 
-export async function submitComputeRequest(input: {
-  founder: string;
+export async function fetchDeals(): Promise<Deal[] | null> {
+  const supabase = getCohortClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from("deals")
+    .select("id, name, url, domain, category, blurb, sort")
+    .order("sort", { ascending: true });
+  if (error || !data) return null;
+  return data as Deal[];
+}
+
+export async function fetchProgress(email: string): Promise<Progress | null> {
+  const supabase = getCohortClient();
+  if (!supabase) return null;
+  const { data } = await supabase
+    .from("cohort_progress")
+    .select("email, rho_path, rho_done_at")
+    .eq("email", email.toLowerCase())
+    .maybeSingle();
+  return (data as Progress | null) ?? null;
+}
+
+/** Step 1: the founder confirms they incorporated or bank through Rho. */
+export async function markRhoDone(
+  email: string,
+  path: "incorporation" | "banking",
+): Promise<Result<Progress>> {
+  const supabase = getCohortClient();
+  if (!supabase) return { ok: false, message: MESSAGES.notConfigured };
+  const row = {
+    email: email.toLowerCase(),
+    rho_path: path,
+    rho_done_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+  const { error } = await supabase.from("cohort_progress").upsert(row, { onConflict: "email" });
+  if (error) return fail(error);
+  return { ok: true, data: row };
+}
+
+export async function submitDealRequest(input: {
   email: string;
-  need: string;
-  tools: string;
-}): Promise<Result<string>> {
+  companies: string;
+  note: string;
+  source: "form" | "chat";
+}): Promise<Result> {
   const supabase = getCohortClient();
   if (!supabase) return { ok: false, message: MESSAGES.notConfigured };
   try {
-    // Mint the id here: members may INSERT but not SELECT their request back.
-    const id = crypto.randomUUID();
-    const { error } = await supabase.from("compute_requests").insert({
-      id,
-      founder: input.founder,
-      email: input.email,
-      need: input.need.trim(),
-      tools: input.tools.trim() || null,
-      source: "dashboard",
+    const { error } = await supabase.from("deal_requests").insert({
+      email: input.email.toLowerCase(),
+      companies: input.companies.trim().slice(0, 500),
+      note: input.note.trim().slice(0, 2000) || null,
+      source: input.source,
     });
-    if (error) return fail(error);
-    return { ok: true, data: id };
+    return error ? fail(error) : { ok: true, data: true };
   } catch (error) {
     return fail(error);
+  }
+}
+
+export type AssistantTurn = { role: "user" | "assistant"; content: string };
+
+export type AssistantReply = {
+  reply: string;
+  dealIds: number[];
+  show: "rho" | "request" | "logos" | null;
+  request: { companies: string; note: string } | null;
+};
+
+/**
+ * Claude-backed answers from /api/cohort-chat. Returns null when the
+ * assistant isn't configured (no API key) or fails, so the chat can fall back
+ * to its built-in answers.
+ */
+export async function askAssistant(turns: AssistantTurn[]): Promise<AssistantReply | null> {
+  const supabase = getCohortClient();
+  if (!supabase) return null;
+  const { data } = await supabase.auth.getSession();
+  const token = data.session?.access_token;
+  if (!token) return null;
+  try {
+    const res = await fetch("/api/cohort-chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ messages: turns.slice(-12) }),
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as AssistantReply;
+  } catch {
+    return null;
   }
 }
 
@@ -131,6 +199,16 @@ export async function fetchMembers(): Promise<Member[] | null> {
     .order("created_at", { ascending: true });
   if (error || !data) return null;
   return data as Member[];
+}
+
+/** Admins only (RLS): everyone's Rho step, keyed by email. */
+export async function fetchAllProgress(): Promise<Map<string, Progress>> {
+  const supabase = getCohortClient();
+  const out = new Map<string, Progress>();
+  if (!supabase) return out;
+  const { data } = await supabase.from("cohort_progress").select("email, rho_path, rho_done_at");
+  for (const row of (data ?? []) as Progress[]) out.set(row.email, row);
+  return out;
 }
 
 export async function removeMember(email: string): Promise<Result> {

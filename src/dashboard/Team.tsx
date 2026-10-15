@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Check, Copy, KeyRound, Trash2 } from "lucide-react";
-import { fetchMembers, inviteMember, removeMember, type Member } from "@/lib/dashboard";
+import type { Progress } from "@/dashboard/content";
+import { fetchAllProgress, fetchMembers, inviteMember, removeMember, type Member } from "@/lib/dashboard";
 
 /**
  * Admin only (the API and RLS enforce that too; hiding the tab is just UI).
@@ -8,12 +9,16 @@ import { fetchMembers, inviteMember, removeMember, type Member } from "@/lib/das
  */
 export function Team({ me }: { me: Member }) {
   const [members, setMembers] = useState<Member[] | null>(null);
+  const [progress, setProgress] = useState<Map<string, Progress>>(new Map());
   const [link, setLink] = useState<{ email: string; url: string } | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const load = () => fetchMembers().then(setMembers);
+  const load = () => {
+    fetchMembers().then(setMembers);
+    fetchAllProgress().then(setProgress);
+  };
   useEffect(() => {
     load();
   }, []);
@@ -129,6 +134,7 @@ export function Team({ me }: { me: Member }) {
                 <th>email</th>
                 <th>company</th>
                 <th>role</th>
+                <th>step 1: Rho</th>
                 <th aria-label="actions" />
               </tr>
             </thead>
@@ -141,6 +147,7 @@ export function Team({ me }: { me: Member }) {
                   <td>
                     <span className="cd-pill">{m.role}</span>
                   </td>
+                  <td>{progress.get(m.email)?.rho_done_at ? `done (${progress.get(m.email)?.rho_path})` : "not yet"}</td>
                   <td className="cd-row-actions">
                     <button
                       type="button"
