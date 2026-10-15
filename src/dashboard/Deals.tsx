@@ -1,8 +1,10 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, Lock, Search } from "lucide-react";
 import {
+  formatValue,
   logoUrl,
   requestForm,
+  totalValue,
   unlockCopy,
   type Deal,
   type Progress,
@@ -21,6 +23,29 @@ export function Logo({ deal, size = 36 }: { deal: Pick<Deal, "name" | "domain">;
         <img src={src} alt="" width={size} height={size} loading="lazy" onError={() => setBroken(true)} />
       ) : (
         <span>{deal.name.charAt(0).toUpperCase()}</span>
+      )}
+    </span>
+  );
+}
+
+/** Hover / focus card: what the deal is worth and what you get. */
+function WorthTip({ deal, locked }: { deal: Deal; locked: boolean }) {
+  const worth = formatValue(deal);
+  return (
+    <span className="cd-tip" role="tooltip">
+      <span className="cd-tip-name">{deal.name}</span>
+      {worth ? (
+        <span className="cd-tip-worth">
+          worth {worth}
+        </span>
+      ) : (
+        <span className="cd-tip-worth cd-tip-worth--none">no fixed dollar value</span>
+      )}
+      {deal.offer && <span className="cd-tip-offer">{deal.offer}</span>}
+      {locked && (
+        <span className="cd-tip-lock">
+          <Lock size={11} /> unlocks after step 1
+        </span>
       )}
     </span>
   );
@@ -102,13 +127,12 @@ export function RhoStep({
 // ------------------------------------------------------------- logo wall --
 
 export function LogoWall({ deals, locked }: { deals: Deal[]; locked: boolean }) {
-  const seen = new Set<string>();
-  const unique = deals.filter((d) => (seen.has(d.name) ? false : (seen.add(d.name), true)));
   return (
     <div className="cd-wall" data-locked={locked || undefined}>
-      {unique.map((d) => (
-        <span className="cd-wall-item" key={d.id} title={d.name}>
+      {deals.map((d) => (
+        <span className="cd-wall-item cd-has-tip" key={d.id} tabIndex={0} aria-label={`${d.name}: ${formatValue(d) ?? d.offer ?? ""}`}>
           <Logo deal={d} size={28} />
+          <WorthTip deal={d} locked={locked} />
         </span>
       ))}
     </div>
@@ -118,22 +142,25 @@ export function LogoWall({ deals, locked }: { deals: Deal[]; locked: boolean }) 
 // ----------------------------------------------------------------- cards --
 
 export function DealCard({ deal, locked }: { deal: Deal; locked: boolean }) {
+  const worth = formatValue(deal);
   const body = (
     <>
       <Logo deal={deal} />
       <span className="cd-deal-text">
         <strong>{deal.name}</strong>
-        <small>{deal.blurb}</small>
+        <small>{deal.offer || deal.blurb}</small>
       </span>
+      {worth && <span className="cd-deal-worth">{worth.replace(" est.", "")}</span>}
       {locked ? <Lock size={14} className="cd-deal-icon" /> : <ArrowUpRight size={15} className="cd-deal-icon" />}
+      <WorthTip deal={deal} locked={locked} />
     </>
   );
   return locked ? (
-    <div className="cd-deal" data-locked title={unlockCopy.locked}>
+    <div className="cd-deal cd-has-tip" data-locked tabIndex={0} aria-label={`${deal.name}, ${unlockCopy.locked}`}>
       {body}
     </div>
   ) : (
-    <a className="cd-deal" href={deal.url} target="_blank" rel="noopener">
+    <a className="cd-deal cd-has-tip" href={deal.url} target="_blank" rel="noopener">
       {body}
     </a>
   );
@@ -187,7 +214,8 @@ export function DealsPanel({
       <RhoStep rho={rho} me={me} progress={progress} onProgress={onProgress} />
       <div className="cd-deals-head">
         <h2 className="cd-card-title">
-          {deals.length} deals {locked ? <span className="cd-pill">{unlockCopy.locked}</span> : null}
+          {deals.length} deals · {totalValue(deals)} in value{" "}
+          {locked ? <span className="cd-pill">{unlockCopy.locked}</span> : null}
         </h2>
         <label className="cd-search">
           <Search size={15} aria-hidden="true" />

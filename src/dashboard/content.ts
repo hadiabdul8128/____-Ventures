@@ -68,7 +68,27 @@ export type Deal = {
   category: string;
   blurb: string | null;
   sort: number;
+  /** The perk as Rho states it. */
+  offer: string | null;
+  /** Estimated USD value; null when the deal has no fixed value. */
+  value_amount: number | null;
+  /** high = the amount is stated in the offer; otherwise it's our estimate. */
+  value_confidence: "high" | "medium" | "low" | null;
 };
+
+const usd = (n: number) =>
+  n >= 10_000 ? `$${Math.round(n / 1000)}K` : `$${n.toLocaleString("en-US")}`;
+
+/** "$5,000" when the offer states it, "~$1,200 est." when it's our estimate. */
+export function formatValue(deal: Pick<Deal, "value_amount" | "value_confidence">) {
+  if (!deal.value_amount) return null;
+  return deal.value_confidence === "high" ? usd(deal.value_amount) : `~${usd(deal.value_amount)} est.`;
+}
+
+export function totalValue(deals: Deal[]) {
+  const total = deals.reduce((sum, d) => sum + (d.value_amount ?? 0), 0);
+  return total >= 1000 ? `$${Math.floor(total / 1000)}K+` : `$${total}`;
+}
 
 /** One row of `public.cohort_progress`; null until the founder starts. */
 export type Progress = {

@@ -99,7 +99,7 @@ export async function fetchDeals(): Promise<Deal[] | null> {
   if (!supabase) return null;
   const { data, error } = await supabase
     .from("deals")
-    .select("id, name, url, domain, category, blurb, sort")
+    .select("id, name, url, domain, category, blurb, sort, offer, value_amount, value_confidence")
     .order("sort", { ascending: true });
   if (error || !data) return null;
   return data as Deal[];

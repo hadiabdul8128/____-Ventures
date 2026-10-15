@@ -16,7 +16,14 @@
  */
 
 type Turn = { role: "user" | "assistant"; content: string };
-type Deal = { id: number; name: string; category: string; blurb: string | null };
+type Deal = {
+  id: number;
+  name: string;
+  category: string;
+  offer: string | null;
+  value_amount: number | null;
+  value_confidence: string | null;
+};
 
 function json(status: number, body: unknown) {
   return new Response(JSON.stringify(body), {
@@ -78,7 +85,7 @@ export async function POST(request: Request): Promise<Response> {
   };
   const [members, deals, progress, content] = await Promise.all([
     get<{ name: string | null }[]>(`cohort_members?select=name&email=eq.${encodeURIComponent(email)}`),
-    get<Deal[]>("deals?select=id,name,category,blurb&order=sort"),
+    get<Deal[]>("deals?select=id,name,category,offer,value_amount,value_confidence&order=sort"),
     get<{ rho_done_at: string | null; rho_path: string | null }[]>(
       `cohort_progress?select=rho_done_at,rho_path&email=eq.${encodeURIComponent(email)}`,
     ),
@@ -101,6 +108,7 @@ How deals work:
 
 Rules:
 - Only mention deals from the list below, with the offer exactly as written. Never invent deals, amounts, or terms.
+- "worth" is an estimated USD value. When confidence is high, the amount is stated in the offer; otherwise say "about" or "an estimated".
 - Be brief and warm: 1 to 3 short sentences, lowercase like the rest of the site, no emojis, no em-dashes.
 - Recommend specific deals by id when they fit the question (up to 12).
 
@@ -109,8 +117,15 @@ Reply with JSON only, no prose around it:
 - show "rho" when talking about step 1, "logos" to show every partner, "request" to open the request form.
 - Fill "request" when they ask for something we don't have, so the form is prefilled.
 
-Deals (id | name | category | offer):
-${deals.map((d) => `${d.id} | ${d.name} | ${d.category} | ${d.blurb ?? ""}`).join("\n")}`;
+Deals (id | name | category | offer | worth):
+${deals
+  .map(
+    (d) =>
+      `${d.id} | ${d.name} | ${d.category} | ${d.offer ?? ""} | ${
+        d.value_amount ? `$${d.value_amount} (${d.value_confidence} confidence)` : "no fixed value"
+      }`,
+  )
+  .join("\n")}`;
 
   const res = await fetch(
     `https://bedrock-runtime.${region}.amazonaws.com/model/${encodeURIComponent(model)}/converse`,

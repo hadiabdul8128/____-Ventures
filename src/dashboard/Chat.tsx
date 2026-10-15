@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { ArrowUp } from "lucide-react";
 import { Mark } from "@/components/Mark";
-import type { CohortContent, Deal, Progress } from "@/dashboard/content";
+import { totalValue, type CohortContent, type Deal, type Progress } from "@/dashboard/content";
 import { askAssistant, type AssistantTurn, type Member } from "@/lib/dashboard";
 import { DealGrid, LogoWall, RequestForm, RhoStep, categoriesOf, isUnlocked } from "@/dashboard/Deals";
 
@@ -131,7 +131,7 @@ export function Chat({
       {
         id: id(),
         role: "assistant",
-        text: `you have ${deals.length} deals waiting from our partners: ${sample}, and ${Math.max(names.length - 8, 0)} more companies.`,
+        text: `you have ${deals.length} deals waiting from our partners, worth an estimated ${totalValue(deals)}: ${sample}, and ${Math.max(names.length - 8, 0)} more companies. hover any logo to see what it's worth.`,
         blocks: [{ kind: "wall" }],
       },
     ];
