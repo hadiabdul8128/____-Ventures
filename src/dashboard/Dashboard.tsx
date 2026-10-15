@@ -35,10 +35,11 @@ import {
 } from "@/dashboard/panels";
 import { Team } from "@/dashboard/Team";
 
-// Read before the Supabase client consumes and clears the hash: a set-password
-// link lands here as #access_token=…&type=invite (or type=recovery).
+// Read before the Supabase client consumes and clears the hash. Any emailed
+// link (invite, recovery, or a first-time email sign-up) lands here as
+// #access_token=…&type=…, and in this app those are only used to set a password.
 const landing = typeof window === "undefined" ? "" : window.location.hash;
-const arrivedToSetPassword = /type=(invite|recovery)/.test(landing);
+const arrivedToSetPassword = /type=(invite|recovery|signup|magiclink)/.test(landing);
 const arrivedWithError = /error_code=|error=/.test(landing)
   ? "that link has expired or was already used. ask Soneesh or Hadi for a new one."
   : "";
