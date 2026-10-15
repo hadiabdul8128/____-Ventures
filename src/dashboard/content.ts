@@ -79,10 +79,10 @@ export type Deal = {
 const usd = (n: number) =>
   n >= 10_000 ? `$${Math.round(n / 1000)}K` : `$${n.toLocaleString("en-US")}`;
 
-/** "$5,000" when the offer states it, "~$1,200 est." when it's our estimate. */
+/** "$5,000" when the offer states it, "~$1,200" when it's our estimate. */
 export function formatValue(deal: Pick<Deal, "value_amount" | "value_confidence">) {
   if (!deal.value_amount) return null;
-  return deal.value_confidence === "high" ? usd(deal.value_amount) : `~${usd(deal.value_amount)} est.`;
+  return deal.value_confidence === "high" ? usd(deal.value_amount) : `~${usd(deal.value_amount)}`;
 }
 
 export function totalValue(deals: Deal[]) {
