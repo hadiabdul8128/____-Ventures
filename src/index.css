@@ -3897,3 +3897,204 @@ a.cd-top-row:hover .cd-deal-text strong {
   .cd-hero.cd-hero--reveal { min-height: 320px; }
   .cd-reveal-lock { width: 200px; }
 }
+
+/* ---- log in link (header) --------------------------------------------- */
+
+.header-login {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.header-login:hover {
+  color: var(--text);
+}
+@media (max-width: 1000px) {
+  .header-login {
+    display: none;
+  }
+}
+
+/* ---- /login chooser + /waitlist dashboard ------------------------------ */
+
+.wl-choices {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+.wl-choice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.wl-choice:hover,
+.wl-choice:focus-visible {
+  border-color: var(--text);
+  background: #111;
+}
+.wl-choice span {
+  display: grid;
+  gap: 4px;
+}
+.wl-choice strong {
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.wl-choice small {
+  font-size: 13px;
+  color: var(--muted);
+}
+.wl-switch {
+  justify-self: start;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.wl {
+  min-height: 100svh;
+  background:
+    radial-gradient(60% 40% at 50% 0%, #141414 0%, transparent 70%),
+    var(--bg);
+  padding: 32px 16px 96px;
+}
+.wl-wrap {
+  max-width: 920px;
+  margin-inline: auto;
+  display: grid;
+  gap: 18px;
+}
+.wl-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 32px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.wl-top .cd-auth-brand {
+  margin: 0;
+}
+.wl-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.wl-heading {
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+.wl-all-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  font-size: 14px;
+}
+.wl-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.wl-step {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto auto;
+  gap: 14px;
+  padding: 28px;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.wl-step[data-done] {
+  border-color: #3a3a3a;
+}
+.wl-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wl-done-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.wl-step-title {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.wl-value {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text);
+}
+.wl-value strong {
+  font-weight: 500;
+  font-size: 40px;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.wl-body {
+  color: var(--muted);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.wl-note {
+  font-size: 12px;
+  color: var(--dim);
+}
+.wl-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+.wl-actions .btn {
+  min-height: 44px;
+  padding: 0 18px;
+}
+@media (max-width: 760px) {
+  .wl-steps {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .wl-email {
+    display: none;
+  }
+}

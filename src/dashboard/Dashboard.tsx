@@ -36,6 +36,7 @@ import { Chat } from "@/dashboard/Chat";
 import { Home } from "@/dashboard/Home";
 import { DealsPanel, RequestForm, SpecialCredits, isUnlocked } from "@/dashboard/Deals";
 import { Team } from "@/dashboard/Team";
+import { AuthFrame } from "@/dashboard/AuthFrame";
 
 // Read before the Supabase client consumes and clears the hash. Any emailed
 // link (invite, recovery, or a first-time email sign-up) lands here as
@@ -63,20 +64,6 @@ function sectionFromHash(): SectionId {
 }
 
 // ------------------------------------------------------------------ auth --
-
-function AuthFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <main id="main" className="cd-auth">
-      <div className="cd-auth-card">
-        <a href="/" className="cd-auth-brand" aria-label="Boston Square Ventures home">
-          <Mark size={28} />
-          <span>Boston Square Ventures</span>
-        </a>
-        {children}
-      </div>
-    </main>
-  );
-}
 
 function Login({ notice }: { notice: string }) {
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");

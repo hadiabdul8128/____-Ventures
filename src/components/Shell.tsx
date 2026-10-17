@@ -102,6 +102,9 @@ export function Header() {
             ))}
           </nav>
           <div className="header-actions">
+            <a className="header-login" href="/login">
+              log in
+            </a>
             <LiquidButton asChild size="sm" className="btn">
               <a href={site.applyHref}>
                 apply to the fellowship <ArrowRight size={14} />
@@ -133,6 +136,10 @@ export function Header() {
             <ArrowUpRight size={22} />
           </a>
         ))}
+        <a href="/login" onClick={close}>
+          log in
+          <ArrowUpRight size={22} />
+        </a>
         <LiquidButton asChild className="btn">
           <a href={site.applyHref} onClick={close}>
             apply to the fellowship <ArrowRight size={14} />

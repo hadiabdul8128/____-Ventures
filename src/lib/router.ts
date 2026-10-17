@@ -17,7 +17,9 @@ export type Route =
   | "/apply"
   | "/apply/pre-founder"
   | "/apply/scout"
-  | "/cohort-01";
+  | "/cohort-01"
+  | "/login"
+  | "/waitlist";
 
 export function toRoute(pathname: string): Route {
   const path = pathname.replace(/\/+$/, "");
@@ -27,6 +29,9 @@ export function toRoute(pathname: string): Route {
   if (path === "/apply/scout" || path === "/apply/ambassador") return "/apply/scout";
   // Cohort dashboard. Behind Supabase sign-in plus the cohort_members list.
   if (path === "/cohort-01" || path === "/dashboard") return "/cohort-01";
+  if (path === "/login") return "/login";
+  // Waitlist dashboard: anyone can create an account.
+  if (path === "/waitlist") return "/waitlist";
   return "/";
 }
 
