@@ -3952,17 +3952,6 @@ a.cd-top-row:hover .cd-deal-text strong {
   font-size: 13px;
   color: var(--muted);
 }
-.wl-switch {
-  justify-self: start;
-  background: none;
-  border: 0;
-  padding: 0;
-  font-size: 13px;
-  color: var(--text);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  cursor: pointer;
-}
 
 .wl {
   min-height: 100svh;

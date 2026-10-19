@@ -26,19 +26,12 @@ export const chooser = {
 export const waitlistAuth = {
   eyebrow: "waitlist · dashboard",
   signInHeading: "sign in.",
-  signUpHeading: "create your account.",
   body: "for founders on the Boston Square Ventures waitlist.",
   email: "email",
   password: "password",
   signIn: "sign in",
-  signUp: "create account",
   sending: "one sec…",
-  toSignUp: "new here? create an account",
-  toSignIn: "already have an account? sign in",
   badLogin: "that email and password don't match.",
-  short: "use at least 8 characters for your password.",
-  checkEmail:
-    "check your email for a confirmation link. it brings you right back here.",
   cohortHint: "in cohort 01? sign in at",
 };
 

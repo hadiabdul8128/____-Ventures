@@ -21,58 +21,29 @@ const COLUMN: Record<StepId, "rho_done_at" | "bluevine_done_at"> = {
 // ------------------------------------------------------------------ auth --
 
 function Auth() {
-  const [mode, setMode] = useState<"in" | "up">("in");
   const [status, setStatus] = useState<"idle" | "sending">("idle");
-  const [message, setMessage] = useState<{
-    kind: "error" | "info";
-    text: string;
-  } | null>(null);
+  const [error, setError] = useState("");
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const supabase = getCohortClient();
     if (!supabase || status === "sending") return;
     const data = new FormData(event.currentTarget);
-    const email = String(data.get("email") ?? "").trim();
-    const password = String(data.get("password") ?? "");
-    setMessage(null);
-
-    if (mode === "up") {
-      if (password.length < 8)
-        return setMessage({ kind: "error", text: waitlistAuth.short });
-      setStatus("sending");
-      const { data: res, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { emailRedirectTo: `${window.location.origin}/waitlist` },
-      });
-      setStatus("idle");
-      if (error)
-        return setMessage({ kind: "error", text: error.message.toLowerCase() });
-      // With email confirmation on, there is no session until the link is clicked.
-      if (!res.session)
-        setMessage({ kind: "info", text: waitlistAuth.checkEmail });
-      return;
-    }
-
+    setError("");
     setStatus("sending");
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+    const { error: err } = await supabase.auth.signInWithPassword({
+      email: String(data.get("email") ?? "").trim(),
+      password: String(data.get("password") ?? ""),
     });
     setStatus("idle");
-    if (error) setMessage({ kind: "error", text: waitlistAuth.badLogin });
+    if (err) setError(waitlistAuth.badLogin);
   };
 
   const sending = status === "sending";
   return (
     <AuthFrame>
       <p className="eyebrow">{waitlistAuth.eyebrow}</p>
-      <h1 className="cd-auth-heading">
-        {mode === "in"
-          ? waitlistAuth.signInHeading
-          : waitlistAuth.signUpHeading}
-      </h1>
+      <h1 className="cd-auth-heading">{waitlistAuth.signInHeading}</h1>
       <p className="cd-muted">{waitlistAuth.body}</p>
       <form className="apply-form cd-auth-form" onSubmit={onSubmit}>
         <label>
@@ -84,37 +55,19 @@ function Auth() {
           <input
             name="password"
             type="password"
-            autoComplete={mode === "in" ? "current-password" : "new-password"}
-            minLength={mode === "up" ? 8 : undefined}
+            autoComplete="current-password"
             required
           />
         </label>
-        {message && (
-          <p
-            className={message.kind === "error" ? "form-error" : "cd-muted"}
-            role="alert"
-          >
-            {message.text}
+        {error && (
+          <p className="form-error" role="alert">
+            {error}
           </p>
         )}
         <button type="submit" className="btn btn--solid" disabled={sending}>
-          {sending
-            ? waitlistAuth.sending
-            : mode === "in"
-              ? waitlistAuth.signIn
-              : waitlistAuth.signUp}
+          {sending ? waitlistAuth.sending : waitlistAuth.signIn}
         </button>
       </form>
-      <button
-        type="button"
-        className="wl-switch"
-        onClick={() => {
-          setMode(mode === "in" ? "up" : "in");
-          setMessage(null);
-        }}
-      >
-        {mode === "in" ? waitlistAuth.toSignUp : waitlistAuth.toSignIn}
-      </button>
       <p className="cd-hint">
         {waitlistAuth.cohortHint} <a href="/cohort-01">/cohort-01</a>.
       </p>
