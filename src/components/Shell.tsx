@@ -73,7 +73,8 @@ export function Header() {
   const close = () => setOpen(false);
   // Off the landing page the in-page anchors need a path in front of them.
   const onLanding = useRoute() === "/";
-  const sectionHref = (href: string) => (onLanding ? href : `/${href}`);
+  const sectionHref = (href: string) =>
+    onLanding || !href.startsWith("#") ? href : `/${href}`;
 
   useEffect(() => {
     if (!open) return;

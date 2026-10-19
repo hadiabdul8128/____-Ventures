@@ -75,6 +75,7 @@ export const nav: NavLink[] = [
   { label: "who we are", href: "#top" },
   { label: "tracks", href: "#tracks" },
   { label: "what we offer", href: "#offer" },
+  { label: "events", href: "/events" },
 ];
 
 export const hero = {

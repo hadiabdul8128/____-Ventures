@@ -9,6 +9,7 @@ import { PreFounderApply } from "@/sections/PreFounderApply";
 import { AmbassadorApply } from "@/sections/AmbassadorApply";
 import { useRoute } from "@/lib/router";
 import { LoginChooser } from "@/waitlist/LoginChooser";
+import { Events } from "@/events/Events";
 import { site } from "@/content";
 import InteractiveNeuralVortex from "@/components/ui/interactive-neural-vortex-background";
 
@@ -35,6 +36,7 @@ const TITLES: Record<string, string> = {
   "/cohort-01": `cohort 01 dashboard | ${site.name}`,
   "/login": `log in | ${site.name}`,
   "/waitlist": `waitlist dashboard | ${site.name}`,
+  "/events": `events | ${site.name}`,
 };
 
 function Landing() {
@@ -96,6 +98,8 @@ export default function App() {
         <Suspense fallback={null}>
           <Waitlist />
         </Suspense>
+      ) : route === "/events" ? (
+        <Events />
       ) : route === "/apply" ? (
         <ApplyPage />
       ) : route === "/apply/scout" ? (
