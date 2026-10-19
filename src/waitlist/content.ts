@@ -67,7 +67,7 @@ export const waitlist = {
       valueNote:
         "Bluevine sets the current offer and who qualifies. see their terms when you sign up.",
       cta: "open Bluevine",
-      href: "https://www.bluevine.com/business-checking",
+      href: "https://www.bluevine.com/partner/bsv",
     },
   ] as const,
 };
