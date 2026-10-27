@@ -1,4 +1,5 @@
 import { getSupabase } from "@/lib/supabase";
+import { currentRef } from "@/lib/ref";
 
 export type ApplicationInput = {
   name: string;
@@ -12,8 +13,7 @@ export type ApplicationInput = {
 };
 
 export type SubmitResult =
-  | { ok: true; id: string }
-  | { ok: false; message: string };
+  { ok: true; id: string } | { ok: false; message: string };
 
 export const RESUME_MAX_BYTES = 5 * 1024 * 1024;
 export const RESUME_ACCEPT = ".pdf,.doc,.docx";
@@ -132,24 +132,23 @@ export async function submitApplication(
     // return the new row — that read is what RLS would reject. Mint the id here
     // instead and send it with the insert.
     const id = crypto.randomUUID();
-    const { error } = await supabase
-      .from("applications")
-      .insert({
-        id,
-        name,
-        email,
-        school: input.school.trim() || null,
-        stage: input.stage.trim() || null,
-        building,
-        achievement: input.achievement.trim() || null,
-        linkedin: input.linkedin.trim() || null,
-        resume_path: resumePath,
-        user_agent:
-          typeof navigator === "undefined"
-            ? null
-            : navigator.userAgent.slice(0, 512),
-        source: "web",
-      });
+    const { error } = await supabase.from("applications").insert({
+      id,
+      name,
+      email,
+      school: input.school.trim() || null,
+      stage: input.stage.trim() || null,
+      building,
+      achievement: input.achievement.trim() || null,
+      linkedin: input.linkedin.trim() || null,
+      resume_path: resumePath,
+      user_agent:
+        typeof navigator === "undefined"
+          ? null
+          : navigator.userAgent.slice(0, 512),
+      source: "web",
+      ref: currentRef(),
+    });
 
     if (error) {
       return {
@@ -202,12 +201,10 @@ export async function submitPreFounder(
 
   try {
     const path = `pre-founder/${crypto.randomUUID()}/${sanitizeFileName(resume.name)}`;
-    const upload = await supabase.storage
-      .from("resumes")
-      .upload(path, resume, {
-        upsert: false,
-        contentType: resume.type || undefined,
-      });
+    const upload = await supabase.storage.from("resumes").upload(path, resume, {
+      upsert: false,
+      contentType: resume.type || undefined,
+    });
     if (upload.error) {
       return {
         ok: false,
@@ -235,6 +232,7 @@ export async function submitPreFounder(
           ? null
           : navigator.userAgent.slice(0, 512),
       source: "web",
+      ref: currentRef(),
     });
     if (error) {
       return {
@@ -327,6 +325,7 @@ export async function submitAmbassador(
           ? null
           : navigator.userAgent.slice(0, 512),
       source: "web",
+      ref: currentRef(),
     });
     if (error) {
       return {
