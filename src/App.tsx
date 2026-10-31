@@ -3,6 +3,7 @@ import { MotionConfig } from "motion/react";
 import { Footer, Header } from "@/components/Shell";
 import { Hero, Receipts } from "@/sections/Hero";
 import { Offer, Tracks } from "@/sections/Program";
+import { Philosophy } from "@/sections/Philosophy";
 import { Founders } from "@/sections/Founders";
 import { Apply, Closing } from "@/sections/Apply";
 import { PreFounderApply } from "@/sections/PreFounderApply";
@@ -48,6 +49,7 @@ function Landing() {
       <Receipts />
       <div className="venture-flow">
         <InteractiveNeuralVortex />
+        <Philosophy />
         <Tracks />
         <Offer />
         <Founders />

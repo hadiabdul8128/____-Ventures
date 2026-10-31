@@ -630,3 +630,23 @@ export const footer = {
   copyright: `\u00A9 ${site.year} Boston Square Ventures Inc.`,
   backToTop: "back to top",
 };
+
+
+export const philosophy = {
+  eyebrow: "what we believe",
+  heading: "our philosophy.",
+  items: [
+    {
+      heading: "start in Boston.",
+      body: "Boston is a unique ecosystem with intellectual curiosity at its core. We believe every founder’s transformation should start here.",
+    },
+    {
+      heading: "ready to build is ready.",
+      body: "Education is changing. We believe its future will be defined by what you build, not your grades. BSV is bringing entrepreneurship into education systems to make it a normal path around the world.",
+    },
+    {
+      heading: "your people shape you.",
+      body: "You are the average of the five people you surround yourself with. Selected founders will live together in the BSV house for their time here, with all expenses paid.",
+    },
+  ],
+};
