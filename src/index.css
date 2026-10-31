@@ -4226,3 +4226,105 @@ a.cd-top-row:hover .cd-deal-text strong {
     max-width: 440px;
   }
 }
+
+/* ---- /creator-venture-partner-program ---------------------------------- */
+
+.creator-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-block: 1px solid var(--line);
+  margin-bottom: clamp(56px, 7vw, 96px);
+}
+.creator-stat {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: clamp(24px, 3vw, 36px) clamp(16px, 2vw, 28px);
+}
+.creator-stat:first-child {
+  padding-left: 0;
+}
+.creator-stat + .creator-stat {
+  border-left: 1px solid var(--line);
+}
+.creator-stat-value {
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.creator-stat-label {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.creator-sections {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+.creator-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 5vw, 72px);
+  padding-block: clamp(28px, 4vw, 44px);
+  border-bottom: 1px solid var(--line);
+}
+.creator-label {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.creator-label span {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--dim);
+}
+.creator-items {
+  display: grid;
+  gap: 14px;
+}
+.creator-items li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--muted);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.creator-items li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 10px;
+  height: 1px;
+  background: var(--line-strong);
+}
+.creator-fineprint {
+  margin-top: clamp(40px, 5vw, 64px);
+  max-width: 620px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--dim);
+}
+@media (max-width: 860px) {
+  .creator-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .creator-stat:nth-child(odd) {
+    padding-left: 0;
+  }
+  .creator-stat:nth-child(3) {
+    border-left: 0;
+  }
+  .creator-stat:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+  .creator-row {
+    grid-template-columns: 1fr;
+  }
+}

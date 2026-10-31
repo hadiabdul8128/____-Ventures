@@ -20,7 +20,8 @@ export type Route =
   | "/cohort-01"
   | "/login"
   | "/waitlist"
-  | "/events";
+  | "/events"
+  | "/creator-venture-partner-program";
 
 export function toRoute(pathname: string): Route {
   const path = pathname.replace(/\/+$/, "");
@@ -34,6 +35,8 @@ export function toRoute(pathname: string): Route {
   // Waitlist dashboard: sign-in only for now.
   if (path === "/waitlist") return "/waitlist";
   if (path === "/events") return "/events";
+  if (path === "/creator-venture-partner-program")
+    return "/creator-venture-partner-program";
   return "/";
 }
 

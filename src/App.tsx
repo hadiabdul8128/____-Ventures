@@ -10,6 +10,7 @@ import { AmbassadorApply } from "@/sections/AmbassadorApply";
 import { useRoute } from "@/lib/router";
 import { LoginChooser } from "@/waitlist/LoginChooser";
 import { Events } from "@/events/Events";
+import { CreatorProgram } from "@/creators/CreatorProgram";
 import { site } from "@/content";
 import InteractiveNeuralVortex from "@/components/ui/interactive-neural-vortex-background";
 
@@ -37,6 +38,7 @@ const TITLES: Record<string, string> = {
   "/login": `log in | ${site.name}`,
   "/waitlist": `waitlist dashboard | ${site.name}`,
   "/events": `events | ${site.name}`,
+  "/creator-venture-partner-program": `creator venture partner program | ${site.name}`,
 };
 
 function Landing() {
@@ -100,6 +102,8 @@ export default function App() {
         </Suspense>
       ) : route === "/events" ? (
         <Events />
+      ) : route === "/creator-venture-partner-program" ? (
+        <CreatorProgram />
       ) : route === "/apply" ? (
         <ApplyPage />
       ) : route === "/apply/scout" ? (
