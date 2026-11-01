@@ -547,9 +547,11 @@ export const apply = {
     building: "what are you building, or what can't you stop thinking about?",
     achievement: "what's your greatest achievement?",
     linkedin: "linkedin profile",
+    referredBy: "were you referred by a creator venture partner?",
     resume: "upload resume",
   },
   resumeHint: "pdf or word, up to 5 mb. optional but it helps.",
+  notReferred: "no",
   stages: [
     "just an idea",
     "building a v0",
