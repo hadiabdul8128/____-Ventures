@@ -13,7 +13,7 @@ export type ApplicationInput = {
 };
 
 /** Creator Venture Partners an applicant can name on the fellowship form. */
-export const CREATOR_PARTNERS = ["Brian Bravo", "Jose Cruz Lopez"] as const;
+export const CREATOR_PARTNERS = ["Bryan Bravo", "Jose Cruz Lopez"] as const;
 
 export type SubmitResult =
   | { ok: true; id: string }
