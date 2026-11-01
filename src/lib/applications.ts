@@ -8,12 +8,8 @@ export type ApplicationInput = {
   building: string;
   achievement: string;
   linkedin: string;
-  referredBy?: string;
   resume?: File | null;
 };
-
-/** Creator Venture Partners an applicant can name on the fellowship form. */
-export const CREATOR_PARTNERS = ["Bryan Bravo", "Jose Cruz Lopez"] as const;
 
 export type SubmitResult =
   | { ok: true; id: string }
@@ -152,13 +148,7 @@ export async function submitApplication(
           typeof navigator === "undefined"
             ? null
             : navigator.userAgent.slice(0, 512),
-        // Stored in `source` so it needs no schema change. Only names on the
-        // list are accepted; anything else falls back to plain "web".
-        source: (CREATOR_PARTNERS as readonly string[]).includes(
-          input.referredBy ?? "",
-        )
-          ? `creator:${input.referredBy}`
-          : "web",
+        source: "web",
       });
 
     if (error) {

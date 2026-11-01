@@ -8,7 +8,6 @@ import { MetalCard } from "@/components/MetalCard";
 import { ResumeField } from "@/components/ResumeField";
 import { apply, closing, site } from "@/content";
 import {
-  CREATOR_PARTNERS,
   countWords,
   emailOk,
   submitApplication,
@@ -25,7 +24,6 @@ const TEXT_FIELDS = [
   "building",
   "achievement",
   "linkedin",
-  "referredBy",
 ] as const;
 
 type Draft = Partial<Record<(typeof TEXT_FIELDS)[number], string>>;
@@ -67,7 +65,6 @@ function readText(form: HTMLFormElement): Required<Draft> {
     building: get("building"),
     achievement: get("achievement"),
     linkedin: get("linkedin"),
-    referredBy: get("referredBy"),
   };
 }
 
@@ -296,17 +293,6 @@ export function Apply() {
                   placeholder="https://linkedin.com/in/"
                   defaultValue={draft.linkedin}
                 />
-              </label>
-              <label>
-                {apply.fields.referredBy}
-                <select name="referredBy" defaultValue={draft.referredBy ?? ""}>
-                  <option value="">{apply.notReferred}</option>
-                  {CREATOR_PARTNERS.map((partner) => (
-                    <option key={partner} value={partner}>
-                      {partner}
-                    </option>
-                  ))}
-                </select>
               </label>
               <ResumeField
                 file={resume}
