@@ -264,9 +264,16 @@ export const offer: {
       kind: "word",
     },
     {
-      value: "$100k",
+      value: "up to $1M",
       label: "compute credits",
       note: "Azure, AWS, Supabase, etc.",
+      kind: "word",
+    },
+    {
+      value: "$10k–$100k",
+      label: "a check to build",
+      note: "to get you from zero to one",
+      kind: "word",
     },
     {
       value: "free",
@@ -289,9 +296,9 @@ export const offer: {
       kind: "word",
     },
     {
-      value: "no clock",
-      label: "open-ended",
-      note: "we stay until you raise",
+      value: "continuous",
+      label: "support",
+      note: "throughout our program",
       kind: "word",
     },
     {
