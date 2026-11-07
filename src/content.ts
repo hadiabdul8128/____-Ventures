@@ -543,8 +543,8 @@ export const apply = {
   body: "Tell us what you’re building.",
   deadline: {
     label: "applications close",
-    value: "October 17 at 11:59 pm ET",
-    iso: "2026-10-17T23:59-04:00",
+    value: "November 17 at 11:59 pm ET",
+    iso: "2026-11-17T23:59-05:00",
   },
   fields: {
     name: "name",
