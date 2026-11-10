@@ -1,0 +1,116 @@
+/* Ruled grid, same hairlines as the offer facts.
+   Five partners: three across, then two filling the row. */
+
+.partners {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-block: 1px solid var(--line);
+}
+.partner {
+  display: grid;
+  min-width: 0;
+}
+.partner + .partner {
+  border-top: 1px solid var(--line);
+}
+.partner-link {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  align-content: start;
+  gap: 14px;
+  height: 100%;
+  padding: 28px 0;
+  color: inherit;
+}
+.partner-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: #fff;
+  color: #111;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+}
+.partner-mark img {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+}
+.partner-name {
+  font-weight: 500;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.partner-body {
+  color: var(--muted);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.partner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--muted);
+}
+.partner-cta svg {
+  transition: transform 0.2s;
+}
+.partner-link:hover .partner-name,
+.partner-link:hover .partner-cta {
+  color: var(--text);
+}
+.partner-link:hover .partner-cta svg {
+  transform: translate(2px, -2px);
+}
+
+@media (min-width: 860px) {
+  /* Six tracks so the first three take a third each and the last two split the row. */
+  .partners {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .partner {
+    grid-column: span 2;
+  }
+  .partner + .partner {
+    border-top: 0;
+  }
+  .partner:nth-child(3n + 2),
+  .partner:nth-child(3n + 3) {
+    border-left: 1px solid var(--line);
+  }
+  .partner:nth-child(n + 4) {
+    grid-column: span 3;
+    border-top: 1px solid var(--line);
+  }
+  .partner:nth-child(4) {
+    border-left: 0;
+  }
+  .partner-link {
+    padding: 44px 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-cta svg {
+    transition: none;
+  }
+}
+
+/* Same glass treatment as the offer grid, so the rules stay visible on the artwork. */
+.venture-flow .partners,
+.venture-flow .partner {
+  border-color: #ffffff24;
+}
+.venture-flow .partners {
+  background: #00000038;
+  backdrop-filter: blur(8px);
+}

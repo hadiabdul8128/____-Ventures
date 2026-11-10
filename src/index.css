@@ -1395,6 +1395,12 @@ a.press-link:hover {
     position: static;
   }
 }
+/* The partners link needs a tighter gap before the nav collapses to the menu. */
+@media (max-width: 960px) {
+  .desktop-nav {
+    gap: 16px;
+  }
+}
 @media (max-width: 820px) {
   .desktop-nav,
   .header-actions .btn {

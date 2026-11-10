@@ -20,6 +20,14 @@ export type Fact = {
 
 export type Perk = { title: string; body: string };
 
+/** A public partner card. `domain` feeds the same favicon helper as the dashboard. */
+export type PartnerCard = {
+  name: string;
+  domain: string;
+  body: string;
+  href: string;
+};
+
 export type Phase = {
   number: string;
   theme: string;
@@ -75,6 +83,7 @@ export const nav: NavLink[] = [
   { label: "who we are", href: "#top" },
   { label: "tracks", href: "#tracks" },
   { label: "what we offer", href: "#offer" },
+  { label: "partners", href: "#partners" },
   { label: "events", href: "/events" },
 ];
 
@@ -264,7 +273,7 @@ export const offer: {
       kind: "word",
     },
     {
-      value: "up to $1M",
+      value: "$100K",
       label: "compute credits",
       note: "Azure, AWS, Supabase, etc.",
       kind: "word",
@@ -360,6 +369,49 @@ export const perks: { eyebrow: string; heading: string; items: Perk[] } = {
     {
       title: "opportunity accelerator",
       body: "intros to internships, investors, and rooms you don't get into by applying online.",
+    },
+  ],
+};
+
+export const partners: {
+  eyebrow: string;
+  heading: string;
+  cta: string;
+  items: PartnerCard[];
+} = {
+  eyebrow: "partners",
+  heading: "our partners.",
+  cta: "visit",
+  items: [
+    {
+      name: "Rho",
+      domain: "rho.co",
+      body: "banking partner. free Delaware C-corp incorporation and Rho Perks deals for BSV founders.",
+      href: "https://www.rho.co",
+    },
+    {
+      name: "Linear",
+      domain: "linear.app",
+      body: "Linear for Startups partner. startup program access for BSV founders.",
+      href: "https://linear.app/startups/u9JabjRANc",
+    },
+    {
+      name: "Gusto",
+      domain: "gusto.com",
+      body: "payroll and HR partner.",
+      href: "https://gusto.com/go/bd/bostonsquareventures",
+    },
+    {
+      name: "Carta",
+      domain: "carta.com",
+      body: "equity management partner. access to Carta's free plan for BSV companies.",
+      href: "https://carta.com",
+    },
+    {
+      name: "VC Boom",
+      domain: "vcboom.com",
+      body: "30% off any plan for BSV founders.",
+      href: "https://vcboom.com",
     },
   ],
 };

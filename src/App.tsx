@@ -3,6 +3,7 @@ import { MotionConfig } from "motion/react";
 import { Footer, Header } from "@/components/Shell";
 import { Hero, Receipts } from "@/sections/Hero";
 import { Offer, Tracks } from "@/sections/Program";
+import { Partners } from "@/sections/Partners";
 import { Philosophy } from "@/sections/Philosophy";
 import { Founders } from "@/sections/Founders";
 import { Apply, Closing } from "@/sections/Apply";
@@ -52,6 +53,7 @@ function Landing() {
         <Philosophy />
         <Tracks />
         <Offer />
+        <Partners />
         <Founders />
         <Closing />
       </div>
